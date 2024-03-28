@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Tareas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilos/custom.css"> <!-- Ruta relativa al archivo CSS -->
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <div class="nav-list">
+                <a href="index.html">Inicio</a>
+                <a href="#">Editar Tareas</a>
+                <a href="#">Sobre nosotros</a>
+                <a href="#">Servicios</a>
+                <a href="#">Productos</a>
+                <a href="#">Contacto</a>
+            </div>
+            <div class="auth-list">
+                <a href="#">Iniciar sesión</a>
+                <a href="#">Registro</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="edit-tab">
+        <h2>Editar Información de Tareas</h2>
+        <form id="task-form">
+            <label for="task-name">Nombre de la tarea:</label><br>
+            <input type="text" id="task-name" name="task-name" required><br><br>
+            <label for="task-date">Fecha:</label><br>
+            <input type="date" id="task-date" name="task-date" required><br><br>
+            <label for="task-time">Hora:</label><br>
+            <input type="time" id="task-time" name="task-time" required><br><br>
+            <label for="priority">Prioridad:</label><br>
+            <select id="priority" name="priority" required>
+                <option value="alta">Alta</option>
+                <option value="media">Media</option>
+                <option value="baja">Baja</option>
+            </select><br><br>
+            <input type="submit" value="Guardar">
+        </form>
+        <p id="message" class="hidden"></p> <!-- Mensaje de confirmación oculto por defecto -->
+    </section>
+
+    <script src="scripts/main.js"></script> <!-- Ruta relativa al archivo JavaScript -->
+</body>
+</html>
