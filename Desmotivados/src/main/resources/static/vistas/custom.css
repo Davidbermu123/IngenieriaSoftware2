@@ -2,13 +2,13 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #f8f9fa;
 }
 
 header {
-    background-color: #333;
+    background-color: #343a40;
     color: #fff;
-    padding: 10px 20px;
+    padding: 20px;
 }
 
 .main-nav {
@@ -21,23 +21,31 @@ header {
     color: #fff;
     text-decoration: none;
     margin-right: 20px;
+    transition: color 0.3s ease;
+}
+
+.nav-list a:hover {
+    color: #ffc107;
 }
 
 .edit-tab {
     background-color: #fff;
-    padding: 20px;
+    padding: 30px;
     margin: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .edit-tab h2 {
-    margin-bottom: 20px;
-    color: #333;
+    margin-bottom: 30px;
+    color: #343a40;
+    font-size: 24px;
+    text-align: center;
 }
 
 label {
     font-weight: bold;
+    color: #343a40;
 }
 
 input[type="text"],
@@ -45,24 +53,28 @@ input[type="date"],
 input[type="time"],
 select {
     width: calc(100% - 22px); /* Ajustar el ancho de los campos para compensar el padding */
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
     box-sizing: border-box;
+    font-size: 16px;
 }
 
 input[type="submit"] {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 20px;
+    background-color: #ffc107;
+    color: #343a40;
+    padding: 15px 30px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 input[type="submit"]:hover {
-    background-color: #555;
+    background-color: #343a40;
+    color: #fff;
 }
 
 .hidden {

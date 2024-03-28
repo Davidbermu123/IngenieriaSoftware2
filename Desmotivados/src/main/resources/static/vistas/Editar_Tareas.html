@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Tareas</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="estilos/custom.css"> <!-- Ruta relativa al archivo CSS -->
+    <link rel="stylesheet" href="./custom.css">
 </head>
 <body>
     <header>
@@ -28,13 +28,20 @@
     <section class="edit-tab">
         <h2>Editar Información de Tareas</h2>
         <form id="task-form">
-            <label for="task-name">Nombre de la tarea:</label><br>
+            <label for="select-task">Selecciona una tarea:</label><br>
+            <select id="select-task" name="select-task" required>
+                <option value="tarea1">Tarea 1</option>
+                <option value="tarea2">Tarea 2</option>
+                <option value="tarea3">Tarea 3</option>
+                <!-- Agrega más opciones según sea necesario -->
+            </select><br><br>
+            <label for="task-name">Nuevo nombre de la tarea:</label><br>
             <input type="text" id="task-name" name="task-name" required><br><br>
-            <label for="task-date">Fecha:</label><br>
+            <label for="task-date">Nueva fecha:</label><br>
             <input type="date" id="task-date" name="task-date" required><br><br>
-            <label for="task-time">Hora:</label><br>
+            <label for="task-time">Nueva hora:</label><br>
             <input type="time" id="task-time" name="task-time" required><br><br>
-            <label for="priority">Prioridad:</label><br>
+            <label for="priority">Nueva prioridad:</label><br>
             <select id="priority" name="priority" required>
                 <option value="alta">Alta</option>
                 <option value="media">Media</option>
@@ -45,6 +52,6 @@
         <p id="message" class="hidden"></p> <!-- Mensaje de confirmación oculto por defecto -->
     </section>
 
-    <script src="scripts/main.js"></script> <!-- Ruta relativa al archivo JavaScript -->
+    <script src="main.js"></script> <!-- Ruta relativa al archivo JavaScript -->
 </body>
 </html>
