@@ -1,0 +1,97 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10%;
+    align-items: center;
+    height: 100px; /* Altura fija para la cabecera en pantallas grandes */
+}
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.nav-list, .auth-list {
+    display: flex;
+    align-items: center;
+}
+
+.nav-list a, .auth-list a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    transition: color 0.3s;
+}
+
+.nav-list a:hover, .auth-list a:hover {
+    color: #FFD700;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        height: auto; /* Ajuste la altura automáticamente para dispositivos más pequeños */
+        padding: 20px 0; /* Espaciado vertical para no apretar demasiado los enlaces */
+    }
+
+    .main-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-list, .auth-list {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-list a, .auth-list a {
+        margin: 5px 0; /* Aumentar el espaciado verticalmente para los enlaces */
+    }
+}
+
+.slogan-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 10px;
+    flex-wrap: wrap;
+}
+
+.slogan-text {
+    flex: 1;
+    max-width: 50%;
+    text-align: center;
+}
+
+.slogan-image {
+    flex: 1;
+    max-width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.slogan-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.slogan-text h1 {
+    font-family: 'Ubuntu', sans-serif;
+    color: #333;
+    margin-bottom: 20px;
+}
