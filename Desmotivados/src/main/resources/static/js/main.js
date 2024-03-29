@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const taskDateInput = document.getElementById('task-date');
     const taskTimeInput = document.getElementById('task-time');
     const priorityInput = document.getElementById('priority');
+    const guardarButton = document.getElementById('guardar');
 
     selectTask.addEventListener('change', function() {
         const selectedTask = selectTask.value;
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         priorityInput.value = tasks[selectedTask].priority;
     });
 
-    form.addEventListener('submit', function(event) {
+    guardarButton.addEventListener('click', function(event) {
         event.preventDefault();
 
         const selectedTask = selectTask.value;
@@ -34,21 +35,36 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         if (selectedTask && modifiedTask.name && modifiedTask.date && modifiedTask.time && modifiedTask.priority) {
-            // Comparar características originales con modificadas
-            const differences = [];
-            for (const key in originalTask) {
-                if (originalTask[key] !== modifiedTask[key]) {
-                    differences.push(`${key}: ${originalTask[key]} -> ${modifiedTask[key]}`);
-                }
-            }
+            const modal = document.createElement('div');
+            modal.classList.add('modal');
+            const modalContent = `
+                <p>¿Estás seguro de querer actualizar la tarea "${selectedTask}" con los siguientes cambios?</p>
+                <ul>
+                    <li>Nombre: ${modifiedTask.name}</li>
+                    <li>Fecha: ${modifiedTask.date}</li>
+                    <li>Hora: ${modifiedTask.time}</li>
+                    <li>Prioridad: ${modifiedTask.priority}</li>
+                </ul>
+                <button id="confirmar">Actualizar</button>
+                <button id="cancelar">Cancelar</button>
+            `;
+            modal.innerHTML = modalContent;
+            document.body.appendChild(modal);
 
-            // Muestra el mensaje de confirmación con las diferencias
-            if (differences.length > 0) {
-                message.innerText = `La tarea "${selectedTask}" ha sido modificada. Cambios realizados:\n${differences.join('\n')}`;
-            } else {
-                message.innerText = `No se han realizado cambios en la tarea "${selectedTask}".`;
-            }
-            message.classList.remove('hidden');
+            const confirmarButton = document.getElementById('confirmar');
+            const cancelarButton = document.getElementById('cancelar');
+
+            confirmarButton.addEventListener('click', function() {
+                // Realizar la actualización aquí
+                tasks[selectedTask] = modifiedTask;
+                message.innerText = `La tarea "${selectedTask}" ha sido modificada.`;
+                message.classList.remove('hidden');
+                modal.remove();
+            });
+
+            cancelarButton.addEventListener('click', function() {
+                window.location.href = 'index.html'; // Redirige a la página de inicio
+            });
         } else {
             message.innerText = 'Por favor, llena todos los campos.';
             message.classList.remove('hidden');
