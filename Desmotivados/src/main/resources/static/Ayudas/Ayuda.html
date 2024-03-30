@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <title>Actividades de Aprendizaje</title>
+  <link rel="stylesheet" href="style/styleAyuda.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Actividades de Aprendizaje</h1>
+    <form id="filtroForm">
+      <label for="intereses">Intereses:</label>
+      <select id="intereses">
+        <option value="">Ninguna</option>
+        <option value="matematicas">Matemáticas</option>
+        <option value="ciencias">Ciencias</option>
+        <option value="historia">Historia</option>
+        <option value="arte">Arte</option>
+      </select>
+      <label for="areas">Áreas de Estudio:</label>
+      <select id="areas">
+        <option value="">Ninguna</option>
+        <option value="programacion">Programación</option>
+        <option value="biologia">Biología</option>
+        <option value="literatura">Literatura</option>
+        <option value="dibujo">Dibujo</option>
+      </select>
+      <button type="button" class="buscar-btn" onclick="filtrarContenido()">Buscar</button>
+    </form>
+    <div id="tituloContenido"></div>
+    <div id="detalleContenido"></div>
+    <button class="enlaces-btn">Ir a Enlaces de Información</button>
+  </div>
+
+  <script type="text/javascript" src="js/scriptAyuda.js"></script>
+</body>
+</html>
