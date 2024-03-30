@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizador</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/JavaScript" src="/Js\Organizador_js.js"></script>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <h1>Crea tu tarea</h1>
+            <!-- Botón que abrirá la ventana emergente -->
+        <button onclick="abrirVentana()">Abrir Ventana Emergente</button>
+
+        <!-- La ventana emergente -->
+        <div id="miVentanaModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarVentana()">&times;</span>
+                <div>
+                    <input id="Tareatitulo" placeholder="Titulo de la tarea">
+                    <br>
+                    <input id="Tareadescripcion" placeholder="Descripción de la tarea">
+                    <br>
+                    <!-- Fecha y hora de inicio -->
+                    <label for="FechaInicio">Fecha de inicio:</label>
+                    <input type="datetime-local" id="FechaInicio" placeholder="Fecha y hora de la tarea">
+                    <br>
+                    <!-- Fecha y hora de fin -->
+                    <label for="FechaFin">Fecha de fin:</label>
+                    <input type="datetime-local" id="FechaFin" placeholder="Fecha y hora de la tarea">
+                    <br>
+                    <select id="Tareaprioridad">
+                        <option value="baja">Baja</option>
+                        <option value="media">Media</option>
+                        <option value="alta">Alta</option>
+                    </select>
+                    <br>
+                    <button onclick="guardarT()">Guardar</button>
+                </div>       
+        </div>
+        <div id="contenedorTareas"></div>
+        </div>
+
+</body>
+</html>
