@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('task-form');
     const message = document.getElementById('message');
@@ -35,36 +36,23 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         if (selectedTask && modifiedTask.name && modifiedTask.date && modifiedTask.time && modifiedTask.priority) {
-            const modal = document.createElement('div');
-            modal.classList.add('modal');
-            const modalContent = `
-                <p>¿Estás seguro de querer actualizar la tarea "${selectedTask}" con los siguientes cambios?</p>
-                <ul>
-                    <li>Nombre: ${modifiedTask.name}</li>
-                    <li>Fecha: ${modifiedTask.date}</li>
-                    <li>Hora: ${modifiedTask.time}</li>
-                    <li>Prioridad: ${modifiedTask.priority}</li>
-                </ul>
-                <button id="confirmar">Actualizar</button>
-                <button id="cancelar">Cancelar</button>
-            `;
-            modal.innerHTML = modalContent;
-            document.body.appendChild(modal);
+            // Crear mensaje de confirmación
+            const confirmationMessage = "¿Estás seguro de querer actualizar la tarea \"" + selectedTask + "\" con los siguientes cambios?\n\n" +
+                                        "Nombre: " + modifiedTask.name + "\n" +
+                                        "Fecha: " + modifiedTask.date + "\n" +
+                                        "Hora: " + modifiedTask.time + "\n" +
+                                        "Prioridad: " + modifiedTask.priority;
 
-            const confirmarButton = document.getElementById('confirmar');
-            const cancelarButton = document.getElementById('cancelar');
-
-            confirmarButton.addEventListener('click', function() {
-                // Realizar la actualización aquí
+            // Mostrar mensaje de confirmación en una ventana emergente
+            if (confirm(confirmationMessage)) {
+                // Si el usuario confirma, realizar la actualización aquí
                 tasks[selectedTask] = modifiedTask;
-                message.innerText = `La tarea "${selectedTask}" ha sido modificada.`;
+                message.innerText = "La tarea \"" + selectedTask + "\" ha sido modificada.";
                 message.classList.remove('hidden');
-                modal.remove();
-            });
-
-            cancelarButton.addEventListener('click', function() {
-                window.location.href = 'index.html'; // Redirige a la página de inicio
-            });
+            } else {
+                // Si el usuario cancela, no hacer nada
+                return false;
+            }
         } else {
             message.innerText = 'Por favor, llena todos los campos.';
             message.classList.remove('hidden');
