@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Aprender_entidades {
+public class AprenderEntidades {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

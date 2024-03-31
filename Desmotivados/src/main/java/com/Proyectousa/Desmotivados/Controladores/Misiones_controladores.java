@@ -7,18 +7,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Proyectousa.Desmotivados.Entidades.Aprender_entidades;
-import com.Proyectousa.Desmotivados.Modelos.Aprender_modelos;
+import com.Proyectousa.Desmotivados.Entidades.MisionesEntidades;
+import com.Proyectousa.Desmotivados.Modelos.MisionesModelos;
 
 @RestController
-@RequestMapping("/aprender") 
-public class Aprender_controlador {
+@RequestMapping("/misiones") 
+public class Misiones_controladores {
     @Autowired
-    private Aprender_modelos servicio;
+    private MisionesModelos servicio;
 
-
-    @GetMapping("/retornar")
-    public List<Aprender_entidades> getAllAprender_entidad(){
+    @GetMapping("/retornarmisiones")
+    public List<MisionesEntidades> getAllAprender_entidad(){
         return servicio.listarTodas();
     }
 }

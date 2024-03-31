@@ -5,16 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.Proyectousa.Desmotivados.Entidades.Aprender_entidades;
-import com.Proyectousa.Desmotivados.Repositorios.Aprender_repositorios;
+import com.Proyectousa.Desmotivados.Entidades.AprenderEntidades;
+import com.Proyectousa.Desmotivados.Repositorios.AprenderRepositorios;
 
 @Service
-public class Aprender_modelos {
+public class AprenderModelos {
     
     @Autowired
-    private Aprender_repositorios repositorio;
+    private AprenderRepositorios repositorio;
 
-    public List<Aprender_entidades> listarTodas() {
+    public List<AprenderEntidades> listarTodas() {
         return repositorio.getAllAprender_entidad();
     }
 }
