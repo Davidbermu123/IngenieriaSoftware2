@@ -1,26 +1,50 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('task-form');
     const message = document.getElementById('message');
     const tasks = {
-        tarea1: { name: 'Nombre de la Tarea 1', date: '2024-04-01', time: '12:00', priority: 'alta' },
-        tarea2: { name: 'Nombre de la Tarea 2', date: '2024-04-02', time: '15:30', priority: 'media' },
-        tarea3: { name: 'Nombre de la Tarea 3', date: '2024-04-03', time: '09:00', priority: 'baja' }
+        tarea1: { 
+            idTarea: 1,
+            titulo: 'Nombre de la Tarea 1', 
+            descripcion: 'Descripción de la Tarea 1',
+            fechaInicio: '2024-04-01', 
+            fechaFinal: '2024-04-02', 
+            prioridad: 'alta' 
+        },
+        tarea2: { 
+            idTarea: 2,
+            titulo: 'Nombre de la Tarea 2', 
+            descripcion: 'Descripción de la Tarea 2',
+            fechaInicio: '2024-04-02', 
+            fechaFinal: '2024-04-03', 
+            prioridad: 'media' 
+        },
+        tarea3: { 
+            idTarea: 3,
+            titulo: 'Nombre de la Tarea 3', 
+            descripcion: 'Descripción de la Tarea 3',
+            fechaInicio: '2024-04-03', 
+            fechaFinal: '2024-04-04', 
+            prioridad: 'baja' 
+        }
     };
 
     const selectTask = document.getElementById('select-task');
+    const taskIdInput = document.getElementById('task-id');
     const taskNameInput = document.getElementById('task-name');
-    const taskDateInput = document.getElementById('task-date');
-    const taskTimeInput = document.getElementById('task-time');
+    const taskDescriptionInput = document.getElementById('task-description');
+    const taskStartDateInput = document.getElementById('task-start-date');
+    const taskEndDateInput = document.getElementById('task-end-date');
     const priorityInput = document.getElementById('priority');
     const guardarButton = document.getElementById('guardar');
 
     selectTask.addEventListener('change', function() {
         const selectedTask = selectTask.value;
-        taskNameInput.value = tasks[selectedTask].name;
-        taskDateInput.value = tasks[selectedTask].date;
-        taskTimeInput.value = tasks[selectedTask].time;
-        priorityInput.value = tasks[selectedTask].priority;
+        taskIdInput.value = tasks[selectedTask].idTarea;
+        taskNameInput.value = tasks[selectedTask].titulo;
+        taskDescriptionInput.value = tasks[selectedTask].descripcion;
+        taskStartDateInput.value = tasks[selectedTask].fechaInicio;
+        taskEndDateInput.value = tasks[selectedTask].fechaFinal;
+        priorityInput.value = tasks[selectedTask].prioridad;
     });
 
     guardarButton.addEventListener('click', function(event) {
@@ -29,19 +53,22 @@ document.addEventListener('DOMContentLoaded', function() {
         const selectedTask = selectTask.value;
         const originalTask = tasks[selectedTask];
         const modifiedTask = {
-            name: taskNameInput.value,
-            date: taskDateInput.value,
-            time: taskTimeInput.value,
-            priority: priorityInput.value
+            idTarea: originalTask.idTarea,
+            titulo: taskNameInput.value,
+            descripcion: taskDescriptionInput.value,
+            fechaInicio: taskStartDateInput.value,
+            fechaFinal: taskEndDateInput.value,
+            prioridad: priorityInput.value
         };
 
-        if (selectedTask && modifiedTask.name && modifiedTask.date && modifiedTask.time && modifiedTask.priority) {
+        if (selectedTask && modifiedTask.titulo && modifiedTask.descripcion && modifiedTask.fechaInicio && modifiedTask.fechaFinal && modifiedTask.prioridad) {
             // Crear mensaje de confirmación
             const confirmationMessage = "¿Estás seguro de querer actualizar la tarea \"" + selectedTask + "\" con los siguientes cambios?\n\n" +
-                                        "Nombre: " + modifiedTask.name + "\n" +
-                                        "Fecha: " + modifiedTask.date + "\n" +
-                                        "Hora: " + modifiedTask.time + "\n" +
-                                        "Prioridad: " + modifiedTask.priority;
+                                        "Título: " + modifiedTask.titulo + "\n" +
+                                        "Descripción: " + modifiedTask.descripcion + "\n" +
+                                        "Fecha de Inicio: " + modifiedTask.fechaInicio + "\n" +
+                                        "Fecha de Finalización: " + modifiedTask.fechaFinal + "\n" +
+                                        "Prioridad: " + modifiedTask.prioridad;
 
             // Mostrar mensaje de confirmación en una ventana emergente
             if (confirm(confirmationMessage)) {

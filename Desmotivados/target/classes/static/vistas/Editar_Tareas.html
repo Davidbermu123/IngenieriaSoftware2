@@ -35,10 +35,16 @@
                 <option value="tarea3">Tarea 3</option>
                 <!-- Agrega más opciones según sea necesario -->
             </select><br><br>
+            <label for="task-id">ID de Tarea:</label><br>
+            <input type="text" id="task-id" name="task-id" readonly><br><br>
             <label for="task-name">Nuevo nombre de la tarea:</label><br>
             <input type="text" id="task-name" name="task-name" required><br><br>
-            <label for="task-date">Nueva fecha:</label><br>
-            <input type="date" id="task-date" name="task-date" required><br><br>
+            <label for="task-description">Nueva descripción:</label><br>
+            <input type="text" id="task-description" name="task-description" required><br><br>
+            <label for="task-start-date">Nueva fecha de inicio:</label><br>
+            <input type="date" id="task-start-date" name="task-start-date" required><br><br>
+            <label for="task-end-date">Nueva fecha de finalización:</label><br>
+            <input type="date" id="task-end-date" name="task-end-date" required><br><br>
             <label for="task-time">Nueva hora:</label><br>
             <input type="time" id="task-time" name="task-time" required><br><br>
             <label for="priority">Nueva prioridad:</label><br>
@@ -49,8 +55,8 @@
             </select><br><br>
             <input type="button" value="Guardar" id="guardar">
         </form>
-        <p id="message" class="hidden"></p> <!-- Mensaje de confirmación oculto por defecto -->
+        <p id="message" class="hidden"></p> 
     </section>
-    <script src="../js/main.js"></script> <!-- Ruta relativa al archivo JavaScript -->
+    <script src="../js/main.js"></script> 
 </body>
 </html>
