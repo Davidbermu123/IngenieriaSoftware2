@@ -14,8 +14,8 @@ public class MisionesEntidades {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMision;
-    @OneToOne
-    @JoinColumn(name = "contenedorEntidadesid")
+    /*@OneToOne
+    @JoinColumn(name = "contenedorEntidadesid")*/
     //private Contenido contenido;
     private Integer puntaje;
     private Date fechaFin; 
