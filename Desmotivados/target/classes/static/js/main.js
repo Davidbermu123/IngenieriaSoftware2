@@ -10,6 +10,13 @@ function cargarTareas() {
                     text: tarea.titulo
                 }));
             });
+
+            $('#select-task').change(function() {
+                var tituloTarea = $(this).val();
+                if (tituloTarea) {
+                    cargarInformacionTarea(tituloTarea);
+                }
+            });
         },
         error: function(xhr, status, error) {
             console.error('Error al cargar las tareas:', error);
@@ -17,58 +24,63 @@ function cargarTareas() {
     });
 }
 
+function cargarInformacionTarea(tituloTarea) {
+    $.ajax({
+        url: '/Modificador/todasTareas',
+        type: 'GET',
+        success: function(response) {
+            var tareaSeleccionada = response.find(function(tarea) {
+                return tarea.titulo === tituloTarea;
+            });
+            if (tareaSeleccionada) {
+
+                $('#task-id').val(tareaSeleccionada.idTarea);
+                $('#task-name').val(tareaSeleccionada.titulo);
+                $('#task-description').val(tareaSeleccionada.descripcion);
+                $('#task-start-date').val(tareaSeleccionada.fechaInicio);
+                
+                var fechaFinal = new Date(tareaSeleccionada.fechaFinal);
+                var fechaFinalFormateada = fechaFinal.toISOString().slice(0, 16);
+                $('#task-datetime').val(fechaFinalFormateada);
+                
+                $('#priority').val(tareaSeleccionada.prioridad);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error al cargar la información de la tarea:', error);
+        }
+    });
+}
+
+function guardarCambios() {
+    var tareaModificada = {
+        idTarea: $('#task-id').val(),
+        titulo: $('#task-name').val(),
+        descripcion: $('#task-description').val(),
+        fechaFinal: $('#task-datetime').val(),
+        prioridad: $('#priority').val()
+    };
+
+    $.ajax({
+        url: '/Modificador/modificarTarea',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(tareaModificada),
+        success: function(response) {
+            console.log('Cambios guardados exitosamente:', response);
+            alert('Los cambios se han guardado exitosamente.');
+        },
+        error: function(xhr, status, error) {
+            console.error('Error al guardar los cambios:', error);
+            alert('Ha ocurrido un error al guardar los cambios.');
+        }
+    });
+}
+
 $(document).ready(function() {
     cargarTareas();
+
+    $('#guardar').click(function() {
+        guardarCambios();
+    });
 });
-
-/*
-
-    cargarTareas();
-
-    function cargarInformacionTarea(idTarea) {
-        $.ajax({
-            url: "/Modificador/modificarTarea/" + idTarea,
-            type: "GET",
-            success: function (tarea) {
-                $('#task-id').val(tarea.idTarea);
-                $('#task-name').val(tarea.titulo);
-                $('#task-description').val(tarea.descripcion);
-                $('#task-start-date').val(tarea.fechaInicio);
-                $('#task-end-date').val(tarea.fechaFinal);
-                $('#task-time').val(tarea.hora);
-                $('#priority').val(tarea.prioridad);
-            }
-        });
-    }
-
-    $('#select-task').on('change', function () {
-        var idTarea = $(this).val();
-        cargarInformacionTarea(idTarea);
-    });
-
-    $('#guardar').on('click', function () {
-        var tarea = {
-            idTarea: $('#task-id').val(),
-            titulo: $('#task-name').val(),
-            descripcion: $('#task-description').val(),
-            fechaInicio: $('#task-start-date').val(),
-            fechaFinal: $('#task-end-date').val(),
-            hora: $('#task-time').val(),
-            prioridad: $('#priority').val()
-        };
-
-        $.ajax({
-            url: "/Modificador/actualizarTarea/" + tarea.idTarea,
-            type: "PUT",
-            contentType: "application/json",
-            data: JSON.stringify(tarea),
-            success: function () {
-                $('#message').removeClass('hidden').text('Tarea actualizada correctamente.');
-                cargarTareas();
-            },
-            error: function () {
-                $('#message').removeClass('hidden').text('Error al actualizar la tarea.');
-            }
-        });
-    });
-});*/

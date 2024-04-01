@@ -8,12 +8,16 @@ import com.Proyectousa.Desmotivados.Entidades.Tareas;
 
 
 @Repository
-public class TareasRepository{
+public class TareasRepository {
+
     @Autowired
-     private TareasCRUDRepository tareasCRUDRepository;
+    private TareasCRUDRepository tareasCRUDRepository;
 
-
-     public List<Tareas> findTareas(){
-       return (List<Tareas>) tareasCRUDRepository.findAll();
-     }
+    public List<Tareas> findTareas() {
+        return (List<Tareas>) tareasCRUDRepository.findAll();
+    }
+    
+    public Tareas guardarTarea(Tareas tarea) {
+        return tareasCRUDRepository.save(tarea);
+    }
 }

@@ -31,7 +31,6 @@
         <form id="task-form">
             <label for="select-task">Selecciona una tarea:</label><br>
             <select id="select-task" name="select-task">
-                <!-- Las opciones se agregarán dinámicamente con JavaScript -->
             </select><br><br>
             <label for="task-id">ID de Tarea:</label><br>
             <input type="text" id="task-id" name="task-id" readonly><br><br>
@@ -39,12 +38,8 @@
             <input type="text" id="task-name" name="task-name" required><br><br>
             <label for="task-description">Nueva descripción:</label><br>
             <input type="text" id="task-description" name="task-description" required><br><br>
-            <label for="task-start-date">Nueva fecha de inicio:</label><br>
-            <input type="date" id="task-start-date" name="task-start-date" required><br><br>
-            <label for="task-end-date">Nueva fecha de finalización:</label><br>
-            <input type="date" id="task-end-date" name="task-end-date" required><br><br>
-            <label for="task-time">Nueva hora:</label><br>
-            <input type="time" id="task-time" name="task-time" required><br><br>        
+            <label for="task-datetime">Nueva fecha y hora:</label><br>
+            <input type="datetime-local" id="task-datetime" name="task-datetime" required><br><br>     
             <label for="priority">Nueva prioridad:</label><br>
             <input type="text" id="priority" name="priority" required><br><br>
             <input type="button" value="Guardar" id="guardar">
