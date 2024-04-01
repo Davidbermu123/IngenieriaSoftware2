@@ -1,0 +1,46 @@
+.contenedor {
+    padding-top: 50px;
+    padding-left: 120px;
+    position: relative;
+    width: 1000px;
+    height: 800px;
+}
+
+.div1 {
+    position: absolute;
+
+}
+
+.div2 {
+    position: absolute;
+    padding-top: 150px;
+    padding-left: 50px;
+
+}
+.div3 {
+    position: absolute;
+    padding-top: 200px;
+    padding-left: 250px;
+}
+.div4 {
+    padding-left: 480px;
+    padding-top: 150px;
+    position: absolute;
+
+}
+.div1 img {
+    width: 100%; /* Ajusta el ancho de la imagen al 100% del ancho del contenedor */
+    height: auto; /* Mantiene la relación de aspecto de la imagen */
+}
+.div2 img {
+    width: 100%; /* Ajusta el ancho de la imagen al 100% del ancho del contenedor */
+    height: auto; /* Mantiene la relación de aspecto de la imagen */
+}
+.div3 img {
+    width: 100%; /* Ajusta el ancho de la imagen al 100% del ancho del contenedor */
+    height: auto; /* Mantiene la relación de aspecto de la imagen */
+}
+.div4 img {
+    width: 100%; /* Ajusta el ancho de la imagen al 100% del ancho del contenedor */
+    height: auto; /* Mantiene la relación de aspecto de la imagen */
+}
