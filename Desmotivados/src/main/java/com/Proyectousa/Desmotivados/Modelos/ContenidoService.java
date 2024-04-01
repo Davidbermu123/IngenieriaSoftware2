@@ -17,4 +17,5 @@ public class ContenidoService {
     public List<Contenido> findByAreaEstudioAndInteres(String area_estudio, String interes){
         return contenidorepository.findByAreaEstudioAndInteres(area_estudio, interes);
     }
+    
 }

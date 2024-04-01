@@ -17,7 +17,7 @@ public class Misiones_controladores {
     private MisionesModelos servicio;
 
     @GetMapping("/retornarmisiones")
-    public List<MisionesEntidades> getAllAprender_entidad(){
+    public List<MisionesEntidades> getAllMisionesEntidades(){
         return servicio.listarTodas();
     }
 }
