@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Tareas</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../estilos/custom.css">
 </head>
@@ -29,11 +30,8 @@
         <h2>Editar Información de Tareas</h2>
         <form id="task-form">
             <label for="select-task">Selecciona una tarea:</label><br>
-            <select id="select-task" name="select-task" required>
-                <option value="tarea1">Tarea 1</option>
-                <option value="tarea2">Tarea 2</option>
-                <option value="tarea3">Tarea 3</option>
-                <!-- Agrega más opciones según sea necesario -->
+            <select id="select-task" name="select-task">
+                <!-- Las opciones se agregarán dinámicamente con JavaScript -->
             </select><br><br>
             <label for="task-id">ID de Tarea:</label><br>
             <input type="text" id="task-id" name="task-id" readonly><br><br>
@@ -46,13 +44,9 @@
             <label for="task-end-date">Nueva fecha de finalización:</label><br>
             <input type="date" id="task-end-date" name="task-end-date" required><br><br>
             <label for="task-time">Nueva hora:</label><br>
-            <input type="time" id="task-time" name="task-time" required><br><br>
+            <input type="time" id="task-time" name="task-time" required><br><br>        
             <label for="priority">Nueva prioridad:</label><br>
-            <select id="priority" name="priority" required>
-                <option value="alta">Alta</option>
-                <option value="media">Media</option>
-                <option value="baja">Baja</option>
-            </select><br><br>
+            <input type="text" id="priority" name="priority" required><br><br>
             <input type="button" value="Guardar" id="guardar">
         </form>
         <p id="message" class="hidden"></p> 

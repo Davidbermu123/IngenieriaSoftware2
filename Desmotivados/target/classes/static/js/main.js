@@ -1,88 +1,74 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('task-form');
-    const message = document.getElementById('message');
-    const tasks = {
-        tarea1: { 
-            idTarea: 1,
-            titulo: 'Nombre de la Tarea 1', 
-            descripcion: 'Descripción de la Tarea 1',
-            fechaInicio: '2024-04-01', 
-            fechaFinal: '2024-04-02', 
-            prioridad: 'alta' 
+function cargarTareas() {
+    $.ajax({
+        url: '/Modificador/todasTareas',
+        type: 'GET',
+        success: function(response) {
+            $('#select-task').empty();
+            response.forEach(function(tarea) {
+                $('#select-task').append($('<option>', {
+                    value: tarea.titulo,
+                    text: tarea.titulo
+                }));
+            });
         },
-        tarea2: { 
-            idTarea: 2,
-            titulo: 'Nombre de la Tarea 2', 
-            descripcion: 'Descripción de la Tarea 2',
-            fechaInicio: '2024-04-02', 
-            fechaFinal: '2024-04-03', 
-            prioridad: 'media' 
-        },
-        tarea3: { 
-            idTarea: 3,
-            titulo: 'Nombre de la Tarea 3', 
-            descripcion: 'Descripción de la Tarea 3',
-            fechaInicio: '2024-04-03', 
-            fechaFinal: '2024-04-04', 
-            prioridad: 'baja' 
+        error: function(xhr, status, error) {
+            console.error('Error al cargar las tareas:', error);
         }
-    };
+    });
+}
 
-    const selectTask = document.getElementById('select-task');
-    const taskIdInput = document.getElementById('task-id');
-    const taskNameInput = document.getElementById('task-name');
-    const taskDescriptionInput = document.getElementById('task-description');
-    const taskStartDateInput = document.getElementById('task-start-date');
-    const taskEndDateInput = document.getElementById('task-end-date');
-    const priorityInput = document.getElementById('priority');
-    const guardarButton = document.getElementById('guardar');
+$(document).ready(function() {
+    cargarTareas();
+});
 
-    selectTask.addEventListener('change', function() {
-        const selectedTask = selectTask.value;
-        taskIdInput.value = tasks[selectedTask].idTarea;
-        taskNameInput.value = tasks[selectedTask].titulo;
-        taskDescriptionInput.value = tasks[selectedTask].descripcion;
-        taskStartDateInput.value = tasks[selectedTask].fechaInicio;
-        taskEndDateInput.value = tasks[selectedTask].fechaFinal;
-        priorityInput.value = tasks[selectedTask].prioridad;
+/*
+
+    cargarTareas();
+
+    function cargarInformacionTarea(idTarea) {
+        $.ajax({
+            url: "/Modificador/modificarTarea/" + idTarea,
+            type: "GET",
+            success: function (tarea) {
+                $('#task-id').val(tarea.idTarea);
+                $('#task-name').val(tarea.titulo);
+                $('#task-description').val(tarea.descripcion);
+                $('#task-start-date').val(tarea.fechaInicio);
+                $('#task-end-date').val(tarea.fechaFinal);
+                $('#task-time').val(tarea.hora);
+                $('#priority').val(tarea.prioridad);
+            }
+        });
+    }
+
+    $('#select-task').on('change', function () {
+        var idTarea = $(this).val();
+        cargarInformacionTarea(idTarea);
     });
 
-    guardarButton.addEventListener('click', function(event) {
-        event.preventDefault();
-
-        const selectedTask = selectTask.value;
-        const originalTask = tasks[selectedTask];
-        const modifiedTask = {
-            idTarea: originalTask.idTarea,
-            titulo: taskNameInput.value,
-            descripcion: taskDescriptionInput.value,
-            fechaInicio: taskStartDateInput.value,
-            fechaFinal: taskEndDateInput.value,
-            prioridad: priorityInput.value
+    $('#guardar').on('click', function () {
+        var tarea = {
+            idTarea: $('#task-id').val(),
+            titulo: $('#task-name').val(),
+            descripcion: $('#task-description').val(),
+            fechaInicio: $('#task-start-date').val(),
+            fechaFinal: $('#task-end-date').val(),
+            hora: $('#task-time').val(),
+            prioridad: $('#priority').val()
         };
 
-        if (selectedTask && modifiedTask.titulo && modifiedTask.descripcion && modifiedTask.fechaInicio && modifiedTask.fechaFinal && modifiedTask.prioridad) {
-            // Crear mensaje de confirmación
-            const confirmationMessage = "¿Estás seguro de querer actualizar la tarea \"" + selectedTask + "\" con los siguientes cambios?\n\n" +
-                                        "Título: " + modifiedTask.titulo + "\n" +
-                                        "Descripción: " + modifiedTask.descripcion + "\n" +
-                                        "Fecha de Inicio: " + modifiedTask.fechaInicio + "\n" +
-                                        "Fecha de Finalización: " + modifiedTask.fechaFinal + "\n" +
-                                        "Prioridad: " + modifiedTask.prioridad;
-
-            // Mostrar mensaje de confirmación en una ventana emergente
-            if (confirm(confirmationMessage)) {
-                // Si el usuario confirma, realizar la actualización aquí
-                tasks[selectedTask] = modifiedTask;
-                message.innerText = "La tarea \"" + selectedTask + "\" ha sido modificada.";
-                message.classList.remove('hidden');
-            } else {
-                // Si el usuario cancela, no hacer nada
-                return false;
+        $.ajax({
+            url: "/Modificador/actualizarTarea/" + tarea.idTarea,
+            type: "PUT",
+            contentType: "application/json",
+            data: JSON.stringify(tarea),
+            success: function () {
+                $('#message').removeClass('hidden').text('Tarea actualizada correctamente.');
+                cargarTareas();
+            },
+            error: function () {
+                $('#message').removeClass('hidden').text('Error al actualizar la tarea.');
             }
-        } else {
-            message.innerText = 'Por favor, llena todos los campos.';
-            message.classList.remove('hidden');
-        }
+        });
     });
-});
+});*/
