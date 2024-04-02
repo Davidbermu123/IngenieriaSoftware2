@@ -17,4 +17,12 @@ public class AprenderModelos {
     public List<AprenderEntidades> listarTodas() {
         return repositorio.getAllAprender_entidad();
     }
+
+    public AprenderEntidades save(AprenderEntidades entidad){
+        return repositorio.guardarAprenderEntidades(entidad);
+    }
+
+    public void delete(Long id){
+        repositorio.eliminarAprendizaje(id);
+    }
 }

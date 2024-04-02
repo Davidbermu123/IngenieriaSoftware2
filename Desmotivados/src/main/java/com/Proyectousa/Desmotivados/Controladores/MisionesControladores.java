@@ -12,7 +12,7 @@ import com.Proyectousa.Desmotivados.Modelos.MisionesModelos;
 
 @RestController
 @RequestMapping("/misiones") 
-public class Misiones_controladores {
+public class MisionesControladores {
     @Autowired
     private MisionesModelos servicio;
 

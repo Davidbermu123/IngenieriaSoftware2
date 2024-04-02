@@ -17,4 +17,11 @@ public class AprenderRepositorios {
         return ((List<AprenderEntidades>) crud.findAll());
     }
 
+    public AprenderEntidades guardarAprenderEntidades(AprenderEntidades entidad){
+        return crud.save(entidad);
+    }
+
+    public void eliminarAprendizaje(Long id){
+        crud.deleteById(id);
+    }
 }

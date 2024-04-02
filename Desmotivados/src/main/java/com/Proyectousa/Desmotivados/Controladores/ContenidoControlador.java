@@ -13,7 +13,7 @@ import com.Proyectousa.Desmotivados.Modelos.ContenidoService;
 
 @RestController
 @RequestMapping("/contenido")
-public class Contenido_Controlador {
+public class ContenidoControlador {
 
     @Autowired
     private ContenidoService contenidoService;
