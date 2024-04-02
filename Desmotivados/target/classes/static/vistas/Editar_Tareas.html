@@ -41,7 +41,11 @@
             <label for="task-datetime">Nueva fecha y hora:</label><br>
             <input type="datetime-local" id="task-datetime" name="task-datetime" required><br><br>     
             <label for="priority">Nueva prioridad:</label><br>
-            <input type="text" id="priority" name="priority" required><br><br>
+            <select id="priority" name="priority" required>
+                <option value="alta">Alta</option>
+                <option value="media">Media</option>
+                <option value="baja">Baja</option>
+            </select><br><br>
             <input type="button" value="Guardar" id="guardar">
         </form>
         <p id="message" class="hidden"></p> 
