@@ -17,4 +17,12 @@ public class Contenidorepository {
         return contenidoCRUDrepository.findByAreaEstudioAndInteres(area_estudio, interes);
     }
 
+    public Contenido saveContenido(Contenido contenido) {
+        if (contenido == null) {
+            throw new IllegalArgumentException("El contenido no puede ser nulo");
+        }
+        return contenidoCRUDrepository.save(contenido);
+    }
+    
+
 }

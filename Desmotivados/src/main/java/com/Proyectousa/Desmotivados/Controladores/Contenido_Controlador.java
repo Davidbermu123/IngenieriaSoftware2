@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,4 +25,10 @@ public class Contenido_Controlador {
         @RequestParam("interes") String interes){
             return contenidoService.findByAreaEstudioAndInteres(area_estudio, interes);
         }
+
+    @PostMapping("/postContenido")
+    public Contenido saveContenido(Contenido contenido) {
+        return contenidoService.saveContenido(contenido);
+    }
+        
 }

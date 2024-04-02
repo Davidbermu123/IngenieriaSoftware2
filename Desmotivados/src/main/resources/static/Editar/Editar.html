@@ -13,14 +13,22 @@
         <input type="text" id="aliasInput" placeholder="Ingrese el alias del usuario">
         <button id="submitButton" onclick="buscarUsuario()">Buscar Usuario</button>
         <div class="user-info">
-            <p><strong>ID:</strong> <span id="userId"></span></p>
-            <p><strong>Nombre:</strong> <span id="userName"></span></p>
-            <p><strong>Apellido:</strong> <span id="userLastName"></span></p>
-            <p><strong>Alias:</strong> <span id="userAlias"></span></p>
-            <p><strong>Universidad:</strong> <span id="userUniversity"></span></p>
-            <p><strong>Carrera:</strong> <span id="userCareer"></span></p>
-            <p><strong>Semestre:</strong> <span id="userSemester"></span></p>
-            <p><strong>Mascota:</strong> <span id="userPet"></span></p>
+            <input type="hidden" id="userIdInput">
+            <label for="userNameInput">Nombre:</label>
+            <input type="text" id="userNameInput"><br>
+            <label for="userLastNameInput">Apellido:</label>
+            <input type="text" id="userLastNameInput"><br>
+            <label for="userAliasInput">Alias:</label>
+            <input type="text" id="userAliasInput"><br>
+            <label for="userUniversityInput">Universidad:</label>
+            <input type="text" id="userUniversityInput"><br>
+            <label for="userCareerInput">Carrera:</label>
+            <input type="text" id="userCareerInput"><br>
+            <label for="userSemesterInput">Semestre:</label>
+            <input type="text" id="userSemesterInput"><br>
+            <label for="userPetInput">Mascota:</label>
+            <input type="text" id="userPetInput"><br>
+            <button id="editButton" onclick="editarUsuario()">Editar Usuario</button>
         </div>
     </div>
 
