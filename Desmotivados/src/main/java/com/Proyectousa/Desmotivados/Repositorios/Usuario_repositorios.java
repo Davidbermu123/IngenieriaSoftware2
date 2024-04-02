@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import com.Proyectousa.Desmotivados.Entidades.Usuario;
+import com.Proyectousa.Desmotivados.Entidades.User;
 
 @Repository
 public class Usuario_repositorios {
@@ -12,13 +12,13 @@ public class Usuario_repositorios {
     private Usuario_CRUDrepositorios usuarioCRUDRepository;
 
 
-    public List<Usuario> getAllUsuarios() {
+    public List<User> getAllUsuarios() {
 
-        return (List<Usuario>) usuarioCRUDRepository.findAll();
+        return (List<User>) usuarioCRUDRepository.findAll();
 
     }
 
-    public Usuario guardaraUsuario (Usuario k){
-        return usuarioCRUDRepository.save(k);
+    public User guardaraUsuario (User m){
+        return usuarioCRUDRepository.save(m);
     }
 }

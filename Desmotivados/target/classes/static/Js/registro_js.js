@@ -5,17 +5,21 @@ function saludar(){
 function saveUsuario(){
     let name = $("#usuarioname").val();
     let lastname = $("#usuarioapellido").val();
-    let username = $("#usuarioalias").val();
+    let alias = $("#usuarioalias").val();
     let uni = $("#usuariouniversidad").val();
     let career = $("#usuariocarrera").val();
     let period = $("#usuariosemestre").val();
     let pet = $("#usuarionmascota").val();
     let contrasena = $("#usuariocontrasena").val();
-
+     
+    if (name === '' || lastname === '' || username === '' || uni === '' || career === '' || period === '' || pet === '' || contrasena === '') {
+        alert('Por favor, complete todos los campos.');
+        return; // Detener la ejecución si algún campo está vacío
+    }
     let data = {
         nombre: name,
         apellido: lastname,
-        alias: username,
+        username: alias,
         universidad: uni,
         carrera: career,
         semestre: period,
@@ -29,11 +33,15 @@ function saveUsuario(){
         contentType: 'application/json',
         data: JSON.stringify(data),
         success: function(response) {
-            console.log('Usuario guardado correctamente:', response);
-            // Aquí puedes realizar alguna acción adicional si lo necesitas, como redirigir a otra página.
+            window.location.href = "/index.html";
         },
         error: function(xhr, status, error) {
-            console.error('Error al guardar el usuario:', error);
+            alert('Este usuario ya existe, por favor escoger otro', error);
+
         }
     });
+
+}
+function regresar() {
+    window.location.href = "/index.html";
 }
