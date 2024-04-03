@@ -17,7 +17,6 @@ public class ModificadorModelo {
     }
     
     public void modificarTarea(Tareas tarea) {
-        // Aquí puedes agregar cualquier lógica de validación antes de guardar los cambios
         tareasRepository.guardarTarea(tarea);
     }
 }
