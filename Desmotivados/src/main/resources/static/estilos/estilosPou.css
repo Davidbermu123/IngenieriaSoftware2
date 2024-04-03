@@ -1,14 +1,11 @@
 .contenedor {
-    padding-top: 50px;
-    padding-left: 120px;
     position: relative;
     width: 1000px;
-    height: 800px;
+    height: 600px;
 }
 
 .div1 {
     position: absolute;
-
 }
 
 .div2 {
@@ -20,10 +17,10 @@
 .div3 {
     position: absolute;
     padding-top: 200px;
-    padding-left: 250px;
+    padding-left: 320px;
 }
 .div4 {
-    padding-left: 480px;
+    padding-left: 590px;
     padding-top: 150px;
     position: absolute;
 
@@ -44,3 +41,43 @@
     width: 100%; /* Ajusta el ancho de la imagen al 100% del ancho del contenedor */
     height: auto; /* Mantiene la relación de aspecto de la imagen */
 }
+
+.mostrarInventario{
+    width: 100vw; /* Ancho del contenedor */
+    height: 200px; /* Altura del contenedor */
+    display: flex; /* Establece el contenedor como un contenedor flexible */
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+}
+
+.scrollmenu {
+    overflow-x: auto; /* Habilita la barra de desplazamiento horizontal */
+    white-space: nowrap; /* Hace que los elementos no se envuelvan */
+    width: 100vw; /* Anchura del contenedor */
+    height: 200px; /* Altura del contenedor */
+    background-color: #f1f1f1; /* Color de fondo del contenedor */
+    display: flex; /* Hace que los elementos se coloquen en una línea horizontal */
+    align-items: center; /* Centra verticalmente los elementos */
+    margin: 30px;
+  }
+
+  /* Estilo para cada div de imagen */
+  .image-div {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 10px; /* Espacio entre las imágenes */
+  }
+
+  /* Estilo para las imágenes dentro de cada div */
+  .image-div img {
+    width: 200px; /* Ancho fijo para las imágenes */
+    height: 150px;
+  }
+
+  .contenedorFijar{
+
+        display: flex; /* Utiliza el modelo de caja flexible */
+        justify-content: center; /* Centra horizontalmente los elementos dentro del contenedor */
+        align-items: center; /* Centra verticalmente los elementos dentro del contenedor */
+        height: 100vh; /* Establece la altura del contenedor al 100% de la altura de la ventana */
+  }

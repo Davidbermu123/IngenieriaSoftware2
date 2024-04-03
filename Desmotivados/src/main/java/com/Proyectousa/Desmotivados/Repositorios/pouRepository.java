@@ -11,4 +11,12 @@ public class pouRepository {
     public List<pouEntidades> getAllpouEntidades(){
         return ((List<pouEntidades>)pouCrudRepository.findAll());
     }
+
+    public pouEntidades guardarElementoPou (pouEntidades e){
+        return pouCrudRepository.save(e);
+    }
+
+    public boolean existeIdPou(Long id) {
+        return pouCrudRepository.existsById(id);
+    }
 }

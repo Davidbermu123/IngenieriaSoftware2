@@ -15,4 +15,12 @@ public class pouService {
     public List<pouEntidades> getAllpouEntidades(){
         return pouRepository.getAllpouEntidades();
     }
+
+    public pouEntidades save(pouEntidades e){
+        return pouRepository.guardarElementoPou(e);
+    }
+
+    public boolean existeIdPou(Long id) {
+        return pouRepository.existeIdPou(id);
+    }
 }
