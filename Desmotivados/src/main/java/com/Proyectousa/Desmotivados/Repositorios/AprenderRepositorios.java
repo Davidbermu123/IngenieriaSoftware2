@@ -24,4 +24,9 @@ public class AprenderRepositorios {
     public void eliminarAprendizaje(Long id){
         crud.deleteById(id);
     }
+
+    public boolean existe(Long id) {
+        return crud.existsById(id);
+    }
+
 }

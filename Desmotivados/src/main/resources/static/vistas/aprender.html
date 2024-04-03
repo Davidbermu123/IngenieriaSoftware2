@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aprende jugando</title>
     <link rel="stylesheet" href="../estilos/leadmark.css">
-    <link rel="stylesheet" href="../estilos/Organizador_estilos.css">
+    <link rel="stylesheet" href="../estilos/AprenderEstilos.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="/Js\Aprender_js.js"></script>
+    <script src="/Js\AprenderJs.js"></script>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
 
@@ -15,7 +15,7 @@
     <nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top" data-spy="affix" data-offset-top="10">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="assets/imgs/logo.svg" alt="">
+                <img src="../imgs/logo.svg" alt="">
             </a>
             <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -63,9 +63,13 @@
     <!-- Fin del encabezado -->
 
     <!-- Contenido de la página -->
-    <div>
+    <div class="centrado">
         <h1>Lista</h1>
-        <div id="listaAprendizajes"></div>
+        <br>
+        <div class="container">
+            <div class="row" id = "listaAprendizajes">
+            </div>
+        </div>
     </div>
     
     <!-- Fin del contenido de la página -->

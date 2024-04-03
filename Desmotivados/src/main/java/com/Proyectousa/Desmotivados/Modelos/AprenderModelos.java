@@ -25,4 +25,8 @@ public class AprenderModelos {
     public void delete(Long id){
         repositorio.eliminarAprendizaje(id);
     }
+
+    public boolean existe(Long id) {
+        return repositorio.existe(id);
+    }
 }

@@ -1,6 +1,8 @@
 package com.Proyectousa.Desmotivados.Controladores;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -37,4 +39,13 @@ public class AprenderControlador {
         servicio.delete(id);
         return ResponseEntity.ok("Elemento eliminado correctamente");
     }
+
+    @GetMapping("/verificarExistencia/{id}")
+    public ResponseEntity<Map<String, Boolean>> verificarExistencia(@PathVariable Long id) {
+        boolean existe = servicio.existe(id);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("existe", existe);
+        return ResponseEntity.ok(response);
+    }
+    
 }

@@ -17,6 +17,7 @@ public class AprenderEntidades {
     private String descripcion;
     private String urlaprender;
     private String urljuego;
+    private String urlimagen;
 
     public Long getId() {
         return id;
@@ -47,6 +48,12 @@ public class AprenderEntidades {
     }
     public void setUrljuego(String urljuego) {
         this.urljuego = urljuego;
+    }
+    public String getUrlimagen() {
+        return urlimagen;
+    }
+    public void setUrlimagen(String urlimagen) {
+        this.urlimagen = urlimagen;
     }
     
 }
