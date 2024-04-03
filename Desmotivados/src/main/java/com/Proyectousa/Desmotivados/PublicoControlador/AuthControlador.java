@@ -26,4 +26,5 @@ public class AuthControlador {
     {
         return ResponseEntity.ok(authService.register(request));
     }  
+    
 }

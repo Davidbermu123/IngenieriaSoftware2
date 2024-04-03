@@ -12,7 +12,7 @@ function saveUsuario(){
     let pet = $("#usuarionmascota").val();
     let contrasena = $("#usuariocontrasena").val();
      
-    if (name === '' || lastname === '' || username === '' || uni === '' || career === '' || period === '' || pet === '' || contrasena === '') {
+    if (name === '' || lastname === '' || alias === '' || uni === '' || career === '' || period === '' || pet === '' || contrasena === '') {
         alert('Por favor, complete todos los campos.');
         return; // Detener la ejecución si algún campo está vacío
     }
@@ -28,7 +28,7 @@ function saveUsuario(){
     }
 
     $.ajax({
-        url: '/cregistro/guardarUs',
+        url: '/auth/register',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(data),

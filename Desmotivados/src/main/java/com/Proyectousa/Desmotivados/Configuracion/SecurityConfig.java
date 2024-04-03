@@ -19,7 +19,9 @@ import lombok.RequiredArgsConstructor;
 public class SecurityConfig {
       private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final AuthenticationProvider authProvider;
-
+  private final String[] whitelist={"/auth/**","/vistas/**","/Js/**","/scss/**","/vendors/**",
+    "/imgs/**","/estilos/**","index.html"};
+    
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
     {
@@ -29,7 +31,7 @@ public class SecurityConfig {
                 .disable())
             .authorizeHttpRequests(authRequest ->
               authRequest
-                .requestMatchers("/auth/**").permitAll()
+                .requestMatchers(whitelist).permitAll()
                 .anyRequest().authenticated()
                 )
             .sessionManagement(sessionManager->
