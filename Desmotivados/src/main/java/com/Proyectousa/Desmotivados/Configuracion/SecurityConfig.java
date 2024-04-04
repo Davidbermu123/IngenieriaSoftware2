@@ -17,11 +17,10 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-      private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final AuthenticationProvider authProvider;
-  private final String[] whitelist={"/auth/**","/vistas/registro.html","/vistas/login.html","/Js/**","/scss/**","/vendors/**",
+  private final String[] whitelist={"/auth/**","/vistas/**","/Js/**","/scss/**","/vendors/**",
     "/imgs/**","/estilos/**","index.html"};
-    
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
     {
@@ -39,8 +38,6 @@ public class SecurityConfig {
                   .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authenticationProvider(authProvider)
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-            .build();
-            
-            
+            .build();     
     }
 }
