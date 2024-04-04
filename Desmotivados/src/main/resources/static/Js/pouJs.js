@@ -1,3 +1,6 @@
+
+
+
 console.log("holap 1")
 
 $.get("/requestPou/getPou", function(data) {
@@ -54,8 +57,8 @@ $.get("/requestPou/getPou", function(data) {
                 // Acción que se ejecutará cuando se haga clic en la imagen
                 console.log("Se hizo click en una imagen tipo fondo");
                 //Se guarda el fondo clickeado para ponerle el equipado a 1
-                //var tempusername = iterable.username;
-                //var tempnombreMascota = iterable.nombreMascota;
+                var tempusername = iterable.username;
+                var tempnombreMascota = iterable.nmascota;
                 var tempidItem = iterable.idItem;
                 var tempimagenItem = iterable.imagenItem;
                 var tempdescripcionItem = iterable.descripcionItem;
@@ -64,8 +67,8 @@ $.get("/requestPou/getPou", function(data) {
                 $.each(data, function(index, iterable) {
 
                     if (iterable.equipadoItem == 1 && iterable.tipoItem == "Fondo"){
-                        guardarElementoPou(iterable.idItem, iterable.descripcionItem, 0, iterable.imagenItem, iterable.tipoItem);
-                        guardarElementoPou(tempidItem, tempdescripcionItem, 1, tempimagenItem, temptipoItem);
+                        guardarElementoPou(iterable.idItem, iterable.descripcionItem, 0, iterable.imagenItem, iterable.tipoItem, iterable.username, iterable.nmascota);
+                        guardarElementoPou(tempidItem, tempdescripcionItem, 1, tempimagenItem, temptipoItem, iterable.username, iterable.nmascota);
                     }
                 });
 
@@ -93,8 +96,8 @@ $.get("/requestPou/getPou", function(data) {
                 $.each(data, function(index, iterable) {
 
                     if (iterable.equipadoItem == 1 && iterable.tipoItem == "Ropa"){
-                        guardarElementoPou(iterable.idItem, iterable.descripcionItem, 0, iterable.imagenItem, iterable.tipoItem);
-                        guardarElementoPou(tempidItem, tempdescripcionItem, 1, tempimagenItem, temptipoItem);
+                        guardarElementoPou(iterable.idItem, iterable.descripcionItem, 0, iterable.imagenItem, iterable.tipoItem, iterable.username, iterable.nmascota);
+                        guardarElementoPou(tempidItem, tempdescripcionItem, 1, tempimagenItem, temptipoItem, iterable.username, iterable.nmascota);
                     }
                 });
 
@@ -113,8 +116,8 @@ $.get("/requestPou/getPou", function(data) {
                 // Acción que se ejecutará cuando se haga clic en la imagen
                 console.log("Se hizo click en una imagen tipoItem mueble");
                 //Se guarda el fondo clickeado para ponerle el equipado a 1
-                //var tempusername = iterable.username;
-                //var tempnombreMascota = iterable.nombreMascota;
+                var tempusername = iterable.username;
+                var tempnombreMascota = iterable.nombreMascota;
                 var tempidItem = iterable.idItem;
                 var tempimagenItem = iterable.imagenItem;
                 var tempdescripcionItem = iterable.descripcionItem;
@@ -123,8 +126,8 @@ $.get("/requestPou/getPou", function(data) {
                 $.each(data, function(index, iterable) {
 
                     if (iterable.equipadoItem == 1 && iterable.tipoItem == "Mueble"){
-                        guardarElementoPou(iterable.idItem, iterable.descripcionItem, 0, iterable.imagenItem, iterable.tipoItem);
-                        guardarElementoPou(tempidItem, tempdescripcionItem, 1, tempimagenItem, temptipoItem);
+                        guardarElementoPou(iterable.idItem, iterable.descripcionItem, 0, iterable.imagenItem, iterable.tipoItem, iterable.username, iterable.nmascota);
+                        guardarElementoPou(tempidItem, tempdescripcionItem, 1, tempimagenItem, temptipoItem, iterable.username, iterable.nmascota);
                     }
                 });
 
@@ -143,8 +146,8 @@ $.get("/requestPou/getPou", function(data) {
                 // Acción que se ejecutará cuando se haga clic en la imagen
                 console.log("Se hizo click en una imagen tipoItem muebleB");
                 //Se guarda el fondo clickeado para ponerle el equipado a 1
-                //var tempusername = iterable.username;
-                //var tempnombreMascota = iterable.nombreMascota;
+                var tempusername = iterable.username;
+                var tempnombreMascota = iterable.nombreMascota;
                 var tempidItem = iterable.idItem;
                 var tempimagenItem = iterable.imagenItem;
                 var tempdescripcionItem = iterable.descripcionItem;
@@ -153,8 +156,8 @@ $.get("/requestPou/getPou", function(data) {
                 $.each(data, function(index, iterable) {
 
                     if (iterable.equipadoItem == 1 && iterable.tipoItem == "MuebleB"){
-                        guardarElementoPou(iterable.idItem, iterable.descripcionItem, 0, iterable.imagenItem, iterable.tipoItem);
-                        guardarElementoPou(tempidItem, tempdescripcionItem, 1, tempimagenItem, temptipoItem);
+                        guardarElementoPou(iterable.idItem, iterable.descripcionItem, 0, iterable.imagenItem, iterable.tipoItem, iterable.username, iterable.nmascota);
+                        guardarElementoPou(tempidItem, tempdescripcionItem, 1, tempimagenItem, temptipoItem, iterable.username, iterable.nmascota);
                     }
                 });
 
@@ -166,7 +169,7 @@ $.get("/requestPou/getPou", function(data) {
 
 });
 
-function guardarElementoPou(idItem, descripcionItem, equipadoItem, imagenItem, tipoItem) {
+function guardarElementoPou(idItem, descripcionItem, equipadoItem, imagenItem, tipoItem, username, nmascota) {
 
     $.ajax({
         url: '/requestPou/verificarExistencia/' + idItem,
@@ -177,14 +180,14 @@ function guardarElementoPou(idItem, descripcionItem, equipadoItem, imagenItem, t
                 var confirmacion = confirm('El elemento ya existe en la base de datos. ¿Desea reemplazarlo con la nueva información?');
                 if (confirmacion) {
                     // Si el usuario acepta, guardar el nuevo elemento
-                    guardarNuevoElemento(idItem, descripcionItem, equipadoItem, imagenItem, tipoItem);
+                    guardarNuevoElemento(idItem, descripcionItem, equipadoItem, imagenItem, tipoItem, username, nmascota);
                 } else {
                     // Si el usuario cancela, no hacer nada
                     console.log('Guardado cancelado');
                 }
             } else {
                 // Si el elemento no existe, guardar directamente el nuevo elemento
-                guardarNuevoElemento(idItem, descripcionItem, equipadoItem, imagenItem, tipoItem);
+                guardarNuevoElemento(idItem, descripcionItem, equipadoItem, imagenItem, tipoItem, username, nmascota);
             }
         },
         error: function(xhr, status, error) {
@@ -193,13 +196,15 @@ function guardarElementoPou(idItem, descripcionItem, equipadoItem, imagenItem, t
     });
 }
 
-function guardarNuevoElemento(idItem, descripcionItem, equipadoItem, imagenItem, tipoItem) {
+function guardarNuevoElemento(idItem, descripcionItem, equipadoItem, imagenItem, tipoItem, username, nmascota) {
     let data = {
         idItem: idItem,
         descripcionItem: descripcionItem,
         equipadoItem: equipadoItem,
         imagenItem: imagenItem,
-        tipoItem: tipoItem
+        tipoItem: tipoItem,
+        username: username,
+        nmascota: nmascota
     };
     $.ajax({
         url: '/requestPou/guardarElementoPou',

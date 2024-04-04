@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/Js\MisionesJs.js"></script>
-    <link rel="stylesheet" href="../estilos/leadmark.css">
-    <link rel="stylesheet" href="../estilos/Organizador_estilos.css">
+    <title>LogIn</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="/Js\MisionesJs.js"></script>
+    <!-- Estilos de la plantilla -->
+    <link rel="stylesheet" href="../estilos/leadmark.css">
+    <!-- Tu hoja de estilos personalizada -->
+    <link rel="stylesheet" href="../estilos/loginEstilos.css">
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
 
@@ -15,7 +16,7 @@
     <nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top" data-spy="affix" data-offset-top="10">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="assets/imgs/logo.svg" alt="">
+                <img src="../imgs/logo.svg" alt="">
             </a>
             <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -46,12 +47,11 @@
     </nav>
     <!-- End Of Second Navigation -->
 
-
     <!-- Encabezado -->
     <header class="header">
         <div class="overlay">
             <h1 class="subtitle">(Des)Motivados</h1>
-            <h1 class="title">Misiones</h1>  
+            <h1 class="title">Inicio de Sesión</h1>  
         </div>  
         <div class="shape">
             <svg viewBox="0 0 1500 200">
@@ -62,20 +62,32 @@
     </header>
     <!-- Fin del encabezado -->
 
-    <!-- Contenido de la página -->
+    <!-- Contenido de la página --> 
     <div>
-        <h1>Lista</h1>
-        <div id = "listaMisiones"></div>
+        <input id="usuarioalias" placeholder="Alias">
+        <br>
+        <input id="usuariocontrasena" type="password" placeholder="Contraseña">
+        <br>
+        <button onclick="logUsuario()">Iniciar Sesión</button>
+        <br>
+        <button onclick="regresar()">Salir</button>
+        <br>
+        <!-- Texto con enlace para registrarse -->
+        <p>Todavía no tienes cuenta? <a href="/vistas/registro.html">Regístrate ahora</a>.</p>
     </div>
     
+
+    </div>
     <!-- Fin del contenido de la página -->
 
 
+
     <!-- Footer -->
-            <footer class="mt-5 py-4 border-top border-secondary">
-                <p class="mb-0 small">&copy; <script>document.write(new Date().getFullYear())</script>, LeadMark Created By <a href="https://www.devcrud.com" target="_blank"></a> Sergio Rodriguez. </p>     
-            </footer>
-    <!-- Fin del footer -->
+    <footer class="mt-5 py-4 border-top border-secondary">
+        <p class="mb-0 small">&copy; <script>document.write(new Date().getFullYear())</script>, LeadMark Created By <a href="https://www.devcrud.com" target="_blank"></a>  Nathalia Chivatá. </p>     
+    </footer>
+    <!-- End of Page Footer -->  
+<!-- Fin del footer -->
 
     <!-- Scripts -->
     <!-- jQuery -->
@@ -88,5 +100,7 @@
     <script src="../vendors/isotope/isotope.pkgd.js"></script>
     <!-- LeadMark js -->
     <script src="../Js/leadmark.js"></script>
+    <!-- Tu script personalizado -->
+    <script type="text/JavaScript" src="/Js/login.js"></script>
 </body>
 </html>

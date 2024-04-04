@@ -8,13 +8,14 @@ import jakarta.persistence.OneToOne;
 
 @Entity
 public class PouEntidad {
-  
-    /* 
+    
     @OneToOne
-    @JoinColumn(name = "usuario")
-    private long username;
-    private String nombreMascota;
-    */
+    @JoinColumn(name = "username")
+    private User username;
+
+    @OneToOne
+    @JoinColumn(name = "nmascota")
+    private User nmascota;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,20 +26,19 @@ public class PouEntidad {
     private String descripcionItem;
     private String tipoItem;
 
-    /* 
-    public long getUsername() {
+    
+    public User getusername() {
         return username;
     }
-    public void setUsername(long username) {
+    public void setusername(User username) {
         this.username = username;
     }
-    public String getNombreMascota() {
-        return nombreMascota;
+    public User getnmascota() {
+        return nmascota;
     }
-    public void setNombreMascota(String nombreMascota) {
-        this.nombreMascota = nombreMascota;
+    public void setnmascota(User nmascota) {
+        this.nmascota = nmascota;
     }
-    */
 
     public Long getIdItem() {
         return idItem;
