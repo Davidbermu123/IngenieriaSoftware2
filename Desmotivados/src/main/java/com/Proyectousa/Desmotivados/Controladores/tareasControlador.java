@@ -3,6 +3,7 @@ package com.Proyectousa.Desmotivados.Controladores;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,6 +44,16 @@ public class tareasControlador {
     public ResponseEntity<String> eliminarTarea(@PathVariable Long id){
         tareasService.delete(id);
         return ResponseEntity.ok("Elemento eliminado correctamente");
+    }
+
+    @PostMapping("/modificarTarea")
+    public ResponseEntity<String> modificarTarea(@RequestBody TareasEntidades g) {
+        try {
+            tareasService.modificarTarea(g);
+            return new ResponseEntity<>("Tarea modificada correctamente", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al modificar la tarea: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }

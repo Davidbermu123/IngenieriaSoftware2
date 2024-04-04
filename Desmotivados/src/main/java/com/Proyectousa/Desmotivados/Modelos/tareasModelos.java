@@ -25,4 +25,8 @@ public class tareasModelos {
         tareasRepositorio.eliminarTareas(id);  
     }
 
+    public void modificarTarea(TareasEntidades g) {
+        tareasRepositorio.guardarTareas(g);
+    }
+
 }

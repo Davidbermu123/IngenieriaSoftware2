@@ -147,7 +147,7 @@
                 </button>
                 <div class="dropdown-menu">
                     <a class="dropdown-item eliminar-btn" href="#">Eliminar</a>
-                    <a class="dropdown-item" href="#">Modificar</a>
+                    <a class="dropdown-item modificar-btn" href="Editar_Tareas.html">Modificar</a>
                 </div>
             </div>
         </div>
