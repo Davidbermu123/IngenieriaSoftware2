@@ -8,11 +8,11 @@ import jakarta.persistence.Id;
 
 
 @Entity
-public class Graficas {
+public class GraficasM {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idTarea;
+    private Long idGraficas;
     private String titulo;
     private Date fechaInicio;
     private Date fechaFinalizacion;
@@ -20,11 +20,11 @@ public class Graficas {
     private float puntajeGanado;
 
 
-    public Long getIdTarea() {
-        return idTarea;
+    public Long getIdGraficas() {
+        return idGraficas;
     }
-    public void setIdTarea(Long idTarea) {
-        this.idTarea = idTarea;
+    public void setIdGraficas(Long idGraficas) {
+        this.idGraficas = idGraficas;
     }
     public Date getFechaFinalizacion() {
         return fechaFinalizacion;
