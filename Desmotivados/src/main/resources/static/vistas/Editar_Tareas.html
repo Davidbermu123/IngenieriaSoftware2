@@ -3,35 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Tareas</title>
+    <title>Editar</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../estilos/custom.css">
+    <!-- Estilos de la plantilla -->
+    <link rel="stylesheet" href="../estilos/leadmark.css">
+    <!-- Tu hoja de estilos personalizada -->    
 </head>
-<body>
-    <header>
-        <nav class="main-nav">
-            <div class="nav-list">
-                <a href="/Desmotivados/src/main/resources/static/index.html">Inicio</a>
-                <a href="#">Editar Tareas</a>
-                <a href="#">Sobre nosotros</a>
-                <a href="#">Servicios</a>
-                <a href="#">Productos</a>
-                <a href="#">Contacto</a>
-            </div>
-            <div class="auth-list">
-                <a href="#">Iniciar sesión</a>
-                <a href="#">Registro</a>
-            </div>
-        </nav>
-    </header>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
 
-    <section class="edit-tab">
+    <!-- page Navigation -->
+    <nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top" data-spy="affix" data-offset-top="10">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="assets/imgs/logo.svg" alt="">
+            </a>
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">                     
+                    <li class="nav-item">
+                        <a class="nav-link" href="#service">Our Service</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#blog">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="components.html" class="ml-4 nav-link btn btn-primary btn-sm rounded">Components</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Of Second Navigation -->
+
+
+    <!-- Encabezado -->
+    <header class="header">
+        <div class="overlay">
+            <h1 class="subtitle">(Des)Motivados</h1>
+            <h1 class="title">Editar Tareas</h1>  
+        </div>  
+        <div class="shape">
+            <svg viewBox="0 0 1500 200">
+                <path d="m 0,240 h 1500.4828 v -71.92164 c 0,0 -286.2763,-81.79324 -743.19024,-81.79324 C 300.37862,86.28512 0,168.07836 0,168.07836 Z"/>
+            </svg>
+        </div>  
+        <div class="mouse-icon"><div class="wheel"></div></div>
+    </header>
+    <!-- Fin del encabezado -->
+
+    <!-- Contenido de la página -->
+    <section class="edit-tab" style="text-align: center;">
         <h2>Editar Información de Tareas</h2>
-        <form id="task-form">
+        <form id="task-form" style="display: inline-block; text-align: left;">
             <label for="select-task">Selecciona una tarea:</label><br>
-            <select id="select-task" name="select-task">
-            </select><br><br>
+            <select id="select-task" name="select-task"></select><br><br>
             <label for="task-id">ID de Tarea:</label><br>
             <input type="text" id="task-id" name="task-id" readonly><br><br>
             <label for="task-name">Nuevo nombre de la tarea:</label><br>
@@ -50,6 +86,28 @@
         </form>
         <p id="message" class="hidden"></p> 
     </section>
-    <script src="../js/main.js"></script> 
+    
+    <!-- Fin del contenido de la página -->
+
+<!-- Footer -->
+<footer class="mt-5 py-4 border-top border-secondary">
+    <p class="mb-0 small">&copy; <script>document.write(new Date().getFullYear())</script>, LeadMark Created By <a href="https://www.devcrud.com" target="_blank"></a>  David Bermudez. </p>     
+</footer>
+<!-- End of Page Footer -->  
+<!-- Fin del footer -->
+
+     <!-- Scripts -->
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/bootstrap.bundle.js"></script>
+    <!-- Bootstrap 3 affix -->
+    <script src="../vendors/bootstrap/bootstrap.affix.js"></script>
+    <!-- Isotope -->
+    <script src="../vendors/isotope/isotope.pkgd.js"></script>
+    <!-- LeadMark js -->
+    <script src="../js/leadmark.js"></script>
+    <!-- Tu script personalizado -->
+    <script type="text/JavaScript" src="../js/main.js"></script>
 </body>
 </html>
