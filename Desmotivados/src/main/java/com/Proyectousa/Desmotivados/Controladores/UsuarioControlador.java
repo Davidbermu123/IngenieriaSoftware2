@@ -12,7 +12,7 @@ import com.Proyectousa.Desmotivados.Modelos.UsuarioService;
 
 @RestController
 @RequestMapping("/usuarios")
-public class Usuario_controlador {
+public class UsuarioControlador {
 
     @Autowired
     private UsuarioService usuarioService;
