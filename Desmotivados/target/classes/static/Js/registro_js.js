@@ -33,7 +33,7 @@ function saveUsuario(){
         contentType: 'application/json',
         data: JSON.stringify(data),
         success: function(response) {
-            window.location.href = "/index.html";
+            window.location.href = "/vistas/formularioVista.html";
         },
         error: function(xhr, status, error) {
             alert('Este usuario ya existe, por favor escoger otro', error);

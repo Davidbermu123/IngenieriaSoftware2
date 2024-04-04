@@ -50,7 +50,15 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING) 
     Role role;
 
-    
+    Integer monedas;
+
+    List<String>intereses;
+
+    /*List<TareasEntidades>tareas;*/
+
+    /*List<MisionesEntidades>misiones;*/
+
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
       return List.of(new SimpleGrantedAuthority((role.name())));

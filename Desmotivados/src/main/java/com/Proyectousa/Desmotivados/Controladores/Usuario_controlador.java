@@ -24,6 +24,4 @@ private Usuario_modelos usuarioService;
     public User guardarUsuario(@RequestBody User k){
         return usuarioService.save(k);
     }
-
-    
 }

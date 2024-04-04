@@ -21,4 +21,7 @@ public class Usuario_repositorios {
     public User guardaraUsuario (User m){
         return usuarioCRUDRepository.save(m);
     }
+   /*  public List<Intereses> guardaIntereses(List<Interes> intereses){
+        return 
+    }*/
 }

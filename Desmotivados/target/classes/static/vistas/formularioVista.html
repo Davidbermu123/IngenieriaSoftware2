@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intereses</title>
+    <!-- Estilos de la plantilla -->
+    <link rel="stylesheet" href="../estilos/leadmark.css">
+    <link rel="stylesheet" href="../estilos/formulariosEstilos.css">
+</head>
+<body>
+    <div class="background">
+        <div class="left-image"></div>
+        <div class="right-image"></div>
+        <div class="content">
+            <h1>¿En que estas interesado?</h1>
+            <br>
+            <form id="interesesForm">
+                <label>
+                    <input type="checkbox" name="Música" value="Deportes"> Deportes
+                </label>
+                <label>
+                    <input type="checkbox" name="interes" value="Música"> Música
+                </label>
+                <label>
+                    <input type="checkbox" name="interes" value="Lenguas"> Lenguas
+                </label>
+                <label>
+                    <input type="checkbox" name="interes" value="Videojuegos"> Videojuegos
+                </label>
+                <label>
+                    <input type="checkbox" name="interes" value="Programación"> Programación
+                </label>
+                <label>
+                    <input type="checkbox" name="interes" value="Ciencias"> Ciencias
+                </label>
+                <button type="button" class="btn btn-secondary" onclick="guardarIntereses()">Agregar</button>
+            </label>
+            <button type="button" class="btn btn-secondary" onclick="Siguiente()">Aceptar</button>
+            </form>
+        <br>
+    <h4>Intereses Seleccionados:</h4>
+    <ul id="interesesSeleccionados"></ul>
+
+    <script type="text/JavaScript" src="../Js/formularioJs.js"></script>
+</body>
+</html>
