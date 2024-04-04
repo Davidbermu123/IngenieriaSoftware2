@@ -11,15 +11,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.Proyectousa.Desmotivados.Entidades.pouEntidades;
-import com.Proyectousa.Desmotivados.Modelos.pouService;
+
+import com.Proyectousa.Desmotivados.Entidades.PouEntidad;
+import com.Proyectousa.Desmotivados.Modelos.PouModelo;
 
 @RestController
 @RequestMapping("/requestPou")
 
-public class pouControlador {
+public class PouControlador {
     @Autowired
-    private pouService pouService;
+    private PouModelo PouModelo;
 
     @GetMapping("/pou")
     public String mostrarPaginaEspecifica() {
@@ -27,18 +28,18 @@ public class pouControlador {
     }
     
     @GetMapping("/getPou")
-    public List<pouEntidades> getAllpouEntidades(){
-        return pouService.getAllpouEntidades();
+    public List<PouEntidad> getAllPouEntidad(){
+        return PouModelo.getAllPouEntidad();
     }
 
     @PostMapping("/guardarElementoPou")
-    public pouEntidades guardarElPouEntidades(@RequestBody pouEntidades e){
-        return pouService.save(e);
+    public PouEntidad guardarElPouEntidad(@RequestBody PouEntidad e){
+        return PouModelo.save(e);
     }
 
     @GetMapping("/verificarExistencia/{id}")
     public ResponseEntity<Map<String, Boolean>> verificarExistencia(@PathVariable Long id) {
-        boolean existe = pouService.existeIdPou(id);
+        boolean existe = PouModelo.existeIdPou(id);
         Map<String, Boolean> response = new HashMap<>();
         response.put("existe", existe);
         return ResponseEntity.ok(response);

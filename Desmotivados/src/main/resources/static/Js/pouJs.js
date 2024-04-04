@@ -7,33 +7,33 @@ $.get("/requestPou/getPou", function(data) {
     $.each(data, function(index, iterable) {
         var item = $("<div>");
 
-        if (iterable.equipado == 1 && iterable.tipo == "Fondo"){
-            console.log("Encontre un fondo equipado")
+        if (iterable.equipadoItem == 1 && iterable.tipoItem == "Fondo"){
+            console.log("Encontre un fondo equipadoItem")
             var imagen = $("<img>");
-                imagen.attr("src", iterable.imagen); // Establecer la URL de la imagen
+                imagen.attr("src", iterable.imagenItem); // Establecer la URL de la imagen
                 item.append(imagen);
             $("#fondoPou").append(item);
         }
-        if (iterable.equipado == 1 && iterable.tipo == "Ropa"){
+        if (iterable.equipadoItem == 1 && iterable.tipoItem == "Ropa"){
             console.log("Encontre una ropa equipada")
             var imagen = $("<img>");
-                imagen.attr("src", iterable.imagen); // Establecer la URL de la imagen
+                imagen.attr("src", iterable.imagenItem); // Establecer la URL de la imagen
                 item.append(imagen);
             $("#ropaPou").append(item);
         }
 
-        if (iterable.equipado == 1 && iterable.tipo == "Mueble"){
-            console.log("Encontre un muebleA equipado")
+        if (iterable.equipadoItem == 1 && iterable.tipoItem == "Mueble"){
+            console.log("Encontre un muebleA equipadoItem")
             var imagen = $("<img>");
-                imagen.attr("src", iterable.imagen); // Establecer la URL de la imagen
+                imagen.attr("src", iterable.imagenItem); // Establecer la URL de la imagen
                 item.append(imagen);
             $("#muebleAPou").append(item);
         }
 
-        if (iterable.equipado == 1 && iterable.tipo == "MuebleB"){
+        if (iterable.equipadoItem == 1 && iterable.tipoItem == "MuebleB"){
             console.log("Encontre un muebleB equipado")
             var imagen = $("<img>");
-                imagen.attr("src", iterable.imagen); // Establecer la URL de la imagen
+                imagen.attr("src", iterable.imagenItem); // Establecer la URL de la imagen
                 item.append(imagen);
             $("#muebleBPou").append(item);
         }
@@ -44,70 +44,120 @@ $.get("/requestPou/getPou", function(data) {
     $.each(data, function(index, iterable) {
         var item = $("<div>");
 
-        if (iterable.comprado == 1 && iterable.tipo == "Fondo"){
+        if (iterable.tipoItem == "Fondo"){
             console.log("Encontre un fondo comprado")
             var imagen = $("<img>");
-                imagen.attr("src", iterable.imagen); // Establecer la URL de la imagen
+                imagen.attr("src", iterable.imagenItem); // Establecer la URL de la imagen
                 item.append(imagen);
 
             imagen.click(function() {
                 // Acción que se ejecutará cuando se haga clic en la imagen
                 console.log("Se hizo click en una imagen tipo fondo");
-                // Se realizan las siguientes operaciones
-
+                //Se guarda el fondo clickeado para ponerle el equipado a 1
+                //var tempusername = iterable.username;
+                //var tempnombreMascota = iterable.nombreMascota;
+                var tempidItem = iterable.idItem;
+                var tempimagenItem = iterable.imagenItem;
+                var tempdescripcionItem = iterable.descripcionItem;
+                var temptipoItem = iterable.tipoItem;
                 //Se modifica el fondo equipado actualmente a 0
                 $.each(data, function(index, iterable) {
 
-                    if (iterable.equipado == 1 && iterable.tipo == "Fondo"){
-                        guardarElementoPou(iterable.id_item, iterable.comprado, 0, iterable.imagen, iterable.nombre, iterable.tipo);
+                    if (iterable.equipadoItem == 1 && iterable.tipoItem == "Fondo"){
+                        guardarElementoPou(iterable.idItem, iterable.descripcionItem, 0, iterable.imagenItem, iterable.tipoItem);
+                        guardarElementoPou(tempidItem, tempdescripcionItem, 1, tempimagenItem, temptipoItem);
                     }
-
                 });
 
             });
 
             $("#fondoPouInventario").append(item);
         }
-        if (iterable.comprado == 1 && iterable.tipo == "Ropa"){
-            console.log("Encontre una ropa equipada")
+        if (iterable.tipoItem == "Ropa"){
+            console.log("Encontre una ropa comprada")
             var imagen = $("<img>");
-                imagen.attr("src", iterable.imagen); // Establecer la URL de la imagen
+                imagen.attr("src", iterable.imagenItem); // Establecer la URL de la imagen
                 item.append(imagen);
 
             imagen.click(function() {
                 // Acción que se ejecutará cuando se haga clic en la imagen
-                console.log("Se hizo click en una imagen tipo ropa");
-                // Agrega aquí la acción que deseas realizar cuando se haga clic en la imagen
+                console.log("Se hizo click en una imagen tipoItem ropa");
+                //Se guarda el fondo clickeado para ponerle el equipado a 1
+                //var tempusername = iterable.username;
+                //var tempnombreMascota = iterable.nombreMascota;
+                var tempidItem = iterable.idItem;
+                var tempimagenItem = iterable.imagenItem;
+                var tempdescripcionItem = iterable.descripcionItem;
+                var temptipoItem = iterable.tipoItem;
+                //Se modifica el fondo equipado actualmente a 0
+                $.each(data, function(index, iterable) {
+
+                    if (iterable.equipadoItem == 1 && iterable.tipoItem == "Ropa"){
+                        guardarElementoPou(iterable.idItem, iterable.descripcionItem, 0, iterable.imagenItem, iterable.tipoItem);
+                        guardarElementoPou(tempidItem, tempdescripcionItem, 1, tempimagenItem, temptipoItem);
+                    }
+                });
+
             });
 
             $("#ropaPouInventario").append(item);
         }
 
-        if (iterable.comprado == 1 && iterable.tipo == "Mueble"){
+        if (iterable.tipoItem == "Mueble"){
             console.log("Encontre un muebleA comprado")
             var imagen = $("<img>");
-                imagen.attr("src", iterable.imagen); // Establecer la URL de la imagen
+                imagen.attr("src", iterable.imagenItem); // Establecer la URL de la imagen
                 item.append(imagen);
 
             imagen.click(function() {
                 // Acción que se ejecutará cuando se haga clic en la imagen
-                console.log("Se hizo click en una imagen tipo mueble");
-                // Agrega aquí la acción que deseas realizar cuando se haga clic en la imagen
+                console.log("Se hizo click en una imagen tipoItem mueble");
+                //Se guarda el fondo clickeado para ponerle el equipado a 1
+                //var tempusername = iterable.username;
+                //var tempnombreMascota = iterable.nombreMascota;
+                var tempidItem = iterable.idItem;
+                var tempimagenItem = iterable.imagenItem;
+                var tempdescripcionItem = iterable.descripcionItem;
+                var temptipoItem = iterable.tipoItem;
+                //Se modifica el fondo equipado actualmente a 0
+                $.each(data, function(index, iterable) {
+
+                    if (iterable.equipadoItem == 1 && iterable.tipoItem == "Mueble"){
+                        guardarElementoPou(iterable.idItem, iterable.descripcionItem, 0, iterable.imagenItem, iterable.tipoItem);
+                        guardarElementoPou(tempidItem, tempdescripcionItem, 1, tempimagenItem, temptipoItem);
+                    }
+                });
+
             });
             
             $("#muebleAPouInventario").append(item);
         }
 
-        if (iterable.comprado == 1 && iterable.tipo == "MuebleB"){
+        if (iterable.tipoItem == "MuebleB"){
             console.log("Encontre un muebleB comprado")
             var imagen = $("<img>");
-                imagen.attr("src", iterable.imagen); // Establecer la URL de la imagen
+                imagen.attr("src", iterable.imagenItem); // Establecer la URL de la imagen
                 item.append(imagen);
 
             imagen.click(function() {
                 // Acción que se ejecutará cuando se haga clic en la imagen
-                console.log("Se hizo click en una imagen tipo muebleB");
-                // Agrega aquí la acción que deseas realizar cuando se haga clic en la imagen
+                console.log("Se hizo click en una imagen tipoItem muebleB");
+                //Se guarda el fondo clickeado para ponerle el equipado a 1
+                //var tempusername = iterable.username;
+                //var tempnombreMascota = iterable.nombreMascota;
+                var tempidItem = iterable.idItem;
+                var tempimagenItem = iterable.imagenItem;
+                var tempdescripcionItem = iterable.descripcionItem;
+                var temptipoItem = iterable.tipoItem;
+                //Se modifica el fondo equipado actualmente a 0
+                $.each(data, function(index, iterable) {
+
+                    if (iterable.equipadoItem == 1 && iterable.tipoItem == "MuebleB"){
+                        guardarElementoPou(iterable.idItem, iterable.descripcionItem, 0, iterable.imagenItem, iterable.tipoItem);
+                        guardarElementoPou(tempidItem, tempdescripcionItem, 1, tempimagenItem, temptipoItem);
+                    }
+                });
+
             });
 
             $("#muebleBPouInventario").append(item);
@@ -116,10 +166,10 @@ $.get("/requestPou/getPou", function(data) {
 
 });
 
-function guardarElementoPou(id_item, comprado, equipado, imagen, nombre, tipo) {
+function guardarElementoPou(idItem, descripcionItem, equipadoItem, imagenItem, tipoItem) {
 
     $.ajax({
-        url: '/requestPou/verificarExistencia/' + id_item,
+        url: '/requestPou/verificarExistencia/' + idItem,
         type: 'GET',
         success: function(response) {
             if (response.existe) {
@@ -127,14 +177,14 @@ function guardarElementoPou(id_item, comprado, equipado, imagen, nombre, tipo) {
                 var confirmacion = confirm('El elemento ya existe en la base de datos. ¿Desea reemplazarlo con la nueva información?');
                 if (confirmacion) {
                     // Si el usuario acepta, guardar el nuevo elemento
-                    guardarNuevoElemento(id_item, comprado, equipado, imagen, nombre, tipo);
+                    guardarNuevoElemento(idItem, descripcionItem, equipadoItem, imagenItem, tipoItem);
                 } else {
                     // Si el usuario cancela, no hacer nada
                     console.log('Guardado cancelado');
                 }
             } else {
                 // Si el elemento no existe, guardar directamente el nuevo elemento
-                guardarNuevoElemento(id_item, comprado, equipado, imagen, nombre, tipo);
+                guardarNuevoElemento(idItem, descripcionItem, equipadoItem, imagenItem, tipoItem);
             }
         },
         error: function(xhr, status, error) {
@@ -143,14 +193,13 @@ function guardarElementoPou(id_item, comprado, equipado, imagen, nombre, tipo) {
     });
 }
 
-function guardarNuevoElemento(id_item, comprado, equipado, imagen, nombre, tipo) {
+function guardarNuevoElemento(idItem, descripcionItem, equipadoItem, imagenItem, tipoItem) {
     let data = {
-        id_item: id_item,
-        comprado: comprado,
-        equipado: equipado,
-        imagen: imagen,
-        nombre: nombre,
-        tipo: tipo
+        idItem: idItem,
+        descripcionItem: descripcionItem,
+        equipadoItem: equipadoItem,
+        imagenItem: imagenItem,
+        tipoItem: tipoItem
     };
     $.ajax({
         url: '/requestPou/guardarElementoPou',
