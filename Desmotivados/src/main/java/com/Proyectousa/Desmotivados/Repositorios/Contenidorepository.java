@@ -24,5 +24,10 @@ public class Contenidorepository {
         return contenidoCRUDrepository.save(contenido);
     }
     
+    @SuppressWarnings("null")
+    public void deleteContenido(Long id){
+        contenidoCRUDrepository.deleteById(id);
+    }
+
 
 }
