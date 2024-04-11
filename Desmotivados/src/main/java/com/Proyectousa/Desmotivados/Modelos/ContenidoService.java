@@ -1,6 +1,7 @@
 package com.Proyectousa.Desmotivados.Modelos;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,14 @@ public class ContenidoService {
 
     public Contenido saveContenido(Contenido contenido){
         return contenidorepository.saveContenido(contenido);
+    }
+
+    public void deleteContenido(Long id){
+        contenidorepository.deleteContenido(id);
+    }
+
+    public Optional<Contenido> mostrarContenido(Long id){
+        return contenidorepository.findContenidoId(id);
     }
     
 }

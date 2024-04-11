@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LogIn</title>
+    <title>Creación de Contenido</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- Estilos de la plantilla -->
     <link rel="stylesheet" href="../estilos/leadmark.css">
@@ -69,7 +69,7 @@
         <input type="text" id="tituloContenido" name="tituloContenido" required><br>
         
         <label for="detalleContenido">Detalle del Contenido:</label><br>
-        <textarea id="detalleContenido" name="detalleContenido" rows="4" required></textarea><br>
+        <textarea id="detalleContenido" name="detalleContenido" rows="5" required></textarea><br>
         
         <label for="areaEstudio">Área de Estudio:</label><br>
         <input type="text" id="areaEstudio" name="areaEstudio" required><br>
@@ -78,15 +78,19 @@
         <input type="text" id="interes" name="interes" required><br>
         
         <label for="categoria">Categoría:</label><br>
-        <input type="text" id="categoria" name="categoria" required><br>
+        <select id="categoria" name="categoria" required>
+            <option value="actividad">Actividad</option>
+            <option value="lectura">Lectura</option>
+            <option value="video">Vídeo</option>
+            <option value="sitio web">Sitio Web</option>
+            <option value="bienestar">Bienestar</option>
+        </select><br>
         
         <label for="link">Link:</label><br>
         <input type="text" id="link" name="link" required><br>
         
         <button type="submit">Guardar Contenido</button>
     </form>
-
-    </div>
     <!-- Fin del contenido de la página -->
 
 

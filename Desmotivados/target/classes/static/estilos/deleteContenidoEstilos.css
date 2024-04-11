@@ -1,0 +1,34 @@
+/* Estilos generales */
+body {
+    text-align: center;
+  }
+  
+  input, textarea {
+    width: 25%; /* Ocupa todo el ancho disponible */
+    padding: 10px; /* Aumenta el relleno */
+    margin-bottom: 20px; /* Espacio entre las cajas de texto */
+    border-radius: 5px; /* Borde redondeado */
+    box-sizing: border-box; /* Incluye el borde en el ancho total */
+    font-size: 18px; /* Tamaño del texto */
+  }
+  
+  button {
+    padding: 10px 20px; /* Ajusta el padding según sea necesario */
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #9af59d;
+  }
+  
+  p {
+    font-size: 16px;
+  }
+  
+  /* Estilos específicos para textarea */
+  textarea {
+    resize: vertical; /* Permite redimensionar verticalmente */
+    min-height: 150px; /* Altura mínima */
+  }
+  

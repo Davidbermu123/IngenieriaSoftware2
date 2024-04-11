@@ -13,7 +13,7 @@ function filtrarContenido() {
   
         // Filtrar los contenidos por categoría diferente de "Actividad" y mostrarlos
         contenidos.forEach(function(contenido) {
-          if (contenido.categoria !== "Actividad") {
+          if (contenido.categoria !== "actividad") {
             var itemContenido = $('<div class="contenido-item"></div>');
             var titulo = $('<h2></h2>').text(contenido.tituloContenido);
             var detalle = $('<p></p>').text(contenido.detalleContenido);

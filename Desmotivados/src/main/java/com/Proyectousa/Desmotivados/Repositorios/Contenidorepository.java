@@ -1,6 +1,7 @@
 package com.Proyectousa.Desmotivados.Repositorios;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,6 +28,11 @@ public class Contenidorepository {
     @SuppressWarnings("null")
     public void deleteContenido(Long id){
         contenidoCRUDrepository.deleteById(id);
+    }
+
+    @SuppressWarnings("null")
+    public Optional<Contenido> findContenidoId(Long id){
+        return contenidoCRUDrepository.findById(id);
     }
 
 

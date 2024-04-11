@@ -3,7 +3,7 @@ body {
   text-align: center;
 }
 
-input, textarea {
+input, textarea, select {
   width: 25%; /* Ocupa todo el ancho disponible */
   padding: 10px; /* Aumenta el relleno */
   margin-bottom: 20px; /* Espacio entre las cajas de texto */
