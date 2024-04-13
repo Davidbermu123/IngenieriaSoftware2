@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,5 +45,9 @@ public class Contenido_Controlador {
     public Optional<Contenido> findContenidoId(Long id){
         return contenidoService.mostrarContenido(id);
     }
-        
+
+    @PutMapping("/editarContenido")
+    public void updateContenido(Long idContenido, String tituloContenido, String detalleContenido, String areaEstudio, String interes, String categoria, String link){
+        contenidoService.actualizarContenido(idContenido, tituloContenido, detalleContenido, areaEstudio, interes, categoria, link);
+    }    
 }
