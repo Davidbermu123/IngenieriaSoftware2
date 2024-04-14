@@ -3,6 +3,7 @@ package com.Proyectousa.Desmotivados.PublicoControlador;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -49,5 +50,9 @@ public class AuthService {
             .token(jwtService.getToken(user))
             .build();
         
+    }
+    public String getUserRole(String username) {
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        return user.getRole().name();
     }
 }
