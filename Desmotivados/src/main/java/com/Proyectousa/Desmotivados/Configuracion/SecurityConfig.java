@@ -20,7 +20,7 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final AuthenticationProvider authProvider;
   private final String[] whitelist={"/auth/**","/vistas/**","/Js/**","/scss/**","/vendors/**",
-    "/imgs/**","/estilos/**","index.html", "/Corganizador/**"};
+    "/imgs/**","/estilos/**","index.html"};
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
     {

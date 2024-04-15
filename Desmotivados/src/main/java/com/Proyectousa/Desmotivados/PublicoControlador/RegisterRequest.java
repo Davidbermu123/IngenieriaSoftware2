@@ -25,10 +25,8 @@ public class RegisterRequest {
      String nmascota;
 
      String password;
-
+     
      String intereses;
 
      Integer monedas;
-     
-
 }

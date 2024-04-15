@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Usuario</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <!-- Estilos de la plantilla -->
+    <title>Aprende jugando</title>
     <link rel="stylesheet" href="../estilos/leadmark.css">
-    <!-- Tu hoja de estilos personalizada -->
-    <link rel="stylesheet" href="../estilos/registroEstilos.css">
+    <link rel="stylesheet" href="../estilos/AprenderEstilos.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/Js\AprenderJs.js"></script>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
 
@@ -16,7 +15,7 @@
     <nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top" data-spy="affix" data-offset-top="10">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="assets/imgs/logo.svg" alt="">
+                <img src="../imgs/logo.svg" alt="">
             </a>
             <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -52,7 +51,7 @@
     <header class="header">
         <div class="overlay">
             <h1 class="subtitle">(Des)Motivados</h1>
-            <h1 class="title">Registro</h1>  
+            <h1 class="title">Aprende jugando</h1>  
         </div>  
         <div class="shape">
             <svg viewBox="0 0 1500 200">
@@ -63,38 +62,24 @@
     </header>
     <!-- Fin del encabezado -->
 
-    <!-- Contenido de la página --> 
-    <div>
-        <input id="usuarioname" placeholder="Nombre">
+    <!-- Contenido de la página -->
+    <div class="centrado">
+        <h1>Lista</h1>
         <br>
-        <input id="usuarioapellido" placeholder="Apellido">
-        <br>
-        <input id="usuarioalias" placeholder="Alias">
-        <br>
-        <input id="usuariouniversidad" placeholder="Universidad">
-        <br>
-        <input id="usuariocarrera" placeholder="Carrera">
-        <br>
-        <input id="usuariosemestre" placeholder="Semestre">
-        <br>
-        <input id="usuarionmascota" placeholder="Nombre de la Mascota">
-        <br>
-        <input id="usuariocontrasena" type="password" placeholder="Contraseña">
-        <br>
-        <button onclick="guardarDatos()">Continuar registro</button>
-        <br>
-        <button onclick="regresar()">Salir</button>
+        <div class="container">
+            <div class="row" id = "listaAprendizajes">
+            </div>
+        </div>
     </div>
+    
     <!-- Fin del contenido de la página -->
 
 
-
     <!-- Footer -->
-    <footer class="mt-5 py-4 border-top border-secondary">
-        <p class="mb-0 small">&copy; <script>document.write(new Date().getFullYear())</script>, LeadMark Created By <a href="https://www.devcrud.com" target="_blank"></a>  Nathalia Chivatá. </p>     
-    </footer>
-    <!-- End of Page Footer -->  
-<!-- Fin del footer -->
+            <footer class="mt-5 py-4 border-top border-secondary">
+                <p class="mb-0 small">&copy; <script>document.write(new Date().getFullYear())</script>, LeadMark Created By <a href="https://www.devcrud.com" target="_blank"></a> Sergio Rodriguez. </p>     
+            </footer>
+    <!-- Fin del footer -->
 
     <!-- Scripts -->
     <!-- jQuery -->
@@ -107,7 +92,5 @@
     <script src="../vendors/isotope/isotope.pkgd.js"></script>
     <!-- LeadMark js -->
     <script src="../Js/leadmark.js"></script>
-    <!-- Tu script personalizado -->
-    <script type="text/JavaScript" src="/Js/registro_js.js"></script>
 </body>
 </html>
