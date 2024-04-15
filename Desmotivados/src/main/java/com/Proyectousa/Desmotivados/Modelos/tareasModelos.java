@@ -1,6 +1,7 @@
 package com.Proyectousa.Desmotivados.Modelos;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,13 @@ public class tareasModelos {
 
     public void modificarTarea(TareasEntidades g) {
         tareasRepositorio.guardarTareas(g);
+    }
+    public List<TareasEntidades> getTareasByUsername(String username) {
+        return tareasRepositorio.getTareasByUsername(username);
+    }
+
+    public Optional<TareasEntidades> getTareaById(Long id) {
+        return tareasRepositorio.getTareaById(id);
     }
 
 }

@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class TareasEntidades{
@@ -18,6 +20,12 @@ public class TareasEntidades{
     private Date fechaInicio;
     private Date fechaFinal;
     private String prioridad;
+    private Integer puntaje;
+    private boolean completado;
+
+    @ManyToOne
+    @JoinColumn(name = "username")
+    private User username;
 
     public Long getIdTarea() {
         return idTarea;
@@ -55,6 +63,23 @@ public class TareasEntidades{
     public void setPrioridad(String prioridad) {
         this.prioridad = prioridad;
     }
-
+    public Integer getPuntaje() {
+        return puntaje;
+    }
+    public void setPuntaje(Integer puntaje) {
+        this.puntaje = puntaje;
+    }
+    public User getUsername() {
+        return username;
+    }
+    public void setUsername(User username) {
+        this.username = username;
+    }    
+    public boolean isCompletado() {
+        return completado;
+    }
+    public void setCompletado(boolean completado) {
+        this.completado = completado;
+    }
 
 }

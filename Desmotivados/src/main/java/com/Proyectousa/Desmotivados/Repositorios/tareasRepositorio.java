@@ -1,6 +1,7 @@
 package com.Proyectousa.Desmotivados.Repositorios;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,6 +24,14 @@ public class tareasRepositorio {
 
     public void eliminarTareas(Long id){
         tareasCRUDRepository.deleteById(id);
+    }
+
+    public List<TareasEntidades> getTareasByUsername(String username) {
+        return tareasCRUDRepository.findByUsername_Username(username);
+    }
+
+    public Optional<TareasEntidades> getTareaById(Long id) {
+        return tareasCRUDRepository.findById(id);
     }
     
 }
