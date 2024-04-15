@@ -14,13 +14,26 @@ public class MisionesEntidades {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMision;
+
     @ManyToOne
-    @JoinColumn(name = "contenedorEntidadesid")
-    private Contenido contenido;
+    @JoinColumn(name = "idContenido")
+    private Contenido contenido; 
+
     private Integer puntaje;
     private Date fechaFin; 
     private boolean estado;
+    
+    @ManyToOne
+    @JoinColumn(name = "username")
+    private User username;
 
+    
+    public User getUsername() {
+        return username;
+    }
+    public void setUsername(User username) {
+        this.username = username;
+    }
     
     public Long getIdMision() {
         return idMision;
@@ -28,10 +41,10 @@ public class MisionesEntidades {
     public void setIdMision(Long idMision) {
         this.idMision = idMision;
     }
-    public Contenido getcontenido() {
+    public Contenido getContenido() {
         return contenido;
     }
-    public void setcontenido(Contenido contenido) {
+    public void setContenido(Contenido contenido) {
         this.contenido = contenido;
     }
 

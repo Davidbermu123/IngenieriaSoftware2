@@ -7,6 +7,7 @@
     <!-- Estilos de la plantilla -->
     <link rel="stylesheet" href="../estilos/leadmark.css">
     <link rel="stylesheet" href="../estilos/formulariosEstilos.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="background">
@@ -17,7 +18,7 @@
             <br>
             <form id="interesesForm">
                 <label>
-                    <input type="checkbox" name="Música" value="Deportes"> Deportes
+                    <input type="checkbox" name="interes" value="Deportes"> Deportes
                 </label>
                 <label>
                     <input type="checkbox" name="interes" value="Música"> Música
@@ -34,12 +35,11 @@
                 <label>
                     <input type="checkbox" name="interes" value="Ciencias"> Ciencias
                 </label>
-                <button type="button" class="btn btn-secondary" onclick="guardarIntereses()">Agregar</button>
+                <button type="button" class="btn btn-secondary" onclick="saveUsuario()">Registrarse</button>
+            </label>
             </form>
         <br>
-    <h4>Intereses Seleccionados:</h4>
-    <ul id="interesesSeleccionados"></ul>
-
-    <script type="text/JavaScript" src="../Js/formularioJs.js"></script>
+        
+    <script type="text/JavaScript" src="../Js/registro_js.js"></script>
 </body>
 </html>

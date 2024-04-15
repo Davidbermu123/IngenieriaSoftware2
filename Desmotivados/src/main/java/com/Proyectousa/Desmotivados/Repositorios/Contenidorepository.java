@@ -17,4 +17,8 @@ public class Contenidorepository {
         return contenidoCRUDrepository.findByAreaEstudioAndInteres(area_estudio, interes);
     }
 
+    public List<Contenido> findByCategoriaAndInteresIn(String categoria, List<String> interes){
+        return contenidoCRUDrepository.findByCategoriaAndInteresIn(categoria, interes);
+    }
+
 }
