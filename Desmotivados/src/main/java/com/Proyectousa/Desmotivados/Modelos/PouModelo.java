@@ -22,5 +22,10 @@ public class PouModelo {
     public boolean existeIdPou(Long id) {
         return PouRepositorio.existeIdPou(id);
     }
+
+    public PouEntidad findByIdItem(Long idItem){
+        return PouRepositorio.findByIdItem(idItem);
+    }
+
 }
 

@@ -4,9 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-
 public class index_controller {
-    @GetMapping("/auth/index")
+    @GetMapping("/")
     public String mostrarPaginaEspecifica() {
         return "index.html"; // Devuelve el nombre de la vista
     }

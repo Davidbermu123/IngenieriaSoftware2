@@ -4,18 +4,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-
+import jakarta.persistence.ManyToOne;
 @Entity
 public class PouEntidad {
-    
-    @OneToOne
-    @JoinColumn(name = "username")
-    private User username;
-
-    @OneToOne
-    @JoinColumn(name = "nmascota")
-    private User nmascota;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,20 +17,16 @@ public class PouEntidad {
     private String descripcionItem;
     private String tipoItem;
 
-    
-    public User getusername() {
+    @ManyToOne
+    @JoinColumn(name = "username")
+    private User username;
+   
+    public User getUsername() {
         return username;
     }
-    public void setusername(User username) {
+    public void setUsername(User username) {
         this.username = username;
     }
-    public User getnmascota() {
-        return nmascota;
-    }
-    public void setnmascota(User nmascota) {
-        this.nmascota = nmascota;
-    }
-
     public Long getIdItem() {
         return idItem;
     }
