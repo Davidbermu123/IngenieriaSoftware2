@@ -125,8 +125,6 @@ verificarTokenYRedireccionarALogin();
         tareaElemento.attr('id', 'tarea-' + tarea.idTarea);
         tareaElemento.attr('data-prioridad-num', prioridadANumero(tarea.prioridad));
         tareaElemento.addClass('tarea');
-
-        var completada = tarea.completado ? 'checked' : '';
     
         switch (tarea.prioridad) {
             case 'alta':
@@ -252,6 +250,9 @@ verificarTokenYRedireccionarALogin();
         $.ajax({
             url: '/Corganizador/actualizarPuntaje/' + tareaId,
             type: 'PUT',
+            headers: {
+                'Authorization': 'Bearer ' + token // Enviar el token en el encabezado de autorización
+            },
             contentType: 'application/json',
             data: JSON.stringify({ puntaje: puntaje, completado: completada }),
             success: function(response) {

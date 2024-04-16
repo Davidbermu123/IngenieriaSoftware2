@@ -40,7 +40,7 @@ $(document).ready(function() {
                         var indicator = $("<span>").addClass("toggle-indicator");
                         track.append(indicator);
                         toggle.append(input, track, document.createTextNode(" "));
-                        toggle.append("<p>Puntaje: " + mision.puntaje + "</p>");
+                        toggle.append("<p><img src='/imgs/moneda.png' alt='Moneda' style='width: 18px; height: 18px;'>50</p>");
                         item.append(toggle);
 
                     $("#listaMisiones").append(item);
@@ -48,8 +48,9 @@ $(document).ready(function() {
                     input.change(function() {
                         var estadoCheckbox = this.checked;
                         var idMision = $(this).attr('id').replace('toggleID', ''); // Suponiendo que el ID es 'toggleID' seguido del ID de la misión
-
-                        $.ajax({
+                        var puntaje = 50; // Obtener el puntaje desde el texto del párrafo
+                        console.log(data);
+                        $.ajax({                       
                             url: '/misiones/actualizarmision',
                             type: 'PUT',
                             headers: {
@@ -57,10 +58,12 @@ $(document).ready(function() {
                             },
                             data: {
                                 idMision: idMision,
-                                estado: estadoCheckbox
+                                estado: estadoCheckbox,
+                                puntaje: puntaje // Enviar el puntaje junto con el estado
                             },
                             success: function(response) {
                                 location.reload();
+                                console.log('Puntaje actualizado correctamente:', response);
                             },
                             error: function() {
                                 console.error('Error al actualizar la misión.');
