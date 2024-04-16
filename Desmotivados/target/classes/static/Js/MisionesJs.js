@@ -82,6 +82,8 @@ $(document).ready(function() {
         });
 });
 
+/*Hecho por melissa */
+
 function agregar(){
     $.ajax({
                         url: '/misiones/generarmisiones',
