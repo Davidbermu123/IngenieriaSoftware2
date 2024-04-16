@@ -1,3 +1,18 @@
+let token = localStorage.getItem('token');
+function verificarTokenYRedireccionarALogin() {
+
+    // Verificar si el token está presente
+    if (token === null) {
+        // Si el token no está presente, redirigir al usuario al inicio de sesión
+        window.location.href = '/vistas/login.html';
+    } else {
+        var tokenParts = token.split('.');
+        var tokenPayload = JSON.parse(atob(tokenParts[1]));
+        var username=tokenPayload.sub;
+        console.log(username);
+    }
+}
+verificarTokenYRedireccionarALogin();
 function guardarAprender() {
     let identification = $("#cajaId").val();
     let name = $("#cajaNombre").val();
@@ -11,6 +26,9 @@ function guardarAprender() {
     $.ajax({
         url: '/aprender/verificarExistencia/' + identification,
         type: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + token
+            },
         success: function(response) {
             if (response.existe) {
                 // Si el elemento ya existe, mostrar una ventana de confirmación
@@ -45,6 +63,9 @@ function guardarNuevoElemento(identification, name, description, urlLearn, urlGa
     $.ajax({
         url: '/aprender/guardar',
         type: 'POST',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
         contentType: 'application/json',
         data: JSON.stringify(data),
         success: function(response) {

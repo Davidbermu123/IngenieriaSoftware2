@@ -3,6 +3,8 @@ package com.Proyectousa.Desmotivados.Modelos;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.Proyectousa.Desmotivados.Entidades.Role;
 import com.Proyectousa.Desmotivados.Entidades.User;
 import com.Proyectousa.Desmotivados.Repositorios.Usuario_repositorios;
 
@@ -22,5 +24,9 @@ public class Usuario_modelos {
     
     public User findByUsername(String alias){
         return usuarioRepository.findByUsername(alias);
+    }
+    public Role obtenerRolPorUsuario(String username) {
+        User usuario = usuarioRepository.findByUsername(username);
+        return usuario.getRole();
     }
 }
