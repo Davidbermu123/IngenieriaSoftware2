@@ -4,18 +4,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
+
 
 @Entity
 public class PouEntidad {
     
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "username")
     private User username;
-
-    @OneToOne
-    @JoinColumn(name = "nmascota")
-    private User nmascota;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,12 +29,6 @@ public class PouEntidad {
     }
     public void setusername(User username) {
         this.username = username;
-    }
-    public User getnmascota() {
-        return nmascota;
-    }
-    public void setnmascota(User nmascota) {
-        this.nmascota = nmascota;
     }
 
     public Long getIdItem() {

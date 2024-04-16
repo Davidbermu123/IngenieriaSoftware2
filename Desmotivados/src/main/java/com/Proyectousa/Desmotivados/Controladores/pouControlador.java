@@ -1,26 +1,29 @@
 package com.Proyectousa.Desmotivados.Controladores;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Proyectousa.Desmotivados.Entidades.PouEntidad;
+import com.Proyectousa.Desmotivados.Entidades.User;
 import com.Proyectousa.Desmotivados.Modelos.PouModelo;
+import com.Proyectousa.Desmotivados.Modelos.Usuario_modelos;
 
 @RestController
 @RequestMapping("/requestPou")
-
-public class PouControlador {
+public class pouControlador {
     @Autowired
     private PouModelo PouModelo;
+    @Autowired
+    private Usuario_modelos usuarioService;
 
     @GetMapping("/pou")
     public String mostrarPaginaEspecifica() {
@@ -37,11 +40,43 @@ public class PouControlador {
         return PouModelo.save(e);
     }
 
-    @GetMapping("/verificarExistencia/{id}")
-    public ResponseEntity<Map<String, Boolean>> verificarExistencia(@PathVariable Long id) {
-        boolean existe = PouModelo.existeIdPou(id);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("existe", existe);
-        return ResponseEntity.ok(response);
+    @GetMapping("/getPouItems")
+    public List<PouEntidad> cargarItems(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+        String username = authentication.getName();
+
+        User usuario = usuarioService.findByUsername(username);
+            List<PouEntidad> itemsPou = PouModelo.findByUsernames(usuario);
+            return  itemsPou;
+        }else{
+            return null;
+        }
+    }
+
+    @PutMapping("/cambiarEquiado")
+    public void actualizarMision(@RequestParam Long idItem, @RequestParam Long idItem2) {
+        PouEntidad pou = PouModelo.findById(idItem);
+        PouEntidad pou2 = PouModelo.findById(idItem2);
+        
+        pou.setEquipadoItem(false);
+        pou2.setEquipadoItem(true);
+
+        PouModelo.save(pou);
+        PouModelo.save(pou2);
+    }
+
+    @GetMapping("/itemsEquipados")
+    public List<PouEntidad> itemsPou(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+        String username = authentication.getName();
+
+        User usuario = usuarioService.findByUsername(username);
+            List<PouEntidad> itemsPou = PouModelo.findByUsernameAndEntidad(usuario, true);
+            return  itemsPou;
+        }else{
+            return null;
+        }
     }
 }
