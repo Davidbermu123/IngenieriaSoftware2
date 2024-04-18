@@ -84,3 +84,13 @@ $(document).ready(function() {
         guardarCambios();
     });
 });
+function logout() {
+    // Mostrar un mensaje de confirmación al usuario
+    var confirmLogout = confirm("¿Estás seguro de que deseas cerrar sesión?");
+    
+    // Si el usuario confirma el logout, limpiar el token del almacenamiento local y redirigirlo a la página de inicio de sesión
+    if (confirmLogout) {
+        localStorage.removeItem('token');
+        window.location.href = "/vistas/login.html"; 
+    }
+}

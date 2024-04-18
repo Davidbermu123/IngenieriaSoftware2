@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar</title>
+    <title>Informacion de los productos</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Estilos de la plantilla -->
@@ -22,7 +22,10 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">                     
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="ml-4 nav-link btn btn-primary btn-sm rounded" href="#" onclick="logout()">Log Out</a>
+                    </li>                     
                     <li class="nav-item">
                         <a class="nav-link" href="#service">Our Service</a>
                     </li>
@@ -62,6 +65,7 @@
         <div class="mouse-icon"><div class="wheel"></div></div>
     </header>
     <!-- Fin del encabezado -->
+    <div class="container">
     <section class="edit-tab" style="text-align: center;"></section>
     <h1>Selecciona un producto:</h1>
     <form id="task-form" style="display: inline-block; text-align: left;"></form>
@@ -74,6 +78,7 @@
     <p>Título: <span id="product-title"></span></p>
     <p>Descripción: <span id="product-description"></span></p>
     <p>Precio: $<span id="product-price"></span></p>
+    </div>
 
     
     <footer class="mt-5 py-4 border-top border-secondary">
