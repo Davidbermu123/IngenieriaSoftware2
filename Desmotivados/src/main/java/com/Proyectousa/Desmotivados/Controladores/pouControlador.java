@@ -19,19 +19,14 @@ import com.Proyectousa.Desmotivados.Modelos.Usuario_modelos;
 
 @RestController
 @RequestMapping("/requestPou")
+
 public class pouControlador {
+
     @Autowired
     private PouModelo PouModelo;
+
     @Autowired
     private Usuario_modelos usuarioService;
-
-    @Autowired
-    private Usuario_modelos usuariomodelos;
-
-    @GetMapping("/pou")
-    public String mostrarPaginaEspecifica() {
-        return "index.html"; // Devuelve el nombre de la vista
-    }
     
     @GetMapping("/getPou")
     public List<PouEntidad> getAllPouEntidad(){
@@ -45,11 +40,12 @@ public class pouControlador {
 
     @GetMapping("/getPouItems")
     public List<PouEntidad> cargarItems(){
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated()) {
-        String username = authentication.getName();
+            String username = authentication.getName();
 
-        User usuario = usuarioService.findByUsername(username);
+            User usuario = usuarioService.findByUsername(username);
             List<PouEntidad> itemsPou = PouModelo.findByUsernames(usuario);
             return  itemsPou;
         }else{
@@ -57,43 +53,34 @@ public class pouControlador {
         }
     }
 
-    @PutMapping("/cambiarEquiado")
-    public void actualizarMision(@RequestParam Long idItem, @RequestParam Long idItem2) {
-        PouEntidad pou = PouModelo.findById(idItem);
-        PouEntidad pou2 = PouModelo.findById(idItem2);
-        
-        pou.setEquipadoItem(false);
-        pou2.setEquipadoItem(true);
+    @PutMapping("/cambiarEquipado")
+    public void actualizarItemEquipado(@RequestParam Long idItem, @RequestParam Long idItem2) {
 
-        PouModelo.save(pou);
-        PouModelo.save(pou2);
+        PouEntidad itemEquipado = PouModelo.findByIdItem(idItem);
+        PouEntidad itemAEquipar = PouModelo.findByIdItem(idItem2);
+        
+        itemEquipado.setEquipadoItem(false);
+        itemAEquipar.setEquipadoItem(true);
+
+        PouModelo.save(itemEquipado);
+        PouModelo.save(itemAEquipar);
     }
 
     @GetMapping("/itemsEquipados")
-    public List<PouEntidad> itemsPou(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.isAuthenticated()) {
-        String username = authentication.getName();
+    public List<PouEntidad> itemsPouEquipados(){
 
-        User usuario = usuarioService.findByUsername(username);
-            List<PouEntidad> itemsPou = PouModelo.findByUsernameAndEntidad(usuario, true);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication != null && authentication.isAuthenticated()) {
+            String username = authentication.getName();
+            User usuario = usuarioService.findByUsername(username);
+
+            List<PouEntidad> itemsPou = PouModelo.findByUsernameAndEquipadoItem(usuario, true);
             return  itemsPou;
+
         }else{
             return null;
         }
-    }
-
-    @PutMapping("/actualizarEquipado")
-    public void actualizarEquipado(@RequestParam Long idItem, @RequestParam boolean equipadoItem){
-        System.out.println("------------------------------------");
-        PouEntidad pouentidadeq = PouModelo.findByIdItem(idItem);
-
-        if(pouentidadeq != null){
-            System.out.println("Holap3");
-            pouentidadeq.setEquipadoItem(equipadoItem);
-            PouModelo.save(pouentidadeq);
-        }
-
     }
 
 }

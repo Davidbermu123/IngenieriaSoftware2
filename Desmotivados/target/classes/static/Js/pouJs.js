@@ -19,36 +19,35 @@ function cargarItems(){
             'Authorization': 'Bearer ' + token
         },
         success: function(data) {
-            $.each(data, function(index, iterable) {
+            $.each(data, function(index, iterableEquipado) {
+
                 var item = $("<div>");
 
-                if (iterable.equipadoItem == 1 && iterable.tipoItem == "Fondo") {
+                if (iterableEquipado.equipadoItem == 1 && iterableEquipado.tipoItem == "Fondo") {
                     console.log("Encontre un fondo equipadoItem");
                     var imagen = $("<img>");
-                    imagen.attr("src", iterable.imagenItem); // Establecer la URL de la imagen
+                    imagen.attr("src", iterableEquipado.imagenItem); // Establecer la URL de la imagen
                     item.append(imagen);
                     $("#fondoPou").append(item);
                 }
-                if (iterable.equipadoItem == 1 && iterable.tipoItem == "Ropa") {
+                if (iterableEquipado.equipadoItem == 1 && iterableEquipado.tipoItem == "Ropa") {
                     console.log("Encontre una ropa equipada");
                     var imagen = $("<img>");
-                    imagen.attr("src", iterable.imagenItem); // Establecer la URL de la imagen
+                    imagen.attr("src", iterableEquipado.imagenItem); // Establecer la URL de la imagen
                     item.append(imagen);
                     $("#ropaPou").append(item);
                 }
-
-                if (iterable.equipadoItem == 1 && iterable.tipoItem == "Mueble") {
+                if (iterableEquipado.equipadoItem == 1 && iterableEquipado.tipoItem == "Mueble") {
                     console.log("Encontre un muebleA equipadoItem");
                     var imagen = $("<img>");
-                    imagen.attr("src", iterable.imagenItem); // Establecer la URL de la imagen
+                    imagen.attr("src", iterableEquipado.imagenItem); // Establecer la URL de la imagen
                     item.append(imagen);
                     $("#muebleAPou").append(item);
                 }
-
-                if (iterable.equipadoItem == 1 && iterable.tipoItem == "MuebleB") {
+                if (iterableEquipado.equipadoItem == 1 && iterableEquipado.tipoItem == "MuebleB") {
                     console.log("Encontre un muebleB equipado");
                     var imagen = $("<img>");
-                    imagen.attr("src", iterable.imagenItem); // Establecer la URL de la imagen
+                    imagen.attr("src", iterableEquipado.imagenItem); // Establecer la URL de la imagen
                     item.append(imagen);
                     $("#muebleBPou").append(item);
                 }
@@ -57,32 +56,28 @@ function cargarItems(){
             // Mostrar el inventario
 
             $.each(data, function(index, iterable) {
+                
                 var item = $("<div>");
 
                 if (iterable.tipoItem == "Fondo") {
+
                     var imagen = $("<img>");
                     imagen.attr("src", iterable.imagenItem); // Establecer la URL de la imagen
                     item.append(imagen);
 
+                    var tempidItem = iterable.idItem;
+
                     imagen.click(function() {
-                        // Acción que se ejecutará cuando se haga clic en la imagen
+
                         console.log("Se hizo click en una imagen tipo fondo");
-                        //Se guarda el fondo clickeado para ponerle el equipado a 1
-                        var tempusername = iterable.username;
-                        var tempnombreMascota = iterable.nmascota;
-                        var tempidItem = iterable.idItem;
-                        var tempimagenItem = iterable.imagenItem;
-                        var tempdescripcionItem = iterable.descripcionItem;
-                        var temptipoItem = iterable.tipoItem;
-                        //Se modifica el fondo equipado actualmente a 0
+
                         $.each(data, function(index, iterable) {
 
                             if (iterable.equipadoItem == 1 && iterable.tipoItem == "Fondo") {
-                                guardarElementoPou(iterable.idItem, iterable.descripcionItem, 0, iterable.imagenItem, iterable.tipoItem, iterable.username, iterable.nmascota);
-                                guardarElementoPou(tempidItem, tempdescripcionItem, 1, tempimagenItem, temptipoItem, iterable.username, iterable.nmascota);
+                                cambiarElementoEquipado(iterable.idItem,tempidItem);
                             }
                         });
-
+                        location.reload();
                     });
 
                     $("#fondoPouInventario").append(item);
@@ -93,20 +88,16 @@ function cargarItems(){
                     imagen.attr("src", iterable.imagenItem); // Establecer la URL de la imagen
                     item.append(imagen);
 
+                    var tempimagenItem = iterable.imagenItem;
+
                     imagen.click(function() {
-                        // Acción que se ejecutará cuando se haga clic en la imagen
+
                         console.log("Se hizo click en una imagen tipoItem ropa");
-                        //Se guarda el fondo clickeado para ponerle el equipado a 1
-                        var tempidItem = iterable.idItem;
-                        var tempimagenItem = iterable.imagenItem;
-                        var tempdescripcionItem = iterable.descripcionItem;
-                        var temptipoItem = iterable.tipoItem;
-                        //Se modifica el fondo equipado actualmente a 0
+
                         $.each(data, function(index, iterable) {
 
                             if (iterable.equipadoItem == 1 && iterable.tipoItem == "Ropa") {
-                                guardarElementoPou(iterable.idItem, iterable.descripcionItem, 0, iterable.imagenItem, iterable.tipoItem, iterable.username, iterable.nmascota);
-                                guardarElementoPou(tempidItem, tempdescripcionItem, 1, tempimagenItem, temptipoItem, iterable.username, iterable.nmascota);
+                                cambiarElementoEquipado(iterable.idItem,tempidItem);
                             }
                         });
 
@@ -114,29 +105,22 @@ function cargarItems(){
 
                     $("#ropaPouInventario").append(item);
                 }
-
                 if (iterable.tipoItem == "Mueble") {
                     console.log("Encontre un muebleA comprado");
                     var imagen = $("<img>");
                     imagen.attr("src", iterable.imagenItem); // Establecer la URL de la imagen
                     item.append(imagen);
 
+                    var tempidItem = iterable.idItem;
+
                     imagen.click(function() {
                         // Acción que se ejecutará cuando se haga clic en la imagen
                         console.log("Se hizo click en una imagen tipoItem mueble");
-                        //Se guarda el fondo clickeado para ponerle el equipado a 1
-                        var tempusername = iterable.username;
-                        var tempnombreMascota = iterable.nombreMascota;
-                        var tempidItem = iterable.idItem;
-                        var tempimagenItem = iterable.imagenItem;
-                        var tempdescripcionItem = iterable.descripcionItem;
-                        var temptipoItem = iterable.tipoItem;
-                        //Se modifica el fondo equipado actualmente a 0
+
                         $.each(data, function(index, iterable) {
 
                             if (iterable.equipadoItem == 1 && iterable.tipoItem == "Mueble") {
-                                guardarElementoPou(iterable.idItem, iterable.descripcionItem, 0, iterable.imagenItem, iterable.tipoItem, iterable.username, iterable.nmascota);
-                                guardarElementoPou(tempidItem, tempdescripcionItem, 1, tempimagenItem, temptipoItem, iterable.username, iterable.nmascota);
+                                cambiarElementoEquipado(iterable.idItem,tempidItem);
                             }
                         });
 
@@ -144,29 +128,22 @@ function cargarItems(){
 
                     $("#muebleAPouInventario").append(item);
                 }
-
                 if (iterable.tipoItem == "MuebleB") {
                     console.log("Encontre un muebleB comprado");
                     var imagen = $("<img>");
                     imagen.attr("src", iterable.imagenItem); // Establecer la URL de la imagen
                     item.append(imagen);
 
+                    var tempidItem = iterable.idItem;
+
                     imagen.click(function() {
                         // Acción que se ejecutará cuando se haga clic en la imagen
                         console.log("Se hizo click en una imagen tipoItem muebleB");
-                        //Se guarda el fondo clickeado para ponerle el equipado a 1
-                        var tempusername = iterable.username;
-                        var tempnombreMascota = iterable.nombreMascota;
-                        var tempidItem = iterable.idItem;
-                        var tempimagenItem = iterable.imagenItem;
-                        var tempdescripcionItem = iterable.descripcionItem;
-                        var temptipoItem = iterable.tipoItem;
-                        //Se modifica el fondo equipado actualmente a 0
+
                         $.each(data, function(index, iterable) {
 
                             if (iterable.equipadoItem == 1 && iterable.tipoItem == "MuebleB") {
-                                guardarElementoPou(iterable.idItem, iterable.descripcionItem, 0, iterable.imagenItem, iterable.tipoItem, iterable.username, iterable.nmascota);
-                                guardarElementoPou(tempusername,tempidItem, tempdescripcionItem, 1, tempimagenItem, temptipoItem, iterable.username, iterable.nmascota);
+                                cambiarElementoEquipado(iterable.idItem,tempidItem);
                             }
                         });
 
@@ -181,20 +158,23 @@ function cargarItems(){
     });
 }
 
-function comprobar(){
+function cambiarElementoEquipado(idActual, idFuturo){
     $.ajax({
-        url: '/requestPou/itemEquipados',
-        type: 'GET',
+        url: '/requestPou/cambiarEquipado',
+        type: 'PUT',
         headers: {
             'Authorization': 'Bearer ' + token
         },
-        success: function(data) {
-            $.each(data, function(index, iterable) {
-                console.log(iterable.tipoItem);
-            });
+        data: {
+            idItem: idActual,
+            idItem2: idFuturo
+        },
+        success: function() {
+            console.log('No error dentro de la funcon de cambiar el elemento equipado');
         },error: function(xhr, status, error) {
-            console.error('Error al verificar la existencia:', error);
+            console.error('Error dentro de la funcon de cambiar el elemento equipado:', error);
         }
     });
 }
-comprobar();
+
+cargarItems();

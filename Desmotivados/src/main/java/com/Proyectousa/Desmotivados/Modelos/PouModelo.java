@@ -29,12 +29,12 @@ public class PouModelo {
         return PouRepositorio.findByUsername(usuario);
     }
 
-    public PouEntidad findById(Long id){
-        return PouRepositorio.findById(id);
+    public PouEntidad findByIdItem(Long id){
+        return PouRepositorio.findByIdItem(id);
     }
 
-    public List<PouEntidad> findByUsernameAndEntidad(User username, boolean equipadoItem){
-        return PouRepositorio.findByUsernameAndEntidad(username, equipadoItem);
+    public List<PouEntidad> findByUsernameAndEquipadoItem(User username, boolean equipadoItem){
+        return PouRepositorio.findByUsernameAndEquipadoItem(username, equipadoItem);
     }
 }
 

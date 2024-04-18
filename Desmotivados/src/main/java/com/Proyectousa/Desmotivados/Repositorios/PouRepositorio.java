@@ -8,8 +8,10 @@ import java.util.List;
 
 @Repository
 public class PouRepositorio {
+
     @Autowired
     private PouCrudRepositorio PouCrudRepositorio;
+    
     public List<PouEntidad> getAllPouEntidad(){
         return ((List<PouEntidad>)PouCrudRepositorio.findAll());
     }
@@ -26,11 +28,11 @@ public class PouRepositorio {
         return PouCrudRepositorio.findByUsername(usuario);
     }
 
-    public PouEntidad findById(Long id){
+    public PouEntidad findByIdItem(Long id){
         return PouCrudRepositorio.findByIdItem(id);
     }
 
-    public List<PouEntidad> findByUsernameAndEntidad(User username, boolean equipadoItem){
+    public List<PouEntidad> findByUsernameAndEquipadoItem(User username, boolean equipadoItem){
         return PouCrudRepositorio.findByUsernameAndEquipadoItem(username, equipadoItem);
     }
 }
