@@ -10,26 +10,23 @@ import com.Proyectousa.Desmotivados.Entidades.User;
 
 @Repository
 public class Usuario_repositorios {
-     @Autowired
+    @Autowired
     private Usuario_CRUDrepositorios usuarioCRUDRepository;
 
 
     public List<User> getAllUsuarios() {
-
         return (List<User>) usuarioCRUDRepository.findAll();
-
     }
 
     public User guardaraUsuario (User m){
         return usuarioCRUDRepository.save(m);
     }
-   
+    public User findByUsername(String alias){
+        return usuarioCRUDRepository.findByUsername(alias);
+    }   
+
     public Role obtenerRolPorUsuario(String username) {
         User usuario = usuarioCRUDRepository.findByUsername(username);
         return usuario.getRole();
-}
-
-public User findByUsername(String username){
-    return usuarioCRUDRepository.findByUsername(username);
-}
+    }
 }

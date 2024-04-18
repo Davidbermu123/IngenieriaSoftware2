@@ -1,8 +1,10 @@
 package com.Proyectousa.Desmotivados.Modelos;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.Proyectousa.Desmotivados.Entidades.PouEntidad;
+import com.Proyectousa.Desmotivados.Entidades.User;
 import com.Proyectousa.Desmotivados.Repositorios.PouRepositorio;
 
 @Service
@@ -23,9 +25,16 @@ public class PouModelo {
         return PouRepositorio.existeIdPou(id);
     }
 
-    public PouEntidad findByIdItem(Long idItem){
-        return PouRepositorio.findByIdItem(idItem);
+    public List<PouEntidad> findByUsernames(User usuario) {
+        return PouRepositorio.findByUsername(usuario);
     }
 
+    public PouEntidad findById(Long id){
+        return PouRepositorio.findById(id);
+    }
+
+    public List<PouEntidad> findByUsernameAndEntidad(User username, boolean equipadoItem){
+        return PouRepositorio.findByUsernameAndEntidad(username, equipadoItem);
+    }
 }
 

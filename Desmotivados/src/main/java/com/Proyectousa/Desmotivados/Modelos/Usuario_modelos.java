@@ -20,13 +20,12 @@ public class Usuario_modelos {
 
     public User save(User k){
         return usuarioRepository.guardaraUsuario(k);
+    }  
+    public User findByUsername(String alias){
+        return usuarioRepository.findByUsername(alias);
     }
-    
     public Role obtenerRolPorUsuario(String username) {
         User usuario = usuarioRepository.findByUsername(username);
         return usuario.getRole();
-}
-    public User findByUsername(String username){
-        return usuarioRepository.findByUsername(username);
-}
+    }
 }
