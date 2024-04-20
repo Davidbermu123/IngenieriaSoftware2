@@ -54,7 +54,7 @@ public class MisionesControladores {
                 MisionesEntidades mision = new MisionesEntidades();
                 mision.setUsername(usuario);
                 mision.setContenido(contenido);
-                mision.setPuntaje(100);
+                mision.setPuntaje(null);
                 mision.setEstado(false);
                 mision.setFechaFin(null);
                 servicio.guardar(mision);
@@ -83,14 +83,18 @@ public class MisionesControladores {
     }
 
     @PutMapping("/actualizarmision")
-    public void actualizarMision(@RequestParam Long idMision, @RequestParam boolean estado) {
+    public void actualizarMision(@RequestParam Long idMision, @RequestParam boolean estado, @RequestParam int puntaje) {
         MisionesEntidades mision = servicio.findById(idMision);
         if (mision != null) {
             mision.setEstado(estado);
+            mision.setPuntaje(puntaje); // Establecer el puntaje recibido como parámetro
             if (estado) { // Si el estado es true, establecemos la fecha de finalización.
                 mision.setFechaFin(new Date());
             }
+            User usuario = mision.getUsername(); // Suponiendo que hay un método para obtener el usuario asociado a la misión
+            usuario.actualizarMonedas(puntaje);
             servicio.guardar(mision);
         }
     }
+
 }

@@ -48,13 +48,12 @@ public class User implements UserDetails {
     String nmascota;
     
     String password;
-
-    private Integer monedas;
-
-    String intereses;
-
     @Enumerated(EnumType.STRING) 
     Role role;
+
+    Integer monedas;
+
+    String intereses;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -75,5 +74,9 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public void actualizarMonedas(int puntaje) {
+        this.monedas += puntaje;
     }
 }
