@@ -46,22 +46,21 @@ function saveUsuario(){
         intereses: interesesString,
         monedas: 0,
     }
-
+    localStorage.clear();
     $.ajax({
         url: '/auth/register',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(data),
         success: function(response) {
+            localStorage.setItem('token', response.token);
             window.location.href = "/index.html";
         },
         error: function(xhr, status, error) {
             alert('Este usuario ya existe, por favor escoger otro', error);
-
+            window.location.href = "/vistas/registro.html";
         }
     });
-
-    localStorage.clear();
 }
 function regresar() {
     window.location.href = "/index.html";

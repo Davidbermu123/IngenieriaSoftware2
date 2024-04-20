@@ -37,8 +37,8 @@
                         <a class="nav-link" href="#contact">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a href="components.html" class="ml-4 nav-link btn btn-primary btn-sm rounded">Components</a>
-                    </li>
+                        <a class="ml-4 nav-link btn btn-primary btn-sm rounded" href="#" onclick="logout()">Log Out</a>
+                    </li>  
                 </ul>
             </div>
         </div>
@@ -50,7 +50,7 @@
     <header class="header">
         <div class="overlay">
             <h1 class="subtitle">(Des)Motivados</h1>
-            <h1 class="title">Administracion datos</h1>  
+            <h1 class="title">Administración Datos</h1>  
         </div>  
         <div class="shape">
             <svg viewBox="0 0 1500 200">
@@ -63,7 +63,7 @@
 
     <!-- Contenido de la página -->
     <div class="centrado">
-        <h1>Ingrese los datos</h1>
+        <h1>Guardar</h1>
         <div class="caja">
             <input class = "input" placeholder="Ingrese el id" type="number" name="" id="cajaId"> <br>
             <input class = "input" placeholder="Ingrese el nombre" type="text" id="cajaNombre"> <br>
@@ -71,7 +71,7 @@
             <input class = "input" placeholder="Ingrese la url del contenido educativo" type="text" id="cajaUrlAprender"> <br>
             <input class = "input" placeholder="Ingrese la url de la imagen" type="text" id="cajaUrlImagen"> <br>
             <input class = "input" placeholder="Ingrese la url del juego" type="text" id="cajaUrlJuego"> <br>
-            <button id ="guardarAprender" onclick="guardarAprender()" > Guardar o editar </button>
+            <button id ="guardarAprender" onclick="guardarAprender()" > Guardar o editar</button>
         </div>
 
         <div class="contenedor-linea">
