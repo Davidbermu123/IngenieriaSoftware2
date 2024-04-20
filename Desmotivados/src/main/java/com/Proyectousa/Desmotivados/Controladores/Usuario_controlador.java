@@ -6,6 +6,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,5 +47,10 @@ private Usuario_modelos usuarioService;
         } else {
             return "Usuario no encontrado";
         }
+    }
+
+    @PutMapping("/updateUsuario")
+    public void actualizarUsuarioPorUsername(String usernameBusqueda, String nombre, String apellido, String universidad, String carrera, Integer semestre, String nmascota){
+        usuarioService.actualizarUsuarioPorUsername(usernameBusqueda, nombre, apellido, universidad, carrera, semestre, nmascota);
     }
 }
