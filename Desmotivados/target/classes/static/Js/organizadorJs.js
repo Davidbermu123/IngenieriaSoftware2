@@ -174,7 +174,7 @@ verificarTokenYRedireccionarALogin();
                         </button>
                         <div class="dropdown-menu">
                             <a class="dropdown-item eliminar-btn" href="#">Eliminar</a>
-                            <a class="dropdown-item" href="#">Modificar</a>
+                            <a class="dropdown-item" href="Editar_Tareas.html">Modificar</a>
                         </div>
                     </div>
                 </div>
@@ -212,6 +212,9 @@ verificarTokenYRedireccionarALogin();
             $.ajax({
                 url: '/Corganizador/eliminar/' + idTarea,
                 type: 'DELETE',
+                headers: {
+                    'Authorization': 'Bearer ' + token // Enviar el token en el encabezado de autorización
+                },
                 success: function(response) {
                     console.log('Tarea eliminada correctamente:', response);
                     $('#tarea-' + idTarea).remove(); // Elimina solo el elemento correspondiente a la tarea
