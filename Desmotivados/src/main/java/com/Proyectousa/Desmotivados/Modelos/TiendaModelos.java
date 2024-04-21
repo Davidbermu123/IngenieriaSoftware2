@@ -17,4 +17,8 @@ public class TiendaModelos {
     public List<TiendaEntidades> getAllTienda(){
         return repositorio.getAllTienda();
     }
+
+    public TiendaEntidades save(TiendaEntidades t){
+        return repositorio.guardarTienda(t);
+    }
 }
