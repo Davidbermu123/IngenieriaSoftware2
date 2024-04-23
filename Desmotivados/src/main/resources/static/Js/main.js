@@ -86,7 +86,7 @@ function guardarCambios() {
 
     $.ajax({
         url: '/Corganizador/modificarTarea',
-        type: 'POST',
+        type: 'PUT',
         headers: {
             'Authorization': 'Bearer ' + token // Enviar el token en el encabezado de autorización
         },

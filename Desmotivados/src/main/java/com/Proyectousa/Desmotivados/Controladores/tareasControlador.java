@@ -98,12 +98,21 @@ public class tareasControlador {
         return ResponseEntity.ok("Elemento eliminado correctamente");
     }
 
-    //ACA ESTA EL ERROR DAVIDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
-    @PostMapping("/modificarTarea")
-    public ResponseEntity<String> modificarTarea(@RequestBody TareasEntidades g) {
+    @PutMapping("/modificarTarea")
+    public ResponseEntity<String> modificarTarea(@RequestBody TareasEntidades nuevaTarea) {
         try {
-            tareasService.modificarTarea(g);
-            return new ResponseEntity<>("Tarea modificada correctamente", HttpStatus.OK);
+            Optional<TareasEntidades> tareaOptional = tareasService.getTareaById(nuevaTarea.getIdTarea());
+            if (tareaOptional.isPresent()) {
+                TareasEntidades tareaExistente = tareaOptional.get();
+                tareaExistente.setTitulo(nuevaTarea.getTitulo());
+                tareaExistente.setDescripcion(nuevaTarea.getDescripcion());
+                tareaExistente.setFechaFinal(nuevaTarea.getFechaFinal());
+                tareaExistente.setPrioridad(nuevaTarea.getPrioridad());
+                tareasService.save(tareaExistente);
+                return new ResponseEntity<>("Tarea modificada correctamente", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Tarea no encontrada", HttpStatus.NOT_FOUND);
+            }
         } catch (Exception e) {
             return new ResponseEntity<>("Error al modificar la tarea: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
