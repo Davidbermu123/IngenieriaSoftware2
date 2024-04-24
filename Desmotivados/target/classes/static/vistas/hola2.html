@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Misiones</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+</head>
+<body>
+    <select id="select-tareas"></select>
+    <canvas id="grafico-misiones-completadas-semanal" width="400" height="200"></canvas>
+
+    <script>
+        $(document).ready(function () {
+            function cargarOpcionesTareas() {
+                $.ajax({
+                    url: '/tareas',
+                    type: 'GET',
+                    success: function (response) {
+                        response.forEach(function (tarea) {
+                            $('#select-tareas').append($('<option>', {
+                                value: tarea.idTarea,
+                                text: tarea.titulo
+                            }));
+                        });
+                        cargarMisionesCompletadasSemanal($('#select-tareas').val());
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error al cargar las tareas:', error);
+                    }
+                });
+            }
+
+            $('#select-tareas').change(function () {
+                cargarMisionesCompletadasSemanal($(this).val());
+            });
+
+            function cargarGraficoMisionesCompletadasSemanal(data) {
+                var ctx = document.getElementById('grafico-misiones-completadas-semanal').getContext('2d');
+                var scatterData = [];
+                Object.keys(data).forEach(function(fechaSQL) {
+                    var fecha = new Date(fechaSQL);
+                    scatterData.push({ x: fecha, y: data[fechaSQL] });
+                });
+                var myChart = new Chart(ctx, {
+                    type: 'scatter',
+                    data: {
+                        datasets: [{
+                            label: 'Misiones Completadas Semanalmente',
+                            data: scatterData,
+                            pointRadius: 5,
+                            backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            x: {
+                                type: 'time',
+                                time: {
+                                    unit: 'week',
+                                    displayFormats: {
+                                        week: 'MMM d'
+                                    }
+                                }
+                            },
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+
+            function cargarMisionesCompletadasSemanal(idTarea) {
+                $.ajax({
+                    url: '/graficos/misiones-completadas-semanal/' + idTarea,
+                    type: 'GET',
+                    success: function (response) {
+                        cargarGraficoMisionesCompletadasSemanal(response);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error al cargar los datos:', error);
+                    }
+                });
+            }
+
+            cargarOpcionesTareas();
+        });
+    </script>
+</body>
+</html>

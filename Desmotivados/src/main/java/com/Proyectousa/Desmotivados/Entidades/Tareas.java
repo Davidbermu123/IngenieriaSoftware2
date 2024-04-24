@@ -11,14 +11,28 @@ public class Tareas{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)     
-    
     private Long idTarea;
+
     private String titulo;
     private String descripcion;
     private Date fechaInicio;
     private Date fechaFinal;
     private String prioridad;
+    private Integer puntaje;
+    private boolean completado;
 
+    public Integer getPuntaje() {
+        return puntaje;
+    }
+    public void setPuntaje(Integer puntaje) {
+        this.puntaje = puntaje;
+    }
+    public boolean isCompletado() {
+        return completado;
+    }
+    public void setCompletado(boolean completado) {
+        this.completado = completado;
+    }
     public Long getIdTarea() {
         return idTarea;
     }
