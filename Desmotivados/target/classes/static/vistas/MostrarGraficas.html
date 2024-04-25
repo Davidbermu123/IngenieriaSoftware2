@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar</title>
+    <title>Estadisticas</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Estilos de la plantilla -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script src="../js/MainGraficas.js" defer></script> <!-- Incluir el archivo de JavaScript -->
     <link rel="stylesheet" href="../estilos/leadmark.css">
     <!-- Tu hoja de estilos personalizada -->    
 </head>
@@ -16,13 +17,16 @@
     <nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top" data-spy="affix" data-offset-top="10">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="../imgs/logo.svg" alt="">
+                <img src="assets/imgs/logo.svg" alt="">
             </a>
             <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">                     
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="ml-4 nav-link btn btn-primary btn-sm rounded" href="#" onclick="logout()">Log Out</a>
+                    </li>                     
                     <li class="nav-item">
                         <a class="nav-link" href="#service">Our Service</a>
                     </li>
@@ -60,29 +64,25 @@
         </div>  
         <div class="mouse-icon"><div class="wheel"></div></div>
     </header>
-    <div>
-        <select id="select-graph">
-            <option value="misiones">Gráfico de Misiones</option>
-            <option value="tareas">Gráfico de Tareas</option>
+        <!-- Barra de selección para elegir el tipo de gráfico -->
+        <select id="tipo-grafico">
+            <option value="barras">Gráfico de Prioridad de Tareas</option>
+            <option value="tareas">Gráfico de Tareas Completadas Semanalmente</option>
+            <option value="misiones">Gráfico de Misiones Completadas Semanalmente</option>
         </select>
-    </div>
-
-    <div id="task-selection" style="display: none;">
-        <select id="select-task">
-            <option value="">Seleccione una tarea</option>
-        </select>
-    </div>
-
-    <div id="task-id-selection" style="display: none;">
-        <select id="select-task-id">
-            <option value="">Seleccione un ID de tarea</option>
-        </select>
-    </div>
-
-    <div class="chart-container">
-        <canvas id="myChart" width="800" height="400"></canvas>
-    </div>
     
+        <!-- Contenedor para los gráficos -->
+        <div id="contenedor-graficos">
+            <!-- Contenedor para el gráfico de prioridad de tareas -->
+            <canvas id="grafico-prioridad-tareas" width="400" height="200"></canvas>
+    
+            <!-- Contenedor para el gráfico de tareas completadas semanalmente -->
+            <canvas id="grafico-tareas-completadas-semanal" width="400" height="200"></canvas>
+    
+            <!-- Contenedor para el gráfico de misiones completadas semanalmente -->
+            <canvas id="grafico-misiones-completadas-semanal" width="400" height="200"></canvas>
+        </div>
+
 <!-- Footer -->
 <footer class="mt-5 py-4 border-top border-secondary">
     <p class="mb-0 small">&copy; <script>document.write(new Date().getFullYear())</script>, LeadMark Created By <a href="https://www.devcrud.com" target="_blank"></a>  David Bermudez. </p>     
