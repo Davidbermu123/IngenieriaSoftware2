@@ -45,7 +45,7 @@ public class MisionesControladores {
         User usuario = usuarioServicio.findByUsername(username);
 
         List<String> intereses = Arrays.asList(usuario.getIntereses().split("\\s*,\\s*"));
-        List<Contenido> contenidos = contenidoService.findByCategoriaAndInteresIn("Actividades",intereses);
+        List<Contenido> contenidos = contenidoService.findByCategoriaAndInteresIn("Actividad",intereses);
         
         int cantidad = 0;
         for (Contenido contenido : contenidos) {
