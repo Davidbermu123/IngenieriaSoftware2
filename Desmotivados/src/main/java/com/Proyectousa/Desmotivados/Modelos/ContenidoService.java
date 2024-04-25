@@ -56,4 +56,8 @@ public class ContenidoService {
             throw new RuntimeException("El contenido con ese id no existe: " + idContenido);
         }
     }
+
+    public List<Contenido> findByCategoriaAndInteresIn(String categoria, List<String> interes){
+        return contenidorepository.findByCategoriaAndInteresIn(categoria, interes);
+    }
 }

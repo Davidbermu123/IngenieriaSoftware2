@@ -3,11 +3,8 @@ function guardarIntereses() {
     var checkboxes = document.querySelectorAll('input[name="interes"]:checked');
     checkboxes.forEach(function(checkbox) {
         intereses.push(checkbox.value);
-       
     });
-    
     mostrarIntereses(intereses);
-   
 }
 
 function mostrarIntereses(intereses) {
@@ -20,8 +17,4 @@ function mostrarIntereses(intereses) {
     });
     listaIntereses.style.display = "block"; // Mostrar la lista de intereses
     console.log(intereses);
-   
-}
-function Siguiente(){
-    window.location.href = "/index.html"
 }

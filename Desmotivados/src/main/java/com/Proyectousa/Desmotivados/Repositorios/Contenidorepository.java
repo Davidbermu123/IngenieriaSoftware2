@@ -35,5 +35,8 @@ public class Contenidorepository {
         return contenidoCRUDrepository.findById(id);
     }
 
+    public List<Contenido> findByCategoriaAndInteresIn(String categoria, List<String> interes){
+        return contenidoCRUDrepository.findByCategoriaAndInteresIn(categoria, interes);
+    }
 
 }

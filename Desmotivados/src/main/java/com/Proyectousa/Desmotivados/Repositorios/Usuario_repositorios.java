@@ -1,15 +1,16 @@
 package com.Proyectousa.Desmotivados.Repositorios;
 
-
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.Proyectousa.Desmotivados.Entidades.User;
+import com.Proyectousa.Desmotivados.Entidades.Role;
 
 import jakarta.transaction.Transactional;
 
 @Repository
 public class Usuario_repositorios {
-     @Autowired
+    @Autowired
     private Usuario_CRUDrepositorios usuarioCRUDRepository;
 
     public User findByUsername(String username){
@@ -33,4 +34,12 @@ public class Usuario_repositorios {
         return usuarioCRUDRepository.save(m);
     }
 
+    public Role obtenerRolPorUsuario(String username) {
+        User usuario = usuarioCRUDRepository.findByUsername(username);
+        return usuario.getRole();
+    }
+
+    public List<User> getAllUsuarios() {
+        return (List<User>) usuarioCRUDRepository.findAll();
+    }
 }

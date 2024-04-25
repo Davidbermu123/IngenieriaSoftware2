@@ -26,5 +26,7 @@ public class RegisterRequest {
 
      String password;
      
+     String intereses;
 
+     Integer monedas;
 }

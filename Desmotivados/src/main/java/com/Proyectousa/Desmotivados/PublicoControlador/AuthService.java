@@ -30,7 +30,6 @@ public class AuthService {
 
     }
 
-    @SuppressWarnings("null")
     public AuthResponse register(RegisterRequest request) {
         User user = User.builder()
             .nombre(request.getNombre())
@@ -41,6 +40,8 @@ public class AuthService {
             .semestre(request.getSemestre())
             .nmascota(request.getNmascota())
             .password(passwordEncoder.encode(request.getPassword()))
+            .intereses(request.getIntereses())
+            .monedas(request.getMonedas())
             .role(Role.USER)
             .build();
 

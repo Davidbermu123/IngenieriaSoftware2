@@ -1,0 +1,24 @@
+.centrado {
+  text-align: center;
+}
+
+.input{
+  margin-bottom: 20px;
+  border: 2px dashed #ff6600;
+  width: 20%;
+}
+
+.caja{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 10px;
+}
+
+.contenedor-linea {
+  width: 65%; /* Ancho deseado */
+  margin: 0 auto; /* Esto centra el contenedor horizontalmente */
+}
+
+.mi-linea {
+  border-top: 5px solid #000; /* Línea sólida de 1 píxel de grosor y color negro */
+}

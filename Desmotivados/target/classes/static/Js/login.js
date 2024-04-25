@@ -26,19 +26,33 @@ function logUsuario() {
             // Guardar el token de autenticación en el almacenamiento local
             localStorage.setItem('token', response.token);
 
-            // Decodificar el token para obtener información útil
+            // Decodificar el token para obtener el nombre de usuario
             var tokenParts = response.token.split('.');
             var tokenPayload = JSON.parse(atob(tokenParts[1]));
-            console.log(tokenPayload.sub);
-            // Verificar si el token contiene el nombre de usuario
-            if (tokenPayload.sub) {
-                // Mostrar un mensaje de bienvenida o redirigir a la página principal
-                alert('¡Bienvenido, ' + tokenPayload.sub + '!');
-                window.location.href = "/index.html"; // Redireccionar a la página de inicio
-            } else {
-                // En caso de que el token no contenga el nombre de usuario
-                alert('El token de autenticación no contiene información de usuario.');
-            }
+            var username = tokenPayload.sub;
+
+            // Obtener el rol del usuario
+            $.ajax({
+                url: '/cregistro/rol',
+                type: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + response.token // Agregar token JWT como encabezado de autorización
+                },
+                success: function(role) {
+                    // Redirigir según el rol del usuario
+                    if (role === 'ADMIN') {
+                        window.location.href = "/vistas/admin.html"; // Redireccionar a la página de administrador
+                    } else if (role === 'USER') {
+                        window.location.href = "/index.html"; // Redireccionar a la página de usuario normal
+                    } else {
+                        alert('Rol desconocido.');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error al obtener el rol del usuario:', error);
+                    alert('Ocurrió un error al obtener el rol del usuario.');
+                }
+            });
         },
         error: function(xhr, status, error) {
             // Manejar errores de la solicitud
@@ -47,5 +61,6 @@ function logUsuario() {
         }
     });
 }
+
 // Asociar la función al evento click del botón de inicio de sesión
 $("#loginBtn").click(logUsuario);

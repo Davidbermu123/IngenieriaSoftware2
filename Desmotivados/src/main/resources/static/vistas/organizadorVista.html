@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizador</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Estilos de la plantilla -->
+    <link rel="stylesheet" href="../estilos/leadmark.css">
+    <!-- Tu hoja de estilos personalizada -->
+    <link rel="stylesheet" href="../estilos/organizadorEstilos.css">
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+    <!-- page Navigation -->
+    <nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top" data-spy="affix" data-offset-top="10">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="assets/imgs/logo.svg" alt="">
+            </a>
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">                     
+                    <li class="nav-item">
+                        <a class="nav-link" href="#service">Our Service</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#blog">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="components.html" class="ml-4 nav-link btn btn-primary btn-sm rounded">Components</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Of Second Navigation -->
+
+
+    <!-- Encabezado -->
+    <header class="header">
+        <div class="overlay">
+            <h1 class="subtitle">(Des)Motivados</h1>
+            <h1 class="title">Organizador de tareas</h1>  
+        </div>  
+        <div class="shape">
+            <svg viewBox="0 0 1500 200">
+                <path d="m 0,240 h 1500.4828 v -71.92164 c 0,0 -286.2763,-81.79324 -743.19024,-81.79324 C 300.37862,86.28512 0,168.07836 0,168.07836 Z"/>
+            </svg>
+        </div>  
+        <div class="mouse-icon"><div class="wheel"></div></div>
+    </header>
+
+    <!-- Fin del encabezado -->
+
+    <!-- Contenido de la página -->
+    <div class="container">
+        <div class="text-center"> <!-- Agregamos la clase text-center para centrar -->
+            <h1>Crea tu tarea</h1>
+            <!-- Botón que abrirá la ventana emergente -->
+            <button class="btn btn-dark circle" onclick="abrirVentana()">+</button>
+
+            <!-- La ventana emergente -->
+            <div id="miVentanaModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="cerrarVentana()">&times;</span>
+                    <div>
+                        <label for="Tareatitulo">Título de la tarea:</label>
+                        <input id="Tareatitulo" placeholder="">
+                        <br>
+                        <label for="Tareadescripcion">Descripción de la tarea:</label>
+                        <input id="Tareadescripcion" placeholder="">
+                        <br>
+                        <!-- Fecha y hora de inicio -->
+                        <label for="FechaInicio">Fecha de inicio:</label>
+                        <input type="datetime-local" id="FechaInicio" placeholder="Fecha y hora de la tarea">
+                        <br>
+                        <!-- Fecha y hora de fin -->
+                        <label for="FechaFin">Fecha de fin:</label>
+                        <input type="datetime-local" id="FechaFin" placeholder="Fecha y hora de la tarea">
+                        <br>
+                        <label for="Tareaprioridad">Prioridad de la Tarea:</label>
+                        <select id="Tareaprioridad">
+                            <option value=""></option>
+                            <option value="baja">Baja</option>
+                            <option value="media">Media</option>
+                            <option value="alta">Alta</option>
+                        </select>
+                        <br>
+                        <button onclick="guardarT()">Guardar</button>
+                    </div>       
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-5"> <!-- Agregamos la clase mt-5 para un margen top -->
+            <div id="contenedorTareas"></div>
+        </div>
+    </div>
+    <!-- Fin del contenido de la página -->
+
+
+
+    <!-- Footer -->
+            <footer class="mt-5 py-4 border-top border-secondary">
+                <p class="mb-0 small">&copy; <script>document.write(new Date().getFullYear())</script>, LeadMark Created By <a href="https://www.devcrud.com" target="_blank"></a>  Melissa Vargas. </p>     
+            </footer>
+            <!-- End of Page Footer -->  
+    <!-- Fin del footer -->
+
+    <!-- Scripts -->
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/bootstrap.bundle.js"></script>
+    <!-- Bootstrap 3 affix -->
+    <script src="../vendors/bootstrap/bootstrap.affix.js"></script>
+    <!-- Isotope -->
+    <script src="../vendors/isotope/isotope.pkgd.js"></script>
+    <!-- LeadMark js -->
+    <script src="../Js/leadmark.js"></script>
+    <!-- Tu script personalizado -->
+    <script type="text/JavaScript" src="../Js/organizadorJs.js"></script>
+</body>
+</html>
