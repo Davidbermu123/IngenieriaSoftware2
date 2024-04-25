@@ -1,6 +1,7 @@
 package com.Proyectousa.Desmotivados.Controladores;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -92,5 +94,19 @@ public class TiendaControladores {
     public ResponseEntity<String> eliminarTienda(@PathVariable Long id){
         servicio.delete(id);
         return ResponseEntity.ok("Elemento eliminado correctamente");
+    }
+
+    @PutMapping("/editar") // Modified to accept idTienda as a path variable
+    public void updateTienda(Long idTienda, // Use @PathVariable to map idTienda from URL
+                            String imagenTiendaItem,
+                            String descripcionTiendaItem,
+                            String tipoTiendaItem,
+                            Integer precio) {
+        servicio.actualizarTienda(idTienda, imagenTiendaItem, descripcionTiendaItem, tipoTiendaItem, precio);
+    }
+
+    @GetMapping("/mostrar")
+    public Optional<TiendaEntidades> mostrarTienda(Long id){
+        return servicio.mostrarTienda(id);
     }
 }
