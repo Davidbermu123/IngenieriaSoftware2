@@ -21,4 +21,8 @@ public class TiendaModelos {
     public TiendaEntidades save(TiendaEntidades t){
         return repositorio.guardarTienda(t);
     }
+
+    public void delete(Long id){
+        repositorio.eliminarTienda(id);
+    }
 }

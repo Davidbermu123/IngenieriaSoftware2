@@ -20,4 +20,8 @@ public class TiendaRepositorios {
     public TiendaEntidades guardarTienda(TiendaEntidades t){
         return crud.save(t);
     }
+
+    public void eliminarTienda(Long id){
+        crud.deleteById(id);
+    }
 }
