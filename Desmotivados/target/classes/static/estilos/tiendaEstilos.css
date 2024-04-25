@@ -11,3 +11,15 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+#monedas {
+    display: flex;
+    align-items: center;
+    padding-bottom: 80px ; /* Centra verticalmente el contenido */
+}
+
+#monedaImg {
+    width: 30px; /* Ajusta el ancho de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin-right: 10px; /* Espacio entre la imagen y el texto */
+}
