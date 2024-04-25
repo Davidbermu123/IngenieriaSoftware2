@@ -29,7 +29,7 @@ import lombok.NoArgsConstructor;
 @Table(name="user", uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})})
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     Long id;
     @Column(nullable = false)
     String nombre;
@@ -53,12 +53,7 @@ public class User implements UserDetails {
 
     Integer monedas;
 
-    List<String>intereses;
-
-    /*List<TareasEntidades>tareas;*/
-
-    /*List<MisionesEntidades>misiones;*/
-
+    String intereses;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -79,5 +74,9 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public void actualizarMonedas(int puntaje) {
+        this.monedas += puntaje;
     }
 }
