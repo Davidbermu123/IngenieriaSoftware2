@@ -25,10 +25,12 @@ function cargarTareas2() {
 
             }));
             response.forEach(function(tarea) {
-                $('#select-task').append($('<option>', {
-                    value: tarea.titulo,
-                    text: tarea.titulo
-                }));
+                if (!tarea.completado) { // Filtrar las tareas que no están completadas
+                    $('#select-task').append($('<option>', {
+                        value: tarea.titulo,
+                        text: tarea.titulo
+                    }));
+                }
             });
 
             $('#select-task').change(function() {
@@ -43,6 +45,7 @@ function cargarTareas2() {
         }
     });
 }
+
 
 function cargarInformacionTarea(tituloTarea) {
     $.ajax({
@@ -74,6 +77,7 @@ function cargarInformacionTarea(tituloTarea) {
         }
     });
 }
+
 
 function guardarCambios() {
     var tareaModificada = {
@@ -111,3 +115,14 @@ $(document).ready(function() {
         guardarCambios();
     });
 });
+
+function logout() {
+    // Mostrar un mensaje de confirmación al usuario
+    var confirmLogout = confirm("¿Estás seguro de que deseas cerrar sesión?");
+    
+    // Si el usuario confirma el logout, limpiar el token del almacenamiento local y redirigirlo a la página de inicio de sesión
+    if (confirmLogout) {
+        localStorage.removeItem('token');
+        window.location.href = "/vistas/login.html"; // Cambia "login.html" por la ruta de tu página de inicio de sesión
+    }
+}
