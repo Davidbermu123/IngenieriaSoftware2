@@ -16,4 +16,8 @@ public class TiendaRepositorios {
     public List<TiendaEntidades> getAllTienda(){
         return (List<TiendaEntidades>) crud.findAll();
     }
+
+    public TiendaEntidades guardarTienda(TiendaEntidades t){
+        return crud.save(t);
+    }
 }

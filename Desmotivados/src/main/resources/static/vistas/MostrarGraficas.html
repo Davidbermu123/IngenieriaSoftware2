@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Estilos de la plantilla -->
     <link rel="stylesheet" href="../estilos/leadmark.css">
     <!-- Tu hoja de estilos personalizada -->    
@@ -15,7 +16,7 @@
     <nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top" data-spy="affix" data-offset-top="10">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="assets/imgs/logo.svg" alt="">
+                <img src="../imgs/logo.svg" alt="">
             </a>
             <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -40,21 +41,17 @@
                     <li class="nav-item">
                         <a href="components.html" class="ml-4 nav-link btn btn-primary btn-sm rounded">Components</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="ml-4 nav-link btn btn-primary btn-sm rounded" href="#" onclick="logout()">Log Out</a>
-                    </li>
                 </ul>
             </div>
         </div>
     </nav>
     <!-- End Of Second Navigation -->
 
-
-    <!-- Encabezado -->
-    <header class="header">
+     <!-- Encabezado -->
+     <header class="header">
         <div class="overlay">
             <h1 class="subtitle">(Des)Motivados</h1>
-            <h1 class="title">Editar Tareas</h1>  
+            <h1 class="title">Graficas</h1>  
         </div>  
         <div class="shape">
             <svg viewBox="0 0 1500 200">
@@ -63,35 +60,29 @@
         </div>  
         <div class="mouse-icon"><div class="wheel"></div></div>
     </header>
-    <!-- Fin del encabezado -->
+    <div>
+        <select id="select-graph">
+            <option value="misiones">Gráfico de Misiones</option>
+            <option value="tareas">Gráfico de Tareas</option>
+        </select>
+    </div>
 
-    <!-- Contenido de la página -->
-    <section class="edit-tab" style="text-align: center;">
-        <h2>Editar Información de Tareas</h2>
-        <form id="task-form" style="display: inline-block; text-align: left;">
-            <label for="select-task">Selecciona una tarea:</label><br>
-            <select id="select-task" name="select-task"></select><br><br>
-            <label for="task-id">ID de Tarea:</label><br>
-            <input type="text" id="task-id" name="task-id" readonly><br><br>
-            <label for="task-name">Nuevo nombre de la tarea:</label><br>
-            <input type="text" id="task-name" name="task-name" required><br><br>
-            <label for="task-description">Nueva descripción:</label><br>
-            <input type="text" id="task-description" name="task-description" required><br><br>
-            <label for="task-datetime">Nueva fecha y hora de fin:</label><br>
-            <input type="datetime-local" id="task-datetime" name="task-datetime" required><br><br>       
-            <label for="priority">Nueva prioridad:</label><br>
-            <select id="priority" name="priority" required>
-                <option value="alta">Alta</option>
-                <option value="media">Media</option>
-                <option value="baja">Baja</option>
-            </select><br><br>
-            <input type="button" value="Guardar" id="guardar">
-        </form>
-        <p id="message" class="hidden"></p> 
-    </section>
+    <div id="task-selection" style="display: none;">
+        <select id="select-task">
+            <option value="">Seleccione una tarea</option>
+        </select>
+    </div>
+
+    <div id="task-id-selection" style="display: none;">
+        <select id="select-task-id">
+            <option value="">Seleccione un ID de tarea</option>
+        </select>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="myChart" width="800" height="400"></canvas>
+    </div>
     
-    <!-- Fin del contenido de la página -->
-
 <!-- Footer -->
 <footer class="mt-5 py-4 border-top border-secondary">
     <p class="mb-0 small">&copy; <script>document.write(new Date().getFullYear())</script>, LeadMark Created By <a href="https://www.devcrud.com" target="_blank"></a>  David Bermudez. </p>     
@@ -111,6 +102,6 @@
     <!-- LeadMark js -->
     <script src="../js/leadmark.js"></script>
     <!-- Tu script personalizado -->
-    <script type="text/JavaScript" src="../Js/main.js"></script>
+    <script type="text/JavaScript" src="../js/MainGraficas.js"></script>
 </body>
 </html>

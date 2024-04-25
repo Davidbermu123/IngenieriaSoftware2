@@ -18,7 +18,7 @@ import com.Proyectousa.Desmotivados.Modelos.Usuario_modelos;
 @RequestMapping("/cregistro")
 public class Usuario_controlador {
     @Autowired
-private Usuario_modelos usuarioService;
+    private Usuario_modelos usuarioService;
     @GetMapping("/usuario")
     public List<User> getAllUs(){
         return usuarioService.getAllUsuarios();
