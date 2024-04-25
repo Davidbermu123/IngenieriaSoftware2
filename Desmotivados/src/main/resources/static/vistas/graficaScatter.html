@@ -3,94 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard de Tareas</title>
+    <title>Dashboard</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script src="../js/MainGraficas.js" defer></script> <!-- Incluir el archivo de JavaScript -->
 </head>
 <body>
+    <!-- Barra de selección para elegir el tipo de gráfico -->
     <select id="tipo-grafico">
-        <option value="barras">Gráfico de Barras</option>
-        <option value="dispersion">Gráfico de Dispersión</option>
-        <option value="semanal">Misiones Completadas Semanalmente</option>
+        <option value="barras">Gráfico de Prioridad de Tareas</option>
+        <option value="tareas">Gráfico de Tareas Completadas Semanalmente</option>
+        <option value="misiones">Gráfico de Misiones Completadas Semanalmente</option>
     </select>
 
-    <canvas id="grafico-tareas-por-prioridad" width="400" height="200"></canvas>
-    <canvas id="grafico-misiones-en-progreso" width="400" height="200"></canvas>
-    <canvas id="grafico-misiones-completadas-semanal" width="400" height="200"></canvas>
+    <!-- Contenedor para los gráficos -->
+    <div id="contenedor-graficos">
+        <!-- Contenedor para el gráfico de prioridad de tareas -->
+        <canvas id="grafico-prioridad-tareas" width="400" height="200"></canvas>
 
-    <script>
-        $(document).ready(function() {
-            Chart.defaults.plugins.tooltip.format = 'll HH:mm'; // Establece el formato de fecha y hora para la información sobre herramientas
+        <!-- Contenedor para el gráfico de tareas completadas semanalmente -->
+        <canvas id="grafico-tareas-completadas-semanal" width="400" height="200"></canvas>
 
-            function cargarGraficoMisionesCompletadasSemanal(data) {
-                var ctx = document.getElementById('grafico-misiones-completadas-semanal').getContext('2d');
-                var scatterData = data.map(entry => ({ x: new Date(entry.week), y: entry.count }));
-                var myChart = new Chart(ctx, {
-                    type: 'scatter',
-                    data: {
-                        datasets: [{
-                            label: 'Misiones Completadas Semanalmente',
-                            data: scatterData,
-                            backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            x: {
-                                type: 'time',
-                                time: {
-                                    parser: 'yyyy-MM-dd',
-                                    tooltipFormat: 'll HH:mm',
-                                    unit: 'day',
-                                    displayFormats: {
-                                        day: 'MMM D'
-                                    }
-                                }
-                            },
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
-                });
-            }
-
-            function cargarMisionesCompletadasSemanal() {
-                $.ajax({
-                    url: '/misiones/misiones-completadas-semanal',
-                    type: 'GET',
-                    success: function(response) {
-                        cargarGraficoMisionesCompletadasSemanal(response);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error al cargar los datos:', error);
-                    }
-                });
-            }
-
-            cargarMisionesCompletadasSemanal();
-
-            $('#tipo-grafico').change(function() {
-                var tipo = $(this).val();
-                if (tipo === 'dispersion') {
-                    $('#grafico-tareas-por-prioridad').hide();
-                    $('#grafico-misiones-en-progreso').show();
-                    $('#grafico-misiones-completadas-semanal').hide();
-                } else if (tipo === 'semanal') {
-                    cargarMisionesCompletadasSemanal();
-                    $('#grafico-tareas-por-prioridad').hide();
-                    $('#grafico-misiones-en-progreso').hide();
-                    $('#grafico-misiones-completadas-semanal').show();
-                } else {
-                    $('#grafico-tareas-por-prioridad').show();
-                    $('#grafico-misiones-en-progreso').hide();
-                    $('#grafico-misiones-completadas-semanal').hide();
-                }
-            });
-        });
-    </script>
+        <!-- Contenedor para el gráfico de misiones completadas semanalmente -->
+        <canvas id="grafico-misiones-completadas-semanal" width="400" height="200"></canvas>
+    </div>
 </body>
 </html>
