@@ -34,4 +34,8 @@ public class MisionesRepositorio {
     public MisionesEntidades findById(Long idMision){
         return crud.findByIdMision(idMision);
     }
+
+    public List<MisionesEntidades> findByUsername(User e){
+        return crud.findByUsername(e);
+    }
 }

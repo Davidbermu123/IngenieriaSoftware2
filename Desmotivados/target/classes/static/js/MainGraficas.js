@@ -159,6 +159,7 @@ $(document).ready(function () {
                 'Authorization': 'Bearer ' + token
             },
             success: function (response) {
+                console.log(response);
                 cargarGraficoTareasCompletadasSemanal(response);
             },
             error: function (xhr, status, error) {
@@ -175,6 +176,7 @@ $(document).ready(function () {
                 'Authorization': 'Bearer ' + token
             },
             success: function (response) {
+                console.log(response);
                 cargarGraficoMisionesCompletadasSemanal(response);
             },
             error: function (xhr, status, error) {
@@ -183,10 +185,32 @@ $(document).ready(function () {
         });
     }
 
+    function cargarMisiones() {
+        $.ajax({
+            url: '/misiones/getmisiones',
+            type: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
+            success: function (response) {
+                if(response == null){
+                    console.log("NULL");
+                }else{
+                    console.log(response);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error al cargar los datos de las misiones:', error);
+            }
+        });
+    }
+
+
     function mostrarGrafico(selector) {
         $('#contenedor-graficos canvas').hide();
         $(selector).show();
     }
 
     cargarCantidadTareasPorPrioridad();
+    cargarMisiones();
 });

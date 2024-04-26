@@ -1,6 +1,8 @@
 package com.Proyectousa.Desmotivados.Controladores;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +17,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.Proyectousa.Desmotivados.Entidades.MisionesEntidades;
+import com.Proyectousa.Desmotivados.Entidades.User;
 import com.Proyectousa.Desmotivados.Modelos.GraficasmModelo;
+import com.Proyectousa.Desmotivados.Modelos.MisionesModelos;
+import com.Proyectousa.Desmotivados.Modelos.Usuario_modelos;
 
 @RestController
 @RequestMapping("/misiones")
@@ -23,6 +28,10 @@ public class GraficasmController {
 
     @Autowired
     private GraficasmModelo graficasmModelo;
+    @Autowired
+    private MisionesModelos misionesModelos;
+    @Autowired
+    private Usuario_modelos usuarioServicio;
 
     @GetMapping("/misiones-completadas-semanal")
     public Map<Date, Integer> obtenerMisionesCompletadasSemanal() {
@@ -50,5 +59,24 @@ public class GraficasmController {
     }
     return misionesPorFecha;
 }
+
+@GetMapping("/getmisiones")
+public List<MisionesEntidades> getMisionesByUsuario(){
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    if (authentication != null && authentication.isAuthenticated()) {
+        String username = authentication.getName();
+        User usuario = usuarioServicio.findByUsername(username);
+        System.out.println(usuario);
+
+        List<MisionesEntidades> a = misionesModelos.findByUsername(usuario);
+
+        for (MisionesEntidades misionesEntidades : a) {
+            System.out.println(misionesEntidades.getContenido());
+            System.out.println(misionesEntidades.getIdMision());
+        }
+        return misionesModelos.findByUsername(usuario);
+        }
+    return null; 
+    }
 
 }
