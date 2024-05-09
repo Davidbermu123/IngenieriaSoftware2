@@ -7,16 +7,16 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.Proyectousa.Desmotivados.Entidades.TareasEntidades;
-import com.Proyectousa.Desmotivados.Repositorios.GraficasCRUDRepositorio;
+import com.Proyectousa.Desmotivados.Repositorios.tareasRepositorio;
 
 @Service
 public class GraficasModelo {
 
     @Autowired
-    private GraficasCRUDRepositorio graficasCRUDRepository;
+    private tareasRepositorio TareasRepositorio;
 
-    public Map<String, Long> obtenerCantidadTareasPorPrioridad() {
-        List<TareasEntidades> tareas = (List<TareasEntidades>) graficasCRUDRepository.findAll();
+    public Map<String, Long> obtenerCantidadTareasPorPrioridad(String username) {
+        List<TareasEntidades> tareas = TareasRepositorio.getTareasByUsername(username);
         Map<String, Long> cantidadPorPrioridad = new HashMap<>();
 
         // Contar tareas por prioridad

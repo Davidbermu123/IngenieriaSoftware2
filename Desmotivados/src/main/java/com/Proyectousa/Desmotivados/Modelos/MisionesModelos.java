@@ -39,4 +39,5 @@ public class MisionesModelos {
     public List<MisionesEntidades> findByUsername(User e){
         return repositorio.findByUsername(e);
     }
+    
 }

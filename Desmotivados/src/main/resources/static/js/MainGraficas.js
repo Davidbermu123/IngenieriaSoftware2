@@ -1,11 +1,13 @@
 let token = localStorage.getItem('token');
+let username = ''; // Define la variable username a nivel global
+
 function verificarTokenYRedireccionarALogin() {
     if (token === null) {
         window.location.href = '/vistas/login.html';
     } else {
         var tokenParts = token.split('.');
         var tokenPayload = JSON.parse(atob(tokenParts[1]));
-        var username=tokenPayload.sub;
+        username = tokenPayload.sub; // Asigna el valor de 'sub' del token a username
         console.log(username);
     }
 }
@@ -15,6 +17,9 @@ $(document).ready(function () {
     var currentChart = null; // Variable para almacenar el gráfico actual
 
     function cargarGraficoPrioridadTareas(data) {
+        if (currentChart) {
+            currentChart.destroy();
+        }
         mostrarGrafico('#grafico-prioridad-tareas');
         var ctx = document.getElementById('grafico-prioridad-tareas').getContext('2d');
         currentChart = new Chart(ctx, {
@@ -48,6 +53,11 @@ $(document).ready(function () {
     }
 
     function cargarGraficoTareasCompletadasSemanal(scatterData) {
+
+        if (currentChart) {
+            currentChart.destroy();
+        }
+
         mostrarGrafico('#grafico-tareas-completadas-semanal');
         var ctx = document.getElementById('grafico-tareas-completadas-semanal').getContext('2d');
         currentChart = new Chart(ctx, {
@@ -60,7 +70,7 @@ $(document).ready(function () {
                     backgroundColor: 'rgba(255, 99, 132, 0.5)', // Cambiar color si lo deseas
                     borderColor: 'rgba(255, 99, 132, 1)',
                     borderWidth: 1,
-                    showLine: true // Mostrar líneas que conectan los puntos
+                    showLine: false // Mostrar líneas que conectan los puntos
                 }]
             },
             options: {
@@ -89,7 +99,24 @@ $(document).ready(function () {
         });
     }
 
+    $('#tipo-grafico').change(function () {
+        var tipo = $(this).val();
+        if (tipo === 'tareas') {
+            cargarTareasCompletadasSemanal();
+        } else if (tipo === 'misiones') {
+            cargarMisionesCompletadasSemanal();
+        } else {
+            cargarCantidadTareasPorPrioridad();
+        }
+    });
+
     function cargarGraficoMisionesCompletadasSemanal(scatterData) {
+
+        if (currentChart) {
+            currentChart.destroy();
+        }
+
+
         mostrarGrafico('#grafico-misiones-completadas-semanal');
         var ctx = document.getElementById('grafico-misiones-completadas-semanal').getContext('2d');
         currentChart = new Chart(ctx, {
@@ -137,7 +164,7 @@ $(document).ready(function () {
 
     function cargarCantidadTareasPorPrioridad() {
         $.ajax({
-            url: '/tareas/grafica-prioridades',
+            url: '/graficos/grafica-prioridades?username=' + username , // Corregir la URL aquí
             type: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + token
@@ -153,7 +180,7 @@ $(document).ready(function () {
 
     function cargarTareasCompletadasSemanal() {
         $.ajax({
-            url: '/graficos/tareas-completadas-semanal',
+            url: '/graficos/tareas-completadas-semanal?username=' + username,
             type: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + token
@@ -170,7 +197,7 @@ $(document).ready(function () {
 
     function cargarMisionesCompletadasSemanal() {
         $.ajax({
-            url: '/misiones/misiones-completadas-semanal',
+            url: '/graficos/misiones-completadas-semanal?username=' + username, // Añade el nombre de usuario como parámetro
             type: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + token
@@ -205,7 +232,6 @@ $(document).ready(function () {
         });
     }
 
-
     function mostrarGrafico(selector) {
         $('#contenedor-graficos canvas').hide();
         $(selector).show();
@@ -213,4 +239,16 @@ $(document).ready(function () {
 
     cargarCantidadTareasPorPrioridad();
     cargarMisiones();
+
+    
 });
+
+function logout() {
+    // Mostrar un mensaje de confirmación al usuario
+    var confirmLogout = confirm("¿Estás seguro de que deseas cerrar sesión?");
+    
+    // Si el usuario confirma el logout, limpiar el token del almacenamiento local y redirigirlo a la página de inicio de sesión
+    if (confirmLogout) {
+        localStorage.removeItem('token');
+        window.location.href = "/vistas/login.html"; // Cambia "login.html" por la ruta de tu página de inicio de sesión
+    }}

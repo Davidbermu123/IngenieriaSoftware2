@@ -13,4 +13,3 @@ public interface GraficasTCRUDRepository extends CrudRepository<MisionesEntidade
     @Query("SELECT m FROM MisionesEntidades m WHERE m.estado = true AND m.fechaFin BETWEEN ?1 AND ?2")
     List<MisionesEntidades> obtenerMisionesCompletadasPorRangoDeFechas(Date inicio, Date fin);
 }
-
