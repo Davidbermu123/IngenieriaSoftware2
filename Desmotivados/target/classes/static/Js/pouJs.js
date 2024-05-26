@@ -11,7 +11,9 @@ function verificarTokenYRedireccionarALogin() {
 }
 verificarTokenYRedireccionarALogin();
 
-function cargarItems(){
+buscardef();
+
+function buscardef(){
     $.ajax({
         url: '/requestPou/getPouItems',
         type: 'GET',
@@ -19,6 +21,60 @@ function cargarItems(){
             'Authorization': 'Bearer ' + token
         },
         success: function(data) {
+            if(data == 0){
+                console.log("Insertando valores defalut")
+                ponerDefault();
+            }
+        }
+    });
+}
+
+function cargarItems(){
+
+    $.ajax({
+        url: '/requestPou/getPouItems',
+        type: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
+        success: function(data) {
+
+            // Busca los items default
+            /*
+
+            $.each(data, function(index, iterable) {
+
+                console.log("Buscando items default..");
+
+                ropaDef;
+                fondoDef;
+                mADef;
+                mBDef;
+
+                if (iterable.imagenItem == "/imgs/Fondo1.png"){
+                    ropaDef = iterable.idItem;
+                    console.log("Se encontro el "+ropaDef+" de pobre");
+                }
+                if (iterable.imagenItem == "/imgs/Ropa11.png"){
+                    fondoDef = iterable.idItem;
+                    console.log("Se encontro el "+fondoDef+" de pobre");
+                }
+                if (iterable.imagenItem == "/imgs/Mueble8.png"){
+                    mADef = iterable.idItem;
+                    console.log("Se encontro el "+mADef+" de pobre");
+                }
+                if (iterable.imagenItem == "MuebleB10"){
+                    mBDef = iterable.idItem;
+                    console.log("Se encontro el "+mBDef+" de pobre");
+                }
+
+                ponerDefault(ropaDef,fondoDef,mADef,mBDef);
+
+            });
+            */
+
+            // funcionalidad
+
             $.each(data, function(index, iterableEquipado) {
 
                 var item = $("<div>");
@@ -152,8 +208,24 @@ function cargarItems(){
                     $("#muebleBPouInventario").append(item);
                 }
             });
+
         },error: function(xhr, status, error) {
             console.error('Error al verificar la existencia:', error);
+        }
+    });
+}
+
+function ponerDefault(){
+    $.ajax({
+        url: '/requestPou/ponerDefault',
+        type: 'POST',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },        
+        success: function() {
+            console.log('No error dentro de la funcon de cambiar a default');
+        },error: function(xhr, status, error) {
+            console.error('Error dentro de la funcon de cambiar a default:', error);
         }
     });
 }
