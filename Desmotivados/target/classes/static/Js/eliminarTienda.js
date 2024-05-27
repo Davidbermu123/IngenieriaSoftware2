@@ -12,9 +12,6 @@ function verificarTokenYRedireccionarALogin() {
 verificarTokenYRedireccionarALogin();
 
 function eliminarObjTienda(codigo){
-    console.log("Sirve prros")
-    console.log(codigo)
-
     var confirmacion = confirm('¿Esta seguro de eliminar el obj de la tienda?');
     if(confirmacion){
         $.ajax({
