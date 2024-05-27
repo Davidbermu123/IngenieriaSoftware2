@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-DesmotivadosApplication<Desmotivados>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.Proyectousa.Desmotivados.DesmotivadosApplication",
+            "projectName": "Desmotivados",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

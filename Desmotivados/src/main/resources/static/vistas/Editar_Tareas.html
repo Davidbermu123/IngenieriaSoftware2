@@ -40,6 +40,9 @@
                     <li class="nav-item">
                         <a href="components.html" class="ml-4 nav-link btn btn-primary btn-sm rounded">Components</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="ml-4 nav-link btn btn-primary btn-sm rounded" href="#" onclick="logout()">Log Out</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -74,8 +77,8 @@
             <input type="text" id="task-name" name="task-name" required><br><br>
             <label for="task-description">Nueva descripción:</label><br>
             <input type="text" id="task-description" name="task-description" required><br><br>
-            <label for="task-datetime">Nueva fecha y hora:</label><br>
-            <input type="datetime-local" id="task-datetime" name="task-datetime" required><br><br>     
+            <label for="task-datetime">Nueva fecha y hora de fin:</label><br>
+            <input type="datetime-local" id="task-datetime" name="task-datetime" required><br><br>       
             <label for="priority">Nueva prioridad:</label><br>
             <select id="priority" name="priority" required>
                 <option value="alta">Alta</option>

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.Proyectousa.Desmotivados.Entidades.TareasEntidades;
+import com.Proyectousa.Desmotivados.Entidades.User;
 import com.Proyectousa.Desmotivados.Repositorios.tareasRepositorio;
 
 @Service
@@ -35,6 +36,9 @@ public class tareasModelos {
 
     public Optional<TareasEntidades> getTareaById(Long id) {
         return tareasRepositorio.getTareaById(id);
+    }
+    public List<TareasEntidades> obtenerTareasPorUsuarioYcompletados(User usuario, boolean completado) {
+        return tareasRepositorio.obtenerTareasPorUsuarioYcompletado(usuario, completado);
     }
 
 }

@@ -5,8 +5,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.Proyectousa.Desmotivados.Entidades.TareasEntidades;
+import com.Proyectousa.Desmotivados.Entidades.User;
 
 @Repository
 public class tareasRepositorio {
@@ -33,5 +33,7 @@ public class tareasRepositorio {
     public Optional<TareasEntidades> getTareaById(Long id) {
         return tareasCRUDRepository.findById(id);
     }
-    
+    public List<TareasEntidades> obtenerTareasPorUsuarioYcompletado(User usuario, boolean completado) {
+        return tareasCRUDRepository.findByUsernameAndCompletado(usuario, completado);
+    }
 }

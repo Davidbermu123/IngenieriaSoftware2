@@ -1,14 +1,36 @@
+let token = localStorage.getItem('token');
+function verificarTokenYRedireccionarALogin() {
+    if (token === null) {
+        window.location.href = '/vistas/login.html';
+    } else {
+        var tokenParts = token.split('.');
+        var tokenPayload = JSON.parse(atob(tokenParts[1]));
+        var username=tokenPayload.sub;
+        console.log(username);
+    }
+}
+verificarTokenYRedireccionarALogin();
+
+
 function cargarTareas2() {
     $.ajax({
-        url: '/Corganizador/tareas',
+        url: '/Corganizador/mistareas',
         type: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + token // Enviar el token en el encabezado de autorización
+        },
         success: function(response) {
             $('#select-task').empty();
+            $('#select-task').append($('<option>', {
+
+            }));
             response.forEach(function(tarea) {
-                $('#select-task').append($('<option>', {
-                    value: tarea.titulo,
-                    text: tarea.titulo
-                }));
+                if (!tarea.completado) { // Filtrar las tareas que no están completadas
+                    $('#select-task').append($('<option>', {
+                        value: tarea.titulo,
+                        text: tarea.titulo
+                    }));
+                }
             });
 
             $('#select-task').change(function() {
@@ -24,10 +46,14 @@ function cargarTareas2() {
     });
 }
 
+
 function cargarInformacionTarea(tituloTarea) {
     $.ajax({
-        url: '/Corganizador/tareas',
+        url: '/Corganizador/mistareas',
         type: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + token // Enviar el token en el encabezado de autorización
+        },
         success: function(response) {
             var tareaSeleccionada = response.find(function(tarea) {
                 return tarea.titulo === tituloTarea;
@@ -52,6 +78,7 @@ function cargarInformacionTarea(tituloTarea) {
     });
 }
 
+
 function guardarCambios() {
     var tareaModificada = {
         idTarea: $('#task-id').val(),
@@ -63,12 +90,16 @@ function guardarCambios() {
 
     $.ajax({
         url: '/Corganizador/modificarTarea',
-        type: 'POST',
+        type: 'PUT',
+        headers: {
+            'Authorization': 'Bearer ' + token // Enviar el token en el encabezado de autorización
+        },
         contentType: 'application/json',
         data: JSON.stringify(tareaModificada),
         success: function(response) {
             console.log('Cambios guardados exitosamente:', response);
             alert('Los cambios se han guardado exitosamente.');
+            window.location.href = "/vistas/organizadorVista.html";
         },
         error: function(xhr, status, error) {
             console.error('Error al guardar los cambios:', error);
@@ -84,3 +115,14 @@ $(document).ready(function() {
         guardarCambios();
     });
 });
+
+function logout() {
+    // Mostrar un mensaje de confirmación al usuario
+    var confirmLogout = confirm("¿Estás seguro de que deseas cerrar sesión?");
+    
+    // Si el usuario confirma el logout, limpiar el token del almacenamiento local y redirigirlo a la página de inicio de sesión
+    if (confirmLogout) {
+        localStorage.removeItem('token');
+        window.location.href = "/vistas/login.html"; // Cambia "login.html" por la ruta de tu página de inicio de sesión
+    }
+}

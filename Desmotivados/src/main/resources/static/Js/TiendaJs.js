@@ -80,7 +80,7 @@ $(document).ready(function() {
             }
             $("#cantidadMonedas").text(data);
         },error: function(jqXHR, textStatus, errorThrown) {
-            console.error('Error al comprar el artículooooo:', errorThrown);
+            console.error('error al obtener las monedas', errorThrown);
         }
     });
 });

@@ -12,4 +12,5 @@ public interface MisionesCRUDRepositorios extends CrudRepository<MisionesEntidad
     boolean existsByUsernameAndContenido(User usuario, Contenido contenido);
     List<MisionesEntidades> findByUsernameAndEstado(User usuario, boolean estado);
     MisionesEntidades findByIdMision(Long idMision);
+    List<MisionesEntidades> findByUsername(User e);
 }

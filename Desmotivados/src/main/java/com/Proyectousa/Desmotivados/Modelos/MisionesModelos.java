@@ -35,4 +35,9 @@ public class MisionesModelos {
     public MisionesEntidades findById(Long idMision){
         return repositorio.findById(idMision);
     }
+
+    public List<MisionesEntidades> findByUsername(User e){
+        return repositorio.findByUsername(e);
+    }
+    
 }
