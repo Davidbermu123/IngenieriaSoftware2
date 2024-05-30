@@ -70,7 +70,7 @@ function guardarNuevoElemento(identification, name, description, urlLearn, urlGa
         data: JSON.stringify(data),
         success: function(response) {
             console.log('Usuario guardado correctamente:', response);
-            alert('Guardado exitosamente');
+            Swal.fire("Guardado Exitosamente");
         },
         error: function(xhr, status, error) {
             console.error('Error al guardar el usuario:', error);

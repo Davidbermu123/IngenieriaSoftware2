@@ -30,16 +30,16 @@ $(document).ready(function() {
             },
             data: formData,
             success: function(response) {
-                alert('Tienda editada exitosamente');
+                Swal.fire("Tienda editada exitosamente!");
             },
             error: function(xhr, status, error) {
-                alert('Error al editar contenido: ' + error);
+                Swal.fire("Error al editar la tienda " + error);
             }
         });
     });
 
     function buscarTiendaPorId(id) {
-        alert('Tienda editada exitosamente');
+        
         $.ajax({
             url: '/tienda/mostrar',
             type: 'GET',
@@ -48,13 +48,13 @@ $(document).ready(function() {
             },
             data: { id: id },
             success: function(response) {
-                $('#ImagenTiendaItem').val(response.imagenTiendaItem);
-                $('#DescripcionTiendaItem').val(response.descripcionTiendaItem);
-                $('#TipoTiendaItem').val(response.tipoTiendaItem);
+                $('#imagenTiendaItem').val(response.imagenTiendaItem);
+                $('#descripcionTiendaItem').val(response.descripcionTiendaItem);
+                $('#tipoTiendaItem').val(response.tipoTiendaItem);
                 $('#precio').val(response.precio);
             },
             error: function(xhr, status, error) {
-                alert('Error al buscar contenido: ' + error);
+                Swal.fire("Error al buscar el elemento "+ error);
             }
         });
     }

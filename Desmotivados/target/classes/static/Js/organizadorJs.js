@@ -42,7 +42,7 @@ verificarTokenYRedireccionarALogin();
                 }
             },
             error: function(xhr, status, error) {
-                alert('Error al cargar las tareas');
+                Swal.fire("Error al cargar las tareas");
             }
         });
     }
@@ -58,20 +58,20 @@ verificarTokenYRedireccionarALogin();
     
         // Validación de campos vacíos
         if (title === '' || description === '' || isNaN(startDate) || isNaN(endDate)) {
-            alert('Por favor completa todos los campos.');
+            Swal.fire("Por favor completa todos los campos");
             return;
         }
     
         // Validación de prioridad
         if (priority !== 'baja' && priority !== 'media' && priority !== 'alta') {
-            alert('Por favor selecciona una prioridad.');
+            Swal.fire("Por favor selecciona una prioridad");
             return;
         }
     
         // Validación de fechas y horas pasadas
         let currentDate = new Date();
         if (startDate < currentDate || endDate < currentDate) {
-            alert('No puedes asignar tareas en fechas u horarios pasados.');
+            Swal.fire("No puedes asignar tareas en fechas u horarios pasados");
             return;
         }
     
@@ -139,9 +139,15 @@ verificarTokenYRedireccionarALogin();
             default:
                 break;
         }
-
+    
         var checkboxChecked = tarea.completado ? 'checked' : '';
         var checkboxDisabled = tarea.completado ? 'disabled' : '';
+    
+        // Formatear la fecha y la hora
+        var fechaInicioFormateada = new Date(tarea.fechaInicio).toLocaleString();
+        var fechaFinalFormateada = new Date(tarea.fechaFinal).toLocaleString();
+    
+        var editarOption = tarea.completado ? '' : '<a class="dropdown-item" href="Editar_Tareas.html">Modificar</a>';
     
         tareaElemento.html(`
             <div class="container mt-4">
@@ -153,19 +159,19 @@ verificarTokenYRedireccionarALogin();
                                 <p><strong>Descripción:</strong> ${tarea.descripcion}</p>
                             </div>
                             <div class="col-sm-6">
-                                <p><strong>Fecha Inicio:</strong> ${tarea.fechaInicio}</p>
-                                <p><strong>Fecha Final:</strong> ${tarea.fechaFinal}</p>
+                                <p><strong>Fecha Inicio:</strong> ${fechaInicioFormateada}</p>
+                                <p><strong>Fecha Final:</strong> ${fechaFinalFormateada}</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-4 position-relative">
                         <p><strong>Prioridad:</strong> ${tarea.prioridad}</p>
                         <div class="form-check mt-2">
-                        <input type="checkbox" class="form-check-input tarea-checkbox" id="tarea-${tarea.idTarea}" ${checkboxChecked} ${checkboxDisabled}>
-                        <label class="form-check-label" for="tarea-${tarea.completado}">
-                            ${tarea.completado ? 'Completada' : 'Completar'}
-                        </label>
-                        <p><img src="/imgs/moneda.png" alt="Descripción de la imagen" style="width: 20px; height: 20px;">20</p>                        
+                            <input type="checkbox" class="form-check-input tarea-checkbox" id="tarea-${tarea.idTarea}" ${checkboxChecked} ${checkboxDisabled}>
+                            <label class="form-check-label" for="tarea-${tarea.completado}">
+                                ${tarea.completado ? 'Completada' : 'Completar'}
+                            </label>
+                            <p><img src="/imgs/moneda.png" alt="Descripción de la imagen" style="width: 20px; height: 20px;">20</p>                        
                         </div>
                     </div>
                     <div class="position-absolute top-0 end-0 mt-2">
@@ -174,7 +180,7 @@ verificarTokenYRedireccionarALogin();
                         </button>
                         <div class="dropdown-menu">
                             <a class="dropdown-item eliminar-btn" href="#">Eliminar</a>
-                            <a class="dropdown-item" href="Editar_Tareas.html">Modificar</a>
+                            ${editarOption}
                         </div>
                     </div>
                 </div>
@@ -190,6 +196,8 @@ verificarTokenYRedireccionarALogin();
     
         ordenarTareasPorPrioridad();
     }
+    
+    
 
     function ordenarTareasPorPrioridad() {
         var contenedor = $('#contenedorTareas');
@@ -268,5 +276,14 @@ verificarTokenYRedireccionarALogin();
     });
     
 
-    
+    function logout() {
+        // Mostrar un mensaje de confirmación al usuario
+        var confirmLogout = confirm("¿Estás seguro de que deseas cerrar sesión?");
+        
+        // Si el usuario confirma el logout, limpiar el token del almacenamiento local y redirigirlo a la página de inicio de sesión
+        if (confirmLogout) {
+            localStorage.removeItem('token');
+            window.location.href = "/vistas/login.html"; // Cambia "login.html" por la ruta de tu página de inicio de sesión
+        }
+    }
     

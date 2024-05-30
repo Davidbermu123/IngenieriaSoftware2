@@ -38,7 +38,7 @@ function guardarTienda() {
         contentType: 'application/json',
         data: JSON.stringify(data),
         success: function(response) {
-            alert("Articulo guardado correctamente.");
+            Swal.fire("Articulo guardado exitosamente!");
         },
         error: function(xhr, status, error) {
             // Manejar errores si los hay

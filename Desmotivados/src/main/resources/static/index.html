@@ -3,35 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Inicio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/estilos/indexEstilos.css">
+    <title>Pagina principal</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Estilos de la plantilla -->
+    <link rel="stylesheet" href="../estilos/leadmark.css">
+    <!-- Tu hoja de estilos personalizada -->
+    <link rel="stylesheet" href="../estilos/indexEstilos.css">
 </head>
-<body>
-    <header>
-        <nav class="main-nav">
-            <div class="nav-list">
-                <a href="#">Inicio</a>
-                <a href="#">Sobre nosotros</a>
-                <a href="#">Servicios</a>
-                <a href="#">Productos</a>
-                <a href="#">Contacto</a>
-            </div>
-            <div class="auth-list">
-                <a href="#">Iniciar sesión</a>
-                <a href="#">Registro</a>
-            </div>
-        </nav>
-    </header>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
 
-    <section class="slogan-section">
-        <div class="slogan-text">
-            <h1>El Futuro de la Tecnología Web</h1>
-            <p>Descubre las soluciones que llevarán tu negocio al siguiente nivel.</p>
+    <!-- page Navigation -->
+    <nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top" data-spy="affix" data-offset-top="10">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="assets/imgs/logo.svg" alt="">
+            </a>
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">                                       
+                    <li class="nav-item">
+                        <a class="nav-link" href="/vistas/organizadorVista.html">Organizador de Tareas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/vistas/misiones.html">Misiones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/vistas/pou.html">Pou</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/vistas/tienda.html">Tienda Pou</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/vistas/Aprender.html">Juegos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/vistas/ayudaContenido.html">Consejos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/vistas/graficas.html">Gráficas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/vistas/editarUser.html">Perfil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="ml-4 nav-link btn btn-primary btn-sm rounded" href="#" onclick="logout()">Log Out</a>
+                    </li>  
+                </ul>
+            </div>
         </div>
-        <div class="slogan-image">
-            <img src="https://via.placeholder.com/500" alt="Imagen Tecnológica">
+    </nav>
+    <!-- End Of Second Navigation -->
+
+
+    <!-- Encabezado -->
+    <header class="header">
+        <div class="overlay">
+           
+            <h1 class="title">Bienvenidos </h1> 
+            <h1 class="subtitle">(Des)Motivados</h1> 
+        </div>  
+        <div class="shape">
+            <svg viewBox="0 0 1500 200">
+                <path d="m 0,240 h 1500.4828 v -71.92164 c 0,0 -286.2763,-81.79324 -743.19024,-81.79324 C 300.37862,86.28512 0,168.07836 0,168.07836 Z"/>
+            </svg>
+        </div>  
+        <div class="mouse-icon"><div class="wheel"></div></div>
+    </header>
+    <!-- Fin del encabezado -->
+
+    <!-- Contenido de la página --> 
+    <div>
+        
+        <div class="content-section">
+            <div class="content-block">
+                <img src="/imgs/index/tareas.jpg" alt="Imagen 1">
+                <p>¡Organiza tus tareas y gana monedas!</p>
+                <a href="/vistas/organizadorVista.html">Ver más</a>
+            </div>
+            <div class="content-block">
+                <img src="/imgs/index/mision.jpg" alt="Imagen 2">
+                <p>Completa misiones para ganar monedas extras y reducir el estrés.</p>
+                <a href="/vistas/misiones.html">Ver más</a>
+            </div>
         </div>
-    </section>
+        
+        <div class="content-section">
+            <div class="content-block">
+                <img src="/imgs/index/pou.jpg" alt="Imagen 3">
+                <p>Personaliza tu Pou con fondos, ropa y accesorios.</p>
+                <a href="/vistas/pou.html">Ver más</a>
+            </div>
+            <div class="content-block">
+                <img src="/imgs/index/tienda.jpg" alt="Imagen 4">
+                <p>Explora la tienda para ver y comprar nuevos artículos.</p>
+                <a href="/vistas/tienda.html">Ver más</a>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <div class="content-block">
+                <img src="/imgs/index/juegos.jpg" alt="Imagen 5">
+                <p>¡Juega y aprende al mismo tiempo!</p>
+                <a href="/vistas/Aprender.html">Ver más</a>
+            </div>
+            <div class="content-block">
+                <img src="/imgs/index/consejos.jpg" alt="Imagen 6">
+                <p>Obtén consejos útiles para mejorar tu experiencia.</p>
+                <a href="/vistas/ayudaContenido.html">Ver más</a>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <div class="content-block">
+                <img src="/imgs/index/grafiicas.jpg" alt="Imagen 7">
+                <p>Visualiza tus progresos con gráficos informativos.</p>
+                <a href="/vistas/MostrarGraficas.html">Ver más</a>
+            </div>
+            <div class="content-block">
+                <img src="/imgs/index/perfil.jpg" alt="Imagen 8">
+                <p>Administra tu perfil y mantén tu información actualizada.</p>
+                <a href="/vistas/editarUser.html">Ver más</a>
+            </div>
+        </div>
+        
+    </div>
+    <!-- Fin del contenido de la página -->
+
+
+
+    <!-- Footer -->
+    <footer class="mt-5 py-4 border-top border-secondary">
+        <p class="mb-0 small">&copy; <script>document.write(new Date().getFullYear())</script>, LeadMark Created By <a href="https://www.devcrud.com" target="_blank"></a>  Nathalia Chivatá. </p>     
+    </footer>
+    <!-- End of Page Footer -->  
+<!-- Fin del footer -->
+
+    <!-- Scripts -->
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/bootstrap.bundle.js"></script>
+    <!-- Bootstrap 3 affix -->
+    <script src="../vendors/bootstrap/bootstrap.affix.js"></script>
+    <!-- Isotope -->
+    <script src="../vendors/isotope/isotope.pkgd.js"></script>
+    <!-- LeadMark js -->
+    <script src="../Js/leadmark.js"></script>
+    <!-- Tu script personalizado -->
+    <script type="text/JavaScript" src="/Js/admin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

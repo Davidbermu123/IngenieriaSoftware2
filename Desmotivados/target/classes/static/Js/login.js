@@ -4,7 +4,7 @@ function logUsuario() {
 
     // Verificar si los campos no están vacíos
     if (alias === '' || contrasena === '') {
-        alert('Por favor, complete todos los campos.');
+        Swal.fire("Por favor, complete todos los campos");
         return;
     }
 
@@ -45,19 +45,19 @@ function logUsuario() {
                     } else if (role === 'USER') {
                         window.location.href = "/index.html"; // Redireccionar a la página de usuario normal
                     } else {
-                        alert('Rol desconocido.');
+                        Swal.fire("Rol desconocido");
                     }
                 },
                 error: function(xhr, status, error) {
                     console.error('Error al obtener el rol del usuario:', error);
-                    alert('Ocurrió un error al obtener el rol del usuario.');
+                    Swal.fire("Ocurrio un error para obtener el rol del usuario "+ error);
                 }
             });
         },
         error: function(xhr, status, error) {
             // Manejar errores de la solicitud
             console.error('Error en la solicitud:', error);
-            alert('Ocurrió un error al iniciar sesión. Por favor, intenta nuevamente.');
+            Swal.fire("Ocurrio un error al iniciar sesión, por favor intente de nuevo");
         }
     });
 }

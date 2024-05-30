@@ -22,6 +22,10 @@ public class TiendaRepositorios {
         return crud.save(t);
     }
 
+    public void eliminarTienda(Long id){
+        crud.deleteById(id);
+    }
+
     public Optional<TiendaEntidades> findByIdTienda(Long id){
         return crud.findById(id);
     }

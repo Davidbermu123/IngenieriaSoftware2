@@ -1,0 +1,47 @@
+package com.Proyectousa.Desmotivados.Modelos;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.Proyectousa.Desmotivados.Entidades.TareasEntidades;
+import com.Proyectousa.Desmotivados.Repositorios.tareasRepositorio;
+
+@Service
+public class GraficasModelo {
+
+    @Autowired
+    private tareasRepositorio TareasRepositorio;
+
+    public Map<String, Long> obtenerCantidadTareasPorPrioridad(String username) {
+        List<TareasEntidades> tareas = TareasRepositorio.getTareasByUsername(username);
+        Map<String, Long> cantidadPorPrioridad = new HashMap<>();
+
+        // Contar tareas por prioridad
+        for (TareasEntidades tarea : tareas) {
+            String prioridad = tarea.getPrioridad();
+            if (prioridad != null) {
+                // Filtrar por prioridad y contar
+                switch (prioridad.toLowerCase()) {
+                    case "alta":
+                    case "altaa": // Por si hay un typo
+                        cantidadPorPrioridad.put("alta", cantidadPorPrioridad.getOrDefault("alta", 0L) + 1);
+                        break;
+                    case "media":
+                        cantidadPorPrioridad.put("media", cantidadPorPrioridad.getOrDefault("media", 0L) + 1);
+                        break;
+                    case "baja":
+                        cantidadPorPrioridad.put("baja", cantidadPorPrioridad.getOrDefault("baja", 0L) + 1);
+                        break;
+                    default:
+                        // Si hay una prioridad diferente, ignorarla
+                        break;
+                }
+            }
+        }
+
+        return cantidadPorPrioridad;
+    }
+}

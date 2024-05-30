@@ -1,153 +1,254 @@
-function verificarTokenYRedireccionarALogin() {
-    let token = localStorage.getItem('token');
+let token = localStorage.getItem('token');
+let username = ''; // Define la variable username a nivel global
 
-    // Verificar si el token está presente
+function verificarTokenYRedireccionarALogin() {
     if (token === null) {
-        // Si el token no está presente, redirigir al usuario al inicio de sesión
         window.location.href = '/vistas/login.html';
     } else {
         var tokenParts = token.split('.');
         var tokenPayload = JSON.parse(atob(tokenParts[1]));
-        var username=tokenPayload.sub;
+        username = tokenPayload.sub; // Asigna el valor de 'sub' del token a username
         console.log(username);
     }
 }
-
 verificarTokenYRedireccionarALogin();
-$(document).ready(function() {
-    // Variable para almacenar el gráfico actual
-    var myChart;
 
-    // Cargar IDs de tareas al cargar la página
-    $.ajax({
-        url: '/tareas/grafica-tareas-ids',
-        type: 'GET',
-        success: function(response) {
-            var selectTask = $('#select-task');
-            var selectTaskId = $('#select-task-id');
+$(document).ready(function () {
+    var currentChart = null; // Variable para almacenar el gráfico actual
 
-            response.forEach(function(task) {
-                selectTask.append('<option value="' + task.graficasT + '">' + task.graficasT + '</option>');
-                selectTaskId.append('<option value="' + task.graficasT + '">' + task.graficasT + '</option>');
-            });
-        },
-        error: function(xhr, status, error) {
-            console.error('Error al cargar los IDs de tareas:', error);
+    function cargarGraficoPrioridadTareas(data) {
+        if (currentChart) {
+            currentChart.destroy();
         }
-    });
-
-    $('#select-graph').change(function() {
-        var tipoGrafico = $(this).val();
-        var endpoint;
-        var params = {};
-
-        if (tipoGrafico === 'misiones') {
-            endpoint = '/tareas/grafica/';
-        } else if (tipoGrafico === 'tareas') {
-            endpoint = '/tareas/grafica-tareas';
-            var fechaMin = $('#fecha-min').val();
-            var fechaMax = $('#fecha-max').val();
-            params.fechaMin = fechaMin;
-            params.fechaMax = fechaMax;
-        }
-
-        $('#select-task').empty();
-        $('#select-task-id').empty();
-
-        if (tipoGrafico === 'tareas') {
-            $('#task-selection').show();
-            $('#task-id-selection').show();
-        } else {
-            $('#task-selection').hide();
-            $('#task-id-selection').hide();
-        }
-
-        if (endpoint) {
-            $.ajax({
-                url: endpoint,
-                type: 'GET',
-                data: params,
-                success: function(response) {
-                    var data = response.map(function(item) {
-                        return {
-                            label: 'Tarea ' + item.graficasT,
-                            data: [item.prioridadBaja, item.prioridadMedia, item.prioridadAlta],
-                            backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)'],
-                            borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
-                            borderWidth: 1
-                        };
-                    });
-
-                    // Destruir el gráfico existente antes de crear uno nuevo
-                    if (myChart) {
-                        myChart.destroy();
-                    }
-
-                    renderChart(data, tipoGrafico);
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error al cargar los datos para la gráfica:', error);
-                }
-            });
-        }
-    });
-
-    $('#select-task-id').change(function() {
-        var selectedTaskId = $(this).val();
-        if (selectedTaskId) {
-            // Ocultar la barra de selección de tarea
-            $('#task-selection').hide();
-            // Obtener los datos solo para el ID seleccionado
-            $.ajax({
-                url: '/tareas/grafica-tareas/' + selectedTaskId,
-                type: 'GET',
-                success: function(response) {
-                    var data = [{
-                        label: 'Tarea ' + response.graficasT,
-                        data: [response.prioridadBaja, response.prioridadMedia, response.prioridadAlta],
-                        backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)'],
-                        borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
-                        borderWidth: 1
-                    }];
-
-                    // Destruir el gráfico existente antes de crear uno nuevo
-                    if (myChart) {
-                        myChart.destroy();
-                    }
-
-                    renderChart(data, 'tareas');
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error al cargar los datos de la tarea para la gráfica:', error);
-                }
-            });
-        }
-    });
-
-    function renderChart(data, tipoGrafico) {
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var chartType = 'bar'; // Utilizamos un gráfico de barras para representar las tareas
-        var chartLabel = 'Prioridades'; // Etiqueta para el eje Y
-
-        myChart = new Chart(ctx, {
-            type: chartType,
+        mostrarGrafico('#grafico-prioridad-tareas');
+        var ctx = document.getElementById('grafico-prioridad-tareas').getContext('2d');
+        currentChart = new Chart(ctx, {
+            type: 'bar',
             data: {
-                labels: ['Prioridad Baja', 'Prioridad Media', 'Prioridad Alta'], // Etiquetas para el eje X
-                datasets: data
+                labels: ['Alta', 'Media', 'Baja'],
+                datasets: [{
+                    label: 'Cantidad de Tareas por Prioridad',
+                    data: [data.alta || 0, data.media || 0, data.baja || 0],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)', // Color para Alta
+                        'rgba(54, 162, 235, 0.2)', // Color para Media
+                        'rgba(255, 206, 86, 0.2)' // Color para Baja
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    borderWidth: 1
+                }]
             },
             options: {
                 scales: {
-                    yAxes: [{
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Cantidad de Tareas'
-                        },
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
         });
     }
+
+    function cargarGraficoTareasCompletadasSemanal(scatterData) {
+
+        if (currentChart) {
+            currentChart.destroy();
+        }
+
+        mostrarGrafico('#grafico-tareas-completadas-semanal');
+        var ctx = document.getElementById('grafico-tareas-completadas-semanal').getContext('2d');
+        currentChart = new Chart(ctx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Tareas Completadas Semanalmente',
+                    data: scatterData,
+                    pointRadius: 5,
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)', // Cambiar color si lo deseas
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1,
+                    showLine: false // Mostrar líneas que conectan los puntos
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            unit: 'week',
+                            displayFormats: {
+                                week: 'MMM d'
+                            }
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Hora'
+                        },
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    $('#tipo-grafico').change(function () {
+        var tipo = $(this).val();
+        if (tipo === 'tareas') {
+            cargarTareasCompletadasSemanal();
+        } else if (tipo === 'misiones') {
+            cargarMisionesCompletadasSemanal();
+        } else {
+            cargarCantidadTareasPorPrioridad();
+        }
+    });
+
+    function cargarGraficoMisionesCompletadasSemanal(scatterData) {
+
+        if (currentChart) {
+            currentChart.destroy();
+        }
+
+
+        mostrarGrafico('#grafico-misiones-completadas-semanal');
+        var ctx = document.getElementById('grafico-misiones-completadas-semanal').getContext('2d');
+        currentChart = new Chart(ctx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Misiones Completadas Semanalmente',
+                    data: scatterData,
+                    pointRadius: 5,
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    showLine: false// Mostrar líneas que conectan los puntos
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            unit: 'week',
+                            displayFormats: {
+                                week: 'MMM d'
+                            }
+                        }
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+    $('#tipo-grafico').change(function () {
+        var tipo = $(this).val();
+        if (tipo === 'tareas') {
+            cargarTareasCompletadasSemanal();
+        } else if (tipo === 'misiones') {
+            cargarMisionesCompletadasSemanal();
+        } else {
+            cargarCantidadTareasPorPrioridad();
+        }
+    });
+
+    function cargarCantidadTareasPorPrioridad() {
+        $.ajax({
+            url: '/graficos/grafica-prioridades?username=' + username , // Corregir la URL aquí
+            type: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
+            success: function (response) {
+                cargarGraficoPrioridadTareas(response);
+            },
+            error: function (xhr, status, error) {
+                console.error('Error al cargar los datos:', error);
+            }
+        });
+    }
+
+    function cargarTareasCompletadasSemanal() {
+        $.ajax({
+            url: '/graficos/tareas-completadas-semanal?username=' + username,
+            type: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
+            success: function (response) {
+                console.log(response);
+                cargarGraficoTareasCompletadasSemanal(response);
+            },
+            error: function (xhr, status, error) {
+                console.error('Error al cargar los datos:', error);
+            }
+        });
+    }
+
+    function cargarMisionesCompletadasSemanal() {
+        $.ajax({
+            url: '/graficos/misiones-completadas-semanal?username=' + username, // Añade el nombre de usuario como parámetro
+            type: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
+            success: function (response) {
+                console.log(response);
+                cargarGraficoMisionesCompletadasSemanal(response);
+            },
+            error: function (xhr, status, error) {
+                console.error('Error al cargar los datos:', error);
+            }
+        });
+    }
+
+    function cargarMisiones() {
+        $.ajax({
+            url: '/misiones/getmisiones',
+            type: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
+            success: function (response) {
+                if(response == null){
+                    console.log("NULL");
+                }else{
+                    console.log(response);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error al cargar los datos de las misiones:', error);
+            }
+        });
+    }
+
+    function mostrarGrafico(selector) {
+        $('#contenedor-graficos canvas').hide();
+        $(selector).show();
+    }
+
+    cargarCantidadTareasPorPrioridad();
+    cargarMisiones();
+
+    
 });
+
+function logout() {
+    // Mostrar un mensaje de confirmación al usuario
+    var confirmLogout = confirm("¿Estás seguro de que deseas cerrar sesión?");
+    
+    // Si el usuario confirma el logout, limpiar el token del almacenamiento local y redirigirlo a la página de inicio de sesión
+    if (confirmLogout) {
+        localStorage.removeItem('token');
+        window.location.href = "/vistas/login.html"; // Cambia "login.html" por la ruta de tu página de inicio de sesión
+    }}

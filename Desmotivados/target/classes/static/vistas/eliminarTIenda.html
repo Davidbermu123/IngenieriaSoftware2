@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../estilos/leadmark.css">
+    <link rel="stylesheet" href="/estilos/estilosPou.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/Js\eliminarTienda.js"></script>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+    <!-- page Navigation -->
+    <nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top" data-spy="affix" data-offset-top="10">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="/imgs/logo.svg" alt="">
+            </a>
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">                                       
+                    <li class="nav-item">
+                        <a class="nav-link" href="TiendaDatos.html">Guardar objeto tienda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="EditarTienda.html">Editar objeto tienda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="eliminarTIenda.html">Eliminar objeto tienda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="formContenido.html">Guardar contenido</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="editarContenido.html">Editar contenido</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="deleteContenido.html">Eliminar contenido</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="AprenderDatos.html">Aprender contenido</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="ml-4 nav-link btn btn-primary btn-sm rounded" href="#" onclick="logout()">Log Out</a>
+                    </li>  
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Of Second Navigation -->
+
+
+    <!-- Encabezado -->
+    <header class="header">
+        <div class="overlay">
+            <h1 class="subtitle">(Des)Motivados</h1>
+            <h1 class="title">Pou</h1>  
+        </div>  
+        <div class="shape">
+            <svg viewBox="0 0 1500 200">
+                <path d="m 0,240 h 1500.4828 v -71.92164 c 0,0 -286.2763,-81.79324 -743.19024,-81.79324 C 300.37862,86.28512 0,168.07836 0,168.07836 Z"/>
+            </svg>
+        </div>  
+        <div class="mouse-icon"><div class="wheel"></div></div>
+    </header>
+    <!-- Fin del encabezado -->
+
+    <!-- Contenido de la página -->
+
+    <section>
+        <div class="mostrarInventario">
+            <h1 class="title"><strong>Eliminar de la tienda</strong><br>Ingrese el id del objeto a borrar</h1></h1> 
+        </div>  
+
+        <div class="container">
+            <input type="text" id="codigoElim" placeholder="Ingrese el codigo a borrar">
+            <input type="button" value="Borrar" onclick="eliminarObjTienda(document.getElementById('codigoElim').value)">
+        </div>
+
+    </section>
+
+
+    
+    <!-- Fin del contenido de la página -->
+
+
+    <!-- Footer -->
+            <footer class="mt-5 py-4 border-top border-secondary">
+                <p class="mb-0 small">&copy; <script>document.write(new Date().getFullYear())</script>, LeadMark Created´nt By <a href="https://www.devcrud.com" target="_blank"></a> Danny el master pro. </p>     
+            </footer>
+    <!-- Fin del footer -->
+
+    <!-- Scripts -->
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/bootstrap.bundle.js"></script>
+    <!-- Bootstrap 3 affix -->
+    <script src="../vendors/bootstrap/bootstrap.affix.js"></script>
+    <!-- Isotope -->
+    <script src="../vendors/isotope/isotope.pkgd.js"></script>
+    <!-- LeadMark js -->
+    <script src="../Js/leadmark.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

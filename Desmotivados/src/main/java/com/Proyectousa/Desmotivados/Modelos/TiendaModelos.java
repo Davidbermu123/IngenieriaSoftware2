@@ -50,4 +50,8 @@ public class TiendaModelos {
             throw new RuntimeException("El contenido con ese id no existe: " + idTienda);
         }
     }
+
+    public void delete(Long id){
+        repositorio.eliminarTienda(id);
+    }
 }
