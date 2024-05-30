@@ -98,12 +98,12 @@ function guardarCambios() {
         data: JSON.stringify(tareaModificada),
         success: function(response) {
             console.log('Cambios guardados exitosamente:', response);
-            alert('Los cambios se han guardado exitosamente.');
+            Swal.fire("Los cambios se han guardado exitosamente!");
             window.location.href = "/vistas/organizadorVista.html";
         },
         error: function(xhr, status, error) {
             console.error('Error al guardar los cambios:', error);
-            alert('Ha ocurrido un error al guardar los cambios.');
+            Swal.fire("Ha ocurrido un error al guardar los cambios");
         }
     });
 }

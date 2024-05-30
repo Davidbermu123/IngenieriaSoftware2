@@ -30,10 +30,10 @@ $(document).ready(function() {
             },
             data: formData,
             success: function(response) {
-                alert('Tienda editada exitosamente');
+                Swal.fire("Tienda editada exitosamente!");
             },
             error: function(xhr, status, error) {
-                alert('Error al editar contenido: ' + error);
+                Swal.fire("Error al editar la tienda " + error);
             }
         });
     });
@@ -54,7 +54,7 @@ $(document).ready(function() {
                 $('#precio').val(response.precio);
             },
             error: function(xhr, status, error) {
-                alert('Error al buscar contenido: ' + error);
+                Swal.fire("Error al buscar el elemento "+ error);
             }
         });
     }

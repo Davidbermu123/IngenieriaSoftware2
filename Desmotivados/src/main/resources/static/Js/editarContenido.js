@@ -14,10 +14,10 @@ $(document).ready(function() {
             type: 'PUT',
             data: formData,
             success: function(response) {
-                alert('Contenido editado exitosamente');
+                Swal.fire("Contenido editado exitosamente");
             },
             error: function(xhr, status, error) {
-                alert('Error al editar contenido: ' + error);
+                Swal.fire("Error al editar contenido " + error);
             }
         });
     });
@@ -35,7 +35,7 @@ $(document).ready(function() {
                 $('#link').val(response.link);
             },
             error: function(xhr, status, error) {
-                alert('Error al buscar contenido: ' + error);
+                Swal.fire("Error al buscar contenido " + error);
             }
         });
     }

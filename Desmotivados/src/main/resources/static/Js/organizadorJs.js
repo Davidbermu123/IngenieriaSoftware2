@@ -42,7 +42,7 @@ verificarTokenYRedireccionarALogin();
                 }
             },
             error: function(xhr, status, error) {
-                alert('Error al cargar las tareas');
+                Swal.fire("Error al cargar las tareas");
             }
         });
     }
@@ -58,20 +58,20 @@ verificarTokenYRedireccionarALogin();
     
         // Validación de campos vacíos
         if (title === '' || description === '' || isNaN(startDate) || isNaN(endDate)) {
-            alert('Por favor completa todos los campos.');
+            Swal.fire("Por favor completa todos los campos");
             return;
         }
     
         // Validación de prioridad
         if (priority !== 'baja' && priority !== 'media' && priority !== 'alta') {
-            alert('Por favor selecciona una prioridad.');
+            Swal.fire("Por favor selecciona una prioridad");
             return;
         }
     
         // Validación de fechas y horas pasadas
         let currentDate = new Date();
         if (startDate < currentDate || endDate < currentDate) {
-            alert('No puedes asignar tareas en fechas u horarios pasados.');
+            Swal.fire("No puedes asignar tareas en fechas u horarios pasados");
             return;
         }
     

@@ -32,7 +32,7 @@ $(document).ready(function() {
                 $('#borrarContenido').show(); // Mostrar el botón de borrar contenido
             },
             error: function(xhr, status, error) {
-                alert('Error al obtener contenido: ' + error);
+                Swal.fire('Error al obtener contenido '+ error);;
             }
         });
     });
@@ -46,12 +46,12 @@ $(document).ready(function() {
             url: '/contenido/deleteContenido/' + idContenido,
             type: 'DELETE',
             success: function(response) {
-                alert('Contenido eliminado exitosamente');
+                Swal.fire('Contenido eliminado exitosamente');
                 $('#contenidoMostrado').html(''); // Limpiar el contenido mostrado
                 $('#borrarContenido').hide(); // Ocultar el botón de borrar contenido
             },
             error: function(xhr, status, error) {
-                alert('Error al borrar contenido: ' + error);
+                Swal.fire('Error al borrar contenido' + error);
             }
         });
     });

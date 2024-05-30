@@ -31,7 +31,7 @@ function saveUsuario(){
     var interesesString = intereses.join(',');
 
     if (name === '' || lastname === '' || alias === '' || uni === '' || career === '' || period === '' || pet === '' || contrasena === '' || interesesString == '') {
-        alert('Por favor, complete todos los campos.');
+        Swal.fire("Por favor, complete todos los campos");
         return; // Detener la ejecución si algún campo está vacío
     }
     let data = {
@@ -57,7 +57,7 @@ function saveUsuario(){
             window.location.href = "/index.html";
         },
         error: function(xhr, status, error) {
-            alert('Este usuario ya existe, por favor escoger otro', error);
+            Swal.fire("Este usuario ya existe, por favor escoge otro");
             window.location.href = "/vistas/registro.html";
         }
     });

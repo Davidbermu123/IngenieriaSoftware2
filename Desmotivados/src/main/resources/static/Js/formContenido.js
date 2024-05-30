@@ -11,12 +11,12 @@ $(document).ready(function() {
             type: 'POST',
             data: formData,
             success: function(response) {
-                alert('Contenido creado exitosamente');
+                Swal.fire("Contenido creado exitosamente!");
                 // Limpiar el formulario después de crear el contenido
                 $('#contenidoForm')[0].reset();
             },
             error: function(xhr, status, error) {
-                alert('Error al crear contenido: ' + error);
+                Swal.fire("Error al crear contenido "+ error);
             }
         });
     });

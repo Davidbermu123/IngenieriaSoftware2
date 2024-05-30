@@ -64,12 +64,12 @@ function editarUsuario() {
         success: function(response) {
             // Manejar la respuesta exitosa
             console.log('Usuario actualizado exitosamente:', response);
-            alert('¡Usuario actualizado exitosamente!');
+            Swal.fire("Usuario editado exitosamente!");
         },
         error: function(xhr, status, error) {
             // Manejar errores de la petición
             console.error('Error al actualizar usuario:', error);
-            alert('Actualización de usuario rechazada');
+            Swal.fire("Actualización de usuario rechazada");
         }
     });
 }

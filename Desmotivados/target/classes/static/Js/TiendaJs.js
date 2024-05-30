@@ -76,7 +76,7 @@ $(document).ready(function() {
         },
         success: function(data){
             if(data == -1){
-                alert("Error al cargar las monedas del usuario");
+                Swal.fire("Error al cargar las monedas del usuario");
             }
             $("#cantidadMonedas").text(data);
         },error: function(jqXHR, textStatus, errorThrown) {
@@ -111,13 +111,13 @@ function comprar(descripcionT, imagenT, tipoT, precioT){
         },
         success: function(response) {
             if (response == "guardado") {
-                alert("El item fue comprado");
+                Swal.fire("El item fue comprado");
                 location.reload();
             } else {
                 if (response == "insuficiente") {
-                    alert("No tienes suficientes monedas para comprar este artículo");
+                    Swal.fire("No tienes suficientes monedas para comprar este articulo");
                 } else {
-                    alert("Error al comprar el artículo: " + response);
+                    Swal.fire("Error al comprar el articulo" + response);
                 }
             }
         },
